@@ -39,22 +39,22 @@
     "description": "學術研究與專業發展軌跡",
     "items": [
       {
+        "date": "2016 – 2020",
+        "title": "學士學位 — 材料科學與工程",
+        "org": "國立成功大學 材料科學及工程學系",
+        "description": "扎實的材料科學基礎訓練，涵蓋物理冶金、陶瓷材料、電子材料等核心領域。"
+      },
+      {
+        "date": "2020 – 2022",
+        "title": "碩士學位 — 材料科學與工程",
+        "org": "國立成功大學 材料科學及工程學研究所",
+        "description": "研究方向：半導體材料之第一原理計算（DFT）。使用 VASP 進行模擬，發表 3 篇 SCI 國際期刊論文。"
+      },
+      {
         "date": "2023 – 2025",
-        "title": "碩士學位 — 半導體物理與 DFT 計算",
-        "org": "國立大學物理 / 材料系所",
-        "description": "研究方向：ZnO 能帶工程、過渡金屬摻雜、異質結構之第一原理計算。使用 VASP 進行 DFT 模擬，發表 3 篇國際期刊論文。"
-      },
-      {
-        "date": "2024 – 2025",
-        "title": "科技部專題研究計畫",
-        "org": "MOST Project — GANNs 材料設計",
-        "description": "以 DFT 結合機器學習方法預測新型半導體材料之光電特性。"
-      },
-      {
-        "date": "2019 – 2023",
-        "title": "學士學位",
-        "org": "國立大學物理 / 工程相關科系",
-        "description": "扎實的物理與數學基礎訓練。"
+        "title": "Bumping 製程工程師",
+        "org": "台星科股份有限公司",
+        "description": "負責晶圓級封裝之 bumping 製程開發與良率提升，涵蓋電鍍、濺鍍、微影及蝕刻等關鍵模組。"
       }
     ]
   },
@@ -135,7 +135,7 @@
     "title": "聯絡我",
     "description": "期待與您交流 — 技術討論、工作機會、合作提案",
     "links": [
-      { "icon": "ph ph-envelope", "label": "Email", "href": "mailto:brian861114@gmail.com" },
+      {"icon":"ph ph-envelope","label":"brian861114@gmail.com","href":"mailto:brian861114@gmail.com"},
       { "icon": "ph ph-phone", "label": "0979-415-008", "href": "tel:+886979415008" },
       { "icon": "ph ph-linkedin-logo", "label": "LinkedIn", "href": "#" }
     ]
