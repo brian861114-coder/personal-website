@@ -135,8 +135,8 @@
     "title": "聯絡我",
     "description": "期待與您交流 — 技術討論、工作機會、合作提案",
     "links": [
-      { "icon": "ph ph-envelope", "label": "Email", "href": "mailto:brian@example.com" },
-      { "icon": "ph ph-github-logo", "label": "GitHub", "href": "https://github.com/brian861114-coder" },
+      { "icon": "ph ph-envelope", "label": "Email", "href": "mailto:brian861114@gmail.com" },
+      { "icon": "ph ph-phone", "label": "0979-415-008", "href": "tel:+886979415008" },
       { "icon": "ph ph-linkedin-logo", "label": "LinkedIn", "href": "#" }
     ]
   },
