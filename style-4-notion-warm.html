@@ -318,188 +318,126 @@
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <span class="logo">Brian</span>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact" class="nav-cta">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+<nav id="main-nav"></nav>
+<header class="hero" id="hero-section"></header>
+<section id="about"></section>
+<section class="warm" id="experience"><div class="inner"></div></section>
+<section id="skills"></section>
+<section class="warm" id="research"><div class="inner"></div></section>
+<section id="projects"></section>
+<section class="warm" id="contact"><div class="inner contact-section"></div></section>
+<footer></footer>
 
-<header class="hero">
-  <h1>Hello, I'm Brian.</h1>
-  <p class="subtitle">半導體物理 × AI 系統 — 以第一原理思考，用智慧自動化實踐</p>
-  <div class="cta-group">
-    <a href="#contact" class="btn-primary">與我聯絡</a>
-    <a href="#projects" class="btn-secondary">瀏覽作品</a>
-  </div>
-</header>
+<script>
+(async function() {
+  const res = await fetch('data.json');
+  const d = await res.json();
 
-<section id="about">
-  <h2>關於我</h2>
-  <p class="section-desc">Physicist turned AI engineer — building systems that think and compute.</p>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>
-        我是 Brian，一位專注於半導體物理與 AI 系統整合的研究者。碩士期間以第一原理計算（DFT）研究 ZnO 與異質結構的電子特性，
-        發表 3 篇 SCI 論文，涵蓋能帶工程、催化反應等前沿主題。
-      </p>
-      <p>
-        我同時也是 AI agent 技術的實踐者——自架 LLM 服務、設計 RAG 知識庫、打造個人 AI 工作系統。
-        我相信：好的工程師不只是解決問題，而是建立一套能持續演進的系統。
-      </p>
-    </div>
-    <div class="info-cards">
-      <div class="info-card"><strong>📍</strong> 臺中市南屯區，臺灣</div>
-      <div class="info-card"><strong>🎓</strong> 碩士 — 半導體 / DFT 計算</div>
-      <div class="info-card"><strong>📄</strong> 3 篇 SCI 論文發表</div>
-      <div class="info-card"><strong>🛠</strong> AI Agent / RAG / 自架服務</div>
-    </div>
-  </div>
-</section>
+  document.title = d.page.title;
 
-<section class="warm" id="experience">
-  <div class="inner">
-    <h2>學經歷</h2>
-    <p class="section-desc">學術研究與專業發展軌跡</p>
+  // --- Nav ---
+  const nav = document.getElementById('main-nav');
+  nav.innerHTML = `
+    <div class="nav-inner">
+      <span class="logo">${d.nav.logo}</span>
+      <ul class="nav-links">
+        ${d.nav.links.map(l => `<li><a href="${l.href}">${l.label}</a></li>`).join('')}
+        <li><a href="${d.nav.cta.href}" class="nav-cta">${d.nav.cta.label}</a></li>
+      </ul>
+    </div>`;
+
+  // --- Hero ---
+  document.getElementById('hero-section').innerHTML = `
+    <h1>${d.hero.greeting}</h1>
+    <p class="subtitle">${d.hero.subtitle}</p>
+    <div class="cta-group">
+      ${d.hero.buttons.map(b => `<a href="${b.href}" class="${b.class}">${b.label}</a>`).join('')}
+    </div>`;
+
+  // --- About ---
+  document.getElementById('about').innerHTML = `
+    <h2>${d.about.title}</h2>
+    <p class="section-desc">${d.about.description}</p>
+    <div class="about-grid">
+      <div class="about-text">${d.about.paragraphs.map(p => `<p>${p}</p>`).join('')}</div>
+      <div class="info-cards">
+        ${d.about.info.map(i => `<div class="info-card"><strong>${i.icon}</strong> ${i.text}</div>`).join('')}
+      </div>
+    </div>`;
+
+  // --- Experience ---
+  const exp = document.querySelector('#experience .inner');
+  exp.innerHTML = `
+    <h2>${d.experience.title}</h2>
+    <p class="section-desc">${d.experience.description}</p>
     <div class="timeline">
-      <div class="timeline-item">
-        <div class="date">2023 – 2025</div>
-        <h3>碩士學位 — 半導體物理與 DFT 計算</h3>
-        <div class="org">國立大學物理 / 材料系所</div>
-        <p>研究方向：ZnO 能帶工程、過渡金屬摻雜、異質結構之第一原理計算。使用 VASP 進行 DFT 模擬，發表 3 篇國際期刊論文。</p>
-      </div>
-      <div class="timeline-item">
-        <div class="date">2024 – 2025</div>
-        <h3>科技部專題研究計畫</h3>
-        <div class="org">MOST Project — GANNs 材料設計</div>
-        <p>以 DFT 結合機器學習方法預測新型半導體材料之光電特性。</p>
-      </div>
-      <div class="timeline-item">
-        <div class="date">2019 – 2023</div>
-        <h3>學士學位</h3>
-        <div class="org">國立大學物理 / 工程相關科系</div>
-        <p>扎實的物理與數學基礎訓練。</p>
-      </div>
-    </div>
-  </div>
-</section>
+      ${d.experience.items.map(e => `
+        <div class="timeline-item">
+          <div class="date">${e.date}</div>
+          <h3>${e.title}</h3>
+          <div class="org">${e.org}</div>
+          <p>${e.description}</p>
+        </div>`).join('')}
+    </div>`;
 
-<section id="skills">
-  <h2>專業技能</h2>
-  <p class="section-desc">跨領域技術棧</p>
-  <div class="skills-grid">
-    <div class="skill-card">
-      <h3>🔬 計算材料</h3>
-      <div class="tag-list">
-        <span class="tag">VASP</span><span class="tag">DFT</span><span class="tag">Quantum ESPRESSO</span>
-        <span class="tag">Band Structure</span><span class="tag">DOS</span><span class="tag">NEB</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <h3>🤖 AI & LLM</h3>
-      <div class="tag-list">
-        <span class="tag">RAG 架構</span><span class="tag">Agent 設計</span><span class="tag">OpenRouter API</span>
-        <span class="tag">LangChain</span><span class="tag">Prompt Engineering</span><span class="tag">Local LLM</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <h3>🖥 開發 & 維運</h3>
-      <div class="tag-list">
-        <span class="tag">Python</span><span class="tag">Git</span><span class="tag">Linux/WSL</span>
-        <span class="tag">Docker</span><span class="tag">HTML/CSS/JS</span><span class="tag">GitHub Pages</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <h3>📚 知識管理</h3>
-      <div class="tag-list">
-        <span class="tag">Obsidian</span><span class="tag">Knowledge Graph</span>
-        <span class="tag">Zettelkasten</span><span class="tag">Mermaid</span><span class="tag">PKM 系統設計</span>
-      </div>
-    </div>
-  </div>
-</section>
+  // --- Skills ---
+  document.getElementById('skills').innerHTML = `
+    <h2>${d.skills.title}</h2>
+    <p class="section-desc">${d.skills.description}</p>
+    <div class="skills-grid">
+      ${d.skills.categories.map(c => `
+        <div class="skill-card">
+          <h3>${c.name}</h3>
+          <div class="tag-list">
+            ${c.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+        </div>`).join('')}
+    </div>`;
 
-<section class="warm" id="research">
-  <div class="inner">
-    <h2>研究發表</h2>
-    <p class="section-desc">3 篇 SCI 國際期刊論文</p>
+  // --- Research ---
+  const resInner = document.querySelector('#research .inner');
+  resInner.innerHTML = `
+    <h2>${d.research.title}</h2>
+    <p class="section-desc">${d.research.description}</p>
     <div class="research-grid">
-      <div class="research-card">
-        <h3>ZnO Bandgap Engineering via DFT</h3>
-        <p>以 DFT-1/2 方法精準計算 ZnO 能隙，探討摻雜對電子結構的影響，與實驗光譜高度吻合。</p>
-        <div class="tag-list"><span class="tag">DFT-1/2</span><span class="tag">ZnO</span><span class="tag">VASP</span></div>
-      </div>
-      <div class="research-card">
-        <h3>HER on Pt/Au/Ag-ZnO</h3>
-        <p>氫析出反應在貴金屬摻雜 ZnO 表面的催化機制研究，計算活性位點與反應能障。</p>
-        <div class="tag-list"><span class="tag">HER</span><span class="tag">Catalysis</span><span class="tag">NEB</span></div>
-      </div>
-      <div class="research-card">
-        <h3>CO₂RR on CFO/CMFO Heterojunction</h3>
-        <p>二氧化碳還原反應在尖晶石異質結構上的選擇性與效率之第一原理研究。</p>
-        <div class="tag-list"><span class="tag">CO₂RR</span><span class="tag">Heterojunction</span><span class="tag">Spinel</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+      ${d.research.papers.map(p => `
+        <div class="research-card">
+          <h3>${p.title}</h3>
+          <p>${p.description}</p>
+          <div class="tag-list">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        </div>`).join('')}
+    </div>`;
 
-<section id="projects">
-  <h2>精選作品</h2>
-  <p class="section-desc">個人專案與技術實踐</p>
-  <div class="projects-grid">
-    <div class="project-card">
-      <div class="card-img">🗺️</div>
-      <div class="card-body">
-        <h3>半導體物理知識地圖</h3>
-        <p>417 節點互動式 SVG 知識圖譜，含域區塊、語義縮放、MathJax 渲染。</p>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="card-img">🏠</div>
-      <div class="card-body">
-        <h3>個人 AI 工作系統</h3>
-        <p>基於 Hermes Agent 的多模態 AI 助手：自動晨報、104 爬蟲、Telegram 通知。</p>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="card-img">📊</div>
-      <div class="card-body">
-        <h3>知識庫品質審計工具</h3>
-        <p>自動化檢查 422 篇筆記的內容品質，10 項規則雙維度評估。</p>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="card-img">🔍</div>
-      <div class="card-body">
-        <h3>半導體產業求職爬蟲</h3>
-        <p>自動化爬取 104/ASML/AMAT 職缺，產業鏈過濾、薪資門檻、排除輪班。</p>
-      </div>
-    </div>
-  </div>
-</section>
+  // --- Projects ---
+  document.getElementById('projects').innerHTML = `
+    <h2>${d.projects.title}</h2>
+    <p class="section-desc">${d.projects.description}</p>
+    <div class="projects-grid">
+      ${d.projects.items.map(p => `
+        <div class="project-card">
+          <div class="card-img">${p.icon}</div>
+          <div class="card-body">
+            <h3>${p.title}</h3>
+            <p>${p.description}</p>
+          </div>
+        </div>`).join('')}
+    </div>`;
 
-<section class="warm" id="contact">
-  <div class="inner contact-section">
-    <h2>聯絡我</h2>
-    <p class="section-desc">期待與您交流 — 技術討論、工作機會、合作提案</p>
+  // --- Contact ---
+  const contact = document.querySelector('#contact .inner');
+  contact.innerHTML = `
+    <h2>${d.contact.title}</h2>
+    <p class="section-desc">${d.contact.description}</p>
     <div class="contact-links">
-      <a class="contact-link" href="mailto:brian@example.com"><i class="ph ph-envelope"></i> Email</a>
-      <a class="contact-link" href="https://github.com/brian861114-coder"><i class="ph ph-github-logo"></i> GitHub</a>
-      <a class="contact-link" href="#"><i class="ph ph-linkedin-logo"></i> LinkedIn</a>
-    </div>
-  </div>
-</section>
+      ${d.contact.links.map(l => `
+        <a class="contact-link" href="${l.href}"><i class="${l.icon}"></i> ${l.label}</a>
+      `).join('')}
+    </div>`;
 
-<footer>
-  <p>© 2026 Brian — Built with ❤️ in Taichung, Taiwan.</p>
-</footer>
+  // --- Footer ---
+  document.querySelector('footer').textContent = d.footer.text;
+})();
+</script>
 
 </body>
 </html>
