@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brian | 半導體 & AI 工程師</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <style>
+    /* ===== Apple-Inspired: 極簡白 ===== */
+    :root {
+      --bg-light: #f5f5f7;
+      --bg-white: #ffffff;
+      --bg-dark: #000000;
+      --text-primary: #1d1d1f;
+      --text-secondary: rgba(0,0,0,0.8);
+      --text-tertiary: rgba(0,0,0,0.48);
+      --accent: #0071e3;
+      --link-light: #0066cc;
+      --link-dark: #2997ff;
+      --border-light: rgba(0,0,0,0.08);
+      --shadow-card: rgba(0,0,0,0.22) 3px 5px 30px 0px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text-primary);
+      background: var(--bg-white);
+      line-height: 1.47;
+      letter-spacing: -0.022em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    nav .nav-inner {
+      max-width: 980px;
+      width: 100%;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav .logo {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+    nav .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    nav .nav-links a {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover { color: #ffffff; }
+
+    /* Hero Section */
+    .hero {
+      background: var(--bg-dark);
+      color: #ffffff;
+      text-align: center;
+      padding: 120px 22px 100px;
+    }
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 600;
+      line-height: 1.07;
+      letter-spacing: -0.005em;
+      margin-bottom: 12px;
+    }
+    .hero .subtitle {
+      font-size: 21px;
+      font-weight: 400;
+      line-height: 1.19;
+      letter-spacing: 0.011em;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 32px;
+    }
+    .hero .cta-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      padding: 8px 15px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font-size: 17px;
+      font-weight: 400;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #0066cc; }
+    .btn-outline {
+      background: transparent;
+      color: var(--link-dark);
+      padding: 8px 15px;
+      border-radius: 980px;
+      border: 1px solid var(--link-dark);
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: rgba(41,151,255,0.1); }
+
+    /* Section Common */
+    section {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 80px 22px;
+    }
+    section.alt { background: var(--bg-light); max-width: 100%; }
+    section.alt .inner { max-width: 980px; margin: 0 auto; padding: 0 22px; }
+    section h2 {
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 1.10;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    section .section-desc {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 17px;
+      margin-bottom: 48px;
+    }
+    section.alt h2 { color: var(--text-primary); }
+    section.alt .section-desc { color: var(--text-secondary); }
+
+    /* About Grid */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .about-grid .about-text { font-size: 17px; color: var(--text-secondary); line-height: 1.6; }
+    .about-grid .about-text p { margin-bottom: 16px; }
+    .info-list { list-style: none; }
+    .info-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 15px;
+      color: var(--text-secondary);
+      display: flex;
+      gap: 12px;
+    }
+    .info-list li strong { color: var(--text-primary); min-width: 60px; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      bottom: 4px;
+      width: 2px;
+      background: var(--border-light);
+    }
+    .timeline-item { margin-bottom: 32px; position: relative; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -37px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .timeline-item .date {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: -0.016em;
+      margin-bottom: 4px;
+    }
+    .timeline-item h3 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+    .timeline-item .org { font-size: 15px; color: var(--text-secondary); margin-bottom: 6px; }
+    .timeline-item p { font-size: 14px; color: var(--text-tertiary); }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .skill-card {
+      background: var(--bg-white);
+      border-radius: 8px;
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+    }
+    .skill-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .skill-card .tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-card .tag {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--link-light);
+      background: rgba(0,113,227,0.08);
+      padding: 4px 10px;
+      border-radius: 980px;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--bg-white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s;
+    }
+    .project-card:hover { transform: translateY(-4px); }
+    .project-card .card-img {
+      height: 180px;
+      background: var(--bg-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: var(--text-tertiary);
+    }
+    .project-card .card-body { padding: 20px; }
+    .project-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .project-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px; }
+    .project-card .card-link {
+      font-size: 14px;
+      color: var(--link-light);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .project-card .card-link:hover { text-decoration: underline; }
+
+    /* Contact */
+    .contact-section { text-align: center; }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 17px;
+      color: var(--link-light);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .contact-link:hover { background: rgba(0,113,227,0.08); }
+
+    /* Footer */
+    footer {
+      background: var(--bg-light);
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 36px; }
+      .hero .subtitle { font-size: 17px; }
+      section h2 { font-size: 28px; }
+      .about-grid { grid-template-columns: 1fr; }
+      nav .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="logo">Brian</span>
+    <ul class="nav-links">
+      <li><a href="#about">關於</a></li>
+      <li><a href="#education">學歷</a></li>
+      <li><a href="#research">研究</a></li>
+      <li><a href="#skills">技能</a></li>
+      <li><a href="#projects">作品</a></li>
+      <li><a href="#contact">聯絡</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>Brian</h1>
+  <p class="subtitle">半導體物理研究者 &middot; AI 系統工程師 &middot; 知識管理架構師</p>
+  <div class="cta-group">
+    <a href="#contact" class="btn-primary">
+      <i class="ph ph-envelope"></i> 聯絡我
+    </a>
+    <a href="#projects" class="btn-outline">瀏覽作品 →</a>
+  </div>
+</header>
+
+<section id="about">
+  <h2>關於我</h2>
+  <p class="section-desc">以物理思維解決工程問題，用 AI 系統放大個人產能</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        我是 Brian，一位專注於半導體物理與 AI 系統整合的研究者。碩士期間以第一原理計算（DFT）研究 ZnO 與異質結構的電子特性，
+        發表 3 篇 SCI 論文，涵蓋能帶工程、催化反應等前沿主題。
+      </p>
+      <p>
+        我同時也是 AI agent 技術的實踐者——自架 LLM 服務、設計 RAG 知識庫、打造個人 AI 工作系統。
+        我相信：好的工程師不只是解決問題，而是建立一套能持續演進的系統。
+      </p>
+    </div>
+    <ul class="info-list">
+      <li><strong>📍</strong> 臺中市南屯區，臺灣</li>
+      <li><strong>🎓</strong> 碩士 — 半導體 / DFT 計算</li>
+      <li><strong>📄</strong> 3 篇 SCI 論文發表</li>
+      <li><strong>🛠</strong> AI Agent / RAG / 自架服務</li>
+    </ul>
+  </div>
+</section>
+
+<section class="alt" id="education">
+  <div class="inner">
+    <h2>學經歷</h2>
+    <p class="section-desc">學術研究與專業發展軌跡</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="date">2023 – 2025</div>
+        <h3>碩士學位 — 半導體物理與 DFT 計算</h3>
+        <div class="org">國立大學物理 / 材料系所</div>
+        <p>研究方向：ZnO 能帶工程、過渡金屬摻雜、異質結構之第一原理計算。使用 VASP 進行 DFT 模擬，發表 3 篇國際期刊論文。</p>
+      </div>
+      <div class="timeline-item">
+        <div class="date">2024 – 2025</div>
+        <h3>科技部專題研究計畫</h3>
+        <div class="org">MOST Project — GANNs 材料設計</div>
+        <p>以 DFT 結合機器學習方法預測新型半導體材料之光電特性。</p>
+      </div>
+      <div class="timeline-item">
+        <div class="date">2019 – 2023</div>
+        <h3>學士學位</h3>
+        <div class="org">國立大學物理 / 工程相關科系</div>
+        <p>扎實的物理與數學基礎訓練。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <h2>研究發表</h2>
+  <p class="section-desc">3 篇 SCI 國際期刊論文</p>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="card-img">🔬</div>
+      <div class="card-body">
+        <h3>ZnO Bandgap Engineering via DFT</h3>
+        <p>以 DFT-1/2 方法精準計算 ZnO 能隙，探討摻雜對電子結構的影響，與實驗光譜高度吻合。</p>
+        <div class="tag-list">
+          <span class="tag">DFT-1/2</span>
+          <span class="tag">ZnO</span>
+          <span class="tag">VASP</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="card-img">⚛️</div>
+      <div class="card-body">
+        <h3>HER on Pt/Au/Ag-ZnO</h3>
+        <p>氫析出反應（HER）在貴金屬摻雜 ZnO 表面的催化機制研究，計算活性位點與反應能障。</p>
+        <div class="tag-list">
+          <span class="tag">HER</span>
+          <span class="tag">Catalysis</span>
+          <span class="tag">NEB</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="card-img">🧪</div>
+      <div class="card-body">
+        <h3>CO₂RR on CFO/CMFO Heterojunction</h3>
+        <p>二氧化碳還原反應在尖晶石異質結構上的選擇性與效率之第一原理研究。</p>
+        <div class="tag-list">
+          <span class="tag">CO₂RR</span>
+          <span class="tag">Heterojunction</span>
+          <span class="tag">Spinel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="skills">
+  <div class="inner">
+    <h2>專業技能</h2>
+    <p class="section-desc">跨領域技術棧</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>🔬 計算材料</h3>
+        <div class="tag-list">
+          <span class="tag">VASP</span><span class="tag">DFT</span><span class="tag">Quantum ESPRESSO</span>
+          <span class="tag">Band Structure</span><span class="tag">DOS</span><span class="tag">NEB</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>🤖 AI & LLM</h3>
+        <div class="tag-list">
+          <span class="tag">RAG 架構</span><span class="tag">Agent 設計</span><span class="tag">OpenRouter API</span>
+          <span class="tag">LangChain</span><span class="tag">Prompt Engineering</span><span class="tag">Local LLM</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>🖥 開發 & 維運</h3>
+        <div class="tag-list">
+          <span class="tag">Python</span><span class="tag">Git</span><span class="tag">Linux/WSL</span>
+          <span class="tag">Docker</span><span class="tag">HTML/CSS/JS</span><span class="tag">GitHub Pages</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>📚 知識管理</h3>
+        <div class="tag-list">
+          <span class="tag">Obsidian</span><span class="tag">Markdown</span><span class="tag">Knowledge Graph</span>
+          <span class="tag">Zettelkasten</span><span class="tag">Mermaid</span><span class="tag">PKM 系統設計</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>精選作品</h2>
+  <p class="section-desc">個人專案與技術實踐</p>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="card-img">🗺️</div>
+      <div class="card-body">
+        <h3>半導體物理知識地圖</h3>
+        <p>417 個節點的互動式 SVG 知識圖譜，含域區塊、語義縮放、MathJax 渲染。Neamen 課本全覆蓋。</p>
+        <a class="card-link" href="#">查看專案 →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="card-img">🏠</div>
+      <div class="card-body">
+        <h3>個人 AI 工作系統</h3>
+        <p>基於 Hermes Agent 的多模態 AI 助手：自動晨報、104 爬蟲、Telegram 通知、Cron 排程。</p>
+        <a class="card-link" href="#">查看專案 →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="card-img">📊</div>
+      <div class="card-body">
+        <h3>知識庫品質審計工具</h3>
+        <p>自動化檢查 422 篇筆記的內容品質（10 項規則），含結構合規與內容深度評估。</p>
+        <a class="card-link" href="#">查看專案 →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="card-img">🔍</div>
+      <div class="card-body">
+        <h3>半導體產業求職爬蟲</h3>
+        <p>自動化爬取 104/ASML/AMAT 職缺，半導體產業鏈過濾、薪資門檻、排除輪班。</p>
+        <a class="card-link" href="#">查看專案 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="contact">
+  <div class="inner contact-section">
+    <h2>聯絡我</h2>
+    <p class="section-desc">期待與您交流 — 無論是技術討論、工作機會、或合作提案</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:brian@example.com"><i class="ph ph-envelope"></i> Email</a>
+      <a class="contact-link" href="https://github.com/brian861114-coder"><i class="ph ph-github-logo"></i> GitHub</a>
+      <a class="contact-link" href="#"><i class="ph ph-linkedin-logo"></i> LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Brian. Built with ❤️ in Taichung, Taiwan.</p>
+</footer>
+
+</body>
+</html>
