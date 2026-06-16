@@ -11,6 +11,7 @@
     "cta": { "label": "Contact", "href": "#contact" }
   },
   "hero": {
+    "photo": "photo.jpg",
     "greeting": "Hello, I'm Brian.",
     "subtitle": "半導體物理 × AI 系統 — 以第一原理思考，用智慧自動化實踐",
     "buttons": [
