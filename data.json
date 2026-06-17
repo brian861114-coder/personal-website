@@ -43,13 +43,20 @@
         "date": "2016 – 2020",
         "title": "學士學位 — 材料科學與工程",
         "org": "國立成功大學 材料科學及工程學系",
-        "description": "扎實的材料科學基礎訓練，涵蓋物理冶金、陶瓷材料、電子材料等核心領域。"
+        "details": [
+          "Understanding the crystal structure and related defects of semiconductor materials",
+          "Master <strong>material analysis methods</strong> and mechanisms（XRD / SEM / AFM …）",
+          "Taking semiconductor courses to <strong>comprehend the structure of common PN junction / MOSFET device</strong>"
+        ]
       },
       {
         "date": "2020 – 2022",
         "title": "碩士學位 — 材料科學與工程",
         "org": "國立成功大學 材料科學及工程學研究所",
-        "description": "研究方向：半導體材料之第一原理計算（DFT）。使用 VASP 進行模擬，發表 3 篇 SCI 國際期刊論文。"
+        "details": [
+          "<strong>Collaborate with multi lab teams</strong> to complete the Research Project",
+          "Investigate and <strong>publish 3 journal papers</strong> in green energy materials by simulation method"
+        ]
       },
       {
         "date": "2023 – 2025",
@@ -114,24 +121,31 @@
     "items": [
       {
         "icon": "🗺️",
-        "img": "images/半導體物理知識地圖.png",
+        "img": "images/knowledge-map.png",
         "title": "半導體物理知識地圖",
-        "description": "417 節點互動式 SVG 知識圖譜，含域區塊、語義縮放、MathJax 渲染。"
+        "description": "417 節點互動式 SVG 知識圖譜，含域區塊、語義縮放、MathJax 渲染。",
+        "link": "projects/knowledge-map/"
       },
       {
         "icon": "🏠",
+        "img": "images/ai-work-system.png",
         "title": "個人 AI 工作系統",
-        "description": "基於 Hermes Agent 的多模態 AI 助手：自動晨報、104 爬蟲、Telegram 通知。"
+        "description": "整合 LLM、RAG 與自動化排程，利用 AI 輔助學習研究、提升工作效率、打造個人化自動化流程。",
+        "link": "projects/ai-work-system/"
       },
       {
-        "icon": "📊",
-        "title": "知識庫品質審計工具",
-        "description": "自動化檢查 422 篇筆記的內容品質，10 項規則雙維度評估。"
+        "icon": "📵",
+        "img": "images/3c-detox.png",
+        "title": "3C Detox App",
+        "description": "數位排毒輔助工具，幫助使用者管理螢幕時間、建立健康的手機使用習慣。",
+        "link": "projects/3c-detox/"
       },
       {
-        "icon": "🔍",
-        "title": "半導體產業求職爬蟲",
-        "description": "自動化爬取 104/ASML/AMAT 職缺，產業鏈過濾、薪資門檻、排除輪班。"
+        "icon": "👴",
+        "img": "images/elder-life.png",
+        "title": "Elder Life App",
+        "description": "銀髮族生活便利應用，整合健康監控、用藥提醒、緊急聯絡等日常輔助功能。",
+        "link": "projects/elder-life/"
       }
     ]
   },
