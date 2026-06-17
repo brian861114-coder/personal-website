@@ -11,7 +11,7 @@
     "cta": { "label": "Contact", "href": "#contact" }
   },
   "hero": {
-    "photo": "photo.jpg",
+    "photo": "images/photo.jpg",
     "greeting": "Hello, I'm Brian.",
     "subtitle": "半導體物理 × AI 系統 — 以第一原理思考，用智慧自動化實踐",
     "buttons": [
@@ -65,19 +65,19 @@
     "description": "跨領域技術棧",
     "categories": [
       {
-        "name": "🔬 計算材料",
+        "name": "計算材料",
         "tags": ["VASP", "DFT", "Quantum ESPRESSO", "Band Structure", "DOS", "NEB"]
       },
       {
-        "name": "🤖 AI & LLM",
+        "name": "AI & LLM",
         "tags": ["RAG 架構", "Agent 設計", "OpenRouter API", "LangChain", "Prompt Engineering", "Local LLM"]
       },
       {
-        "name": "🖥 開發 & 維運",
+        "name": "開發 & 維運",
         "tags": ["Python", "Git", "Linux/WSL", "Docker", "HTML/CSS/JS", "GitHub Pages"]
       },
       {
-        "name": "📚 知識管理",
+        "name": "知識管理",
         "tags": ["Obsidian", "Knowledge Graph", "Zettelkasten", "Mermaid", "PKM 系統設計"]
       }
     ]
@@ -88,19 +88,22 @@
     "description": "3 篇 SCI 國際期刊論文",
     "papers": [
       {
-        "title": "ZnO Bandgap Engineering via DFT",
-        "description": "以 DFT-1/2 方法精準計算 ZnO 能隙，探討摻雜對電子結構的影響，與實驗光譜高度吻合。",
-        "tags": ["DFT-1/2", "ZnO", "VASP"]
+        "title": "Machine-Learning-Aided DFT-1/2 Calculations for Bandgaps of Zinc Oxide Thin Films",
+        "journal": "Thin Solid Films, 2022 — IF: 2.1",
+        "description": "結合 DFT-1/2 方法與基因演算法人工神經網路（GANNs），精準預測 ZnO 薄膜能隙。GANNs 預測值與 DFT-1/2 計算值誤差 < 5%，與實驗數據高度吻合。",
+        "tags": ["DFT-1/2", "GANNs", "ZnO", "Machine Learning"]
       },
       {
-        "title": "HER on Pt/Au/Ag-ZnO",
-        "description": "氫析出反應在貴金屬摻雜 ZnO 表面的催化機制研究，計算活性位點與反應能障。",
-        "tags": ["HER", "Catalysis", "NEB"]
+        "title": "Catalytic Hydrogen Evolution Reaction on Metal-Nanoparticle-Coated Zinc-Based Oxides",
+        "journal": "International Journal of Hydrogen Energy, 2022 — IF: 7.2",
+        "description": "以第一原理計算研究 Pt/Au/Ag 奈米粒子塗覆 ZnO 表面的氫析出反應（HER）催化機制。Au/ZnO 吸附自由能最接近零，Pt/ZnO 在 Volmer-Heyrovsky 路徑上表現最佳。",
+        "tags": ["HER", "ZnO", "Catalysis", "DFT"]
       },
       {
-        "title": "CO₂RR on CFO/CMFO Heterojunction",
-        "description": "二氧化碳還原反應在尖晶石異質結構上的選擇性與效率之第一原理研究。",
-        "tags": ["CO₂RR", "Heterojunction", "Spinel"]
+        "title": "MgFe₂O₅ Nanoparticle-Decorated CaFe₂O₄−Ca₂Fe₂O₅ Heterostructure for Efficient Photocatalytic CO₂ Conversion",
+        "journal": "ACS Sustainable Chemistry & Engineering, 2022 — IF: 8.4",
+        "description": "合成 CaFe₂O₄−Ca₂Fe₂O₅ 異質結構並以 MgFe₂O₅ 奈米粒子修飾，用於光催化 CO₂ 還原。DFT 計算揭示 Type-II 電荷轉移機制，CH₄ 選擇性達 81.7%。",
+        "tags": ["CO₂RR", "Heterojunction", "Photocatalysis", "DFT"]
       }
     ]
   },
@@ -111,6 +114,7 @@
     "items": [
       {
         "icon": "🗺️",
+        "img": "images/半導體物理知識地圖.png",
         "title": "半導體物理知識地圖",
         "description": "417 節點互動式 SVG 知識圖譜，含域區塊、語義縮放、MathJax 渲染。"
       },
