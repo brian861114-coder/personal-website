@@ -179,7 +179,8 @@
       background: var(--card-bg);
       backdrop-filter: blur(4px);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0;
       padding: 16px 20px;
       font-size: 14px;
       color: var(--text-secondary);
@@ -188,6 +189,10 @@
       align-items: center;
       gap: 12px;
     }
+    .info-card:nth-child(1) { border-left-color: #0075de; }
+    .info-card:nth-child(2) { border-left-color: #5e6ad2; }
+    .info-card:nth-child(3) { border-left-color: #10b981; }
+    .info-card:nth-child(4) { border-left-color: #f59e0b; }
     .info-card strong { color: var(--text-primary); font-weight: 600; }
 
     /* Timeline */
@@ -230,11 +235,18 @@
     .skill-card {
       background: var(--card-bg);
       backdrop-filter: blur(4px);
-      border: 1px solid var(--border);
+      border: 2px solid transparent;
       border-radius: 12px;
       padding: 24px;
       box-shadow: var(--shadow-card);
+      background-image: linear-gradient(var(--card-bg), var(--card-bg)), linear-gradient(135deg, rgba(0,117,222,0.30), rgba(94,106,210,0.20), rgba(16,185,129,0.15), rgba(245,158,11,0.12));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
     }
+    .skill-card:nth-child(1) { background-image: linear-gradient(var(--card-bg), var(--card-bg)), linear-gradient(135deg, rgba(0,117,222,0.35), rgba(94,106,210,0.22)); }
+    .skill-card:nth-child(2) { background-image: linear-gradient(var(--card-bg), var(--card-bg)), linear-gradient(135deg, rgba(94,106,210,0.35), rgba(16,185,129,0.22)); }
+    .skill-card:nth-child(3) { background-image: linear-gradient(var(--card-bg), var(--card-bg)), linear-gradient(135deg, rgba(16,185,129,0.35), rgba(245,158,11,0.22)); }
+    .skill-card:nth-child(4) { background-image: linear-gradient(var(--card-bg), var(--card-bg)), linear-gradient(135deg, rgba(245,158,11,0.30), rgba(0,117,222,0.20)); }
     .skill-card h3 { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 14px; }
     .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag {
