@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Brian | 半導體 & AI 工程師</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -29,6 +29,14 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(54px + env(safe-area-inset-top, 0px) + 12px);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       color: var(--text-primary);
@@ -54,12 +62,24 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
+      padding-left: max(24px, env(safe-area-inset-left));
+      padding-right: max(24px, env(safe-area-inset-right));
       height: 54px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
     }
-    nav .logo { font-size: 17px; font-weight: 700; color: var(--text-primary); }
+    nav .logo {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      min-width: 0;
+      line-height: 1.25;
+    }
+    nav .logo:hover { color: var(--text-primary); }
+    .nav-end { display: flex; gap: 24px; list-style: none; align-items: center; flex-shrink: 0; }
     nav .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
     nav .nav-links a {
       font-size: 15px;
@@ -99,7 +119,7 @@
       height: 220px;
       border-radius: 50%;
       object-fit: cover;
-      object-position: center 30%;
+      object-position: center 22%;
       border: 4px solid rgba(255,255,255,0.8);
       box-shadow: 0 4px 20px rgba(0,0,0,0.10);
       margin-bottom: 28px;
@@ -234,6 +254,7 @@
       gap: 12px;
     }
     .skill-card {
+      display: block;
       background: var(--card-bg);
       backdrop-filter: blur(4px);
       border: 2px solid transparent;
@@ -243,7 +264,12 @@
       background-image: linear-gradient(var(--card-bg), var(--card-bg)), linear-gradient(135deg, rgba(0,117,222,0.30), rgba(94,106,210,0.20), rgba(16,185,129,0.15), rgba(245,158,11,0.12));
       background-origin: border-box;
       background-clip: padding-box, border-box;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
+    .skill-card:hover { transform: translateY(-2px); }
     .skill-card:nth-child(1) { background-image: linear-gradient(var(--card-bg), var(--card-bg)), linear-gradient(135deg, rgba(0,117,222,0.35), rgba(94,106,210,0.22)); }
     .skill-card:nth-child(2) { background-image: linear-gradient(var(--card-bg), var(--card-bg)), linear-gradient(135deg, rgba(94,106,210,0.35), rgba(16,185,129,0.22)); }
     .skill-card:nth-child(3) { background-image: linear-gradient(var(--card-bg), var(--card-bg)), linear-gradient(135deg, rgba(16,185,129,0.35), rgba(245,158,11,0.22)); }
@@ -260,12 +286,49 @@
       letter-spacing: 0.01em;
     }
 
-    /* Research */
-    .research-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
+    /* Card track (Motion-style horizontal snap) */
+    .card-track { min-width: 0; }
+    .card-track-nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: -24px 0 28px;
     }
+    .track-btn {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: transparent;
+      color: var(--text-tertiary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s, opacity 0.2s;
+    }
+    .track-btn:hover:not(:disabled) { color: var(--text-primary); background: rgba(0,0,0,0.04); }
+    .track-btn:disabled { opacity: 0.28; cursor: default; }
+    .card-track-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+    }
+    .card-track-scroll::-webkit-scrollbar { display: none; }
+    .card-track-scroll > * {
+      flex: 0 0 calc((100% - 32px) / 3);
+      min-width: 0;
+      scroll-snap-align: start;
+      height: auto;
+    }
+
+    /* Research */
     .research-card {
       background: var(--card-bg);
       backdrop-filter: blur(4px);
@@ -274,20 +337,38 @@
       padding: 28px;
       box-shadow: var(--shadow-card);
       transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
     .research-card:hover { transform: translateY(-2px); }
-    .research-card h3 { font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+    .research-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
     .research-card .journal { font-size: 13px; font-weight: 600; color: var(--badge-text); margin-bottom: 10px; }
-    .research-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px; }
+    .research-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 14px;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
 
     /* Projects */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-    }
     .project-card {
-      display: block;
+      display: flex;
+      flex-direction: column;
       background: var(--card-bg);
       backdrop-filter: blur(4px);
       border: 1px solid var(--border);
@@ -297,10 +378,12 @@
       transition: transform 0.2s;
       text-decoration: none;
       color: inherit;
+      height: 100%;
     }
     .project-card:hover { transform: translateY(-2px); }
     .project-card .card-img {
       height: 160px;
+      flex-shrink: 0;
       background: linear-gradient(135deg, #dce9f7, #e8f2fb);
       display: flex;
       align-items: center;
@@ -313,9 +396,17 @@
       height: 100%;
       object-fit: cover;
     }
-    .project-card .card-body { padding: 20px; }
+    .project-card .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
     .project-card h3 { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
-    .project-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
+    .project-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
 
     /* Contact */
     .contact-section { text-align: center; }
@@ -334,20 +425,59 @@
     }
     .contact-link:hover { background: rgba(0,117,222,0.06); }
 
-    footer {
-      background: rgba(200, 220, 240, 0.5);
-      backdrop-filter: blur(4px);
+    .data-error {
+      max-width: 40rem;
+      margin: 20vh auto;
+      padding: 0 24px;
       text-align: center;
-      padding: 24px;
-      font-size: 13px;
-      color: var(--text-tertiary);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .data-error code {
+      font-size: 0.95em;
+      color: var(--text-primary);
     }
 
+    @media (max-width: 900px) {
+      .card-track-scroll > * { flex-basis: calc((100% - 16px) / 2); }
+    }
     @media (max-width: 640px) {
-      .hero h1 { font-size: 40px; }
-      section h2 { font-size: 32px; }
-      .about-grid { grid-template-columns: 1fr; }
+      nav { padding-top: env(safe-area-inset-top); }
       nav .nav-links { display: none; }
+      nav .nav-inner { height: auto; min-height: 54px; padding-top: 10px; padding-bottom: 10px; }
+      nav .logo { font-size: 14px; }
+      .hero {
+        padding: 48px 20px 40px;
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+      }
+      .hero h1 { font-size: 32px; line-height: 1.15; letter-spacing: -0.03em; }
+      .hero .photo { width: 160px; height: 160px; }
+      .hero .subtitle { font-size: 16px; margin-bottom: 0; }
+      section h2 { font-size: 32px; }
+      section {
+        padding: 48px 20px;
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+      }
+      .about-grid { grid-template-columns: 1fr; }
+      .timeline { padding-left: 20px; margin-left: 4px; }
+      .timeline-item::before { left: -26px; }
+      .card-track-scroll > * { flex-basis: 85%; }
+      .track-btn { width: 44px; height: 44px; font-size: 24px; }
+      .contact-links {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+      .contact-link {
+        min-height: 44px;
+        justify-content: center;
+        width: 100%;
+      }
+      #contact {
+        padding-bottom: max(48px, env(safe-area-inset-bottom));
+      }
     }
   </style>
 </head>
@@ -361,15 +491,9 @@
 <section class="warm" id="research"><div class="inner"></div></section>
 <section id="projects"></section>
 <section class="warm" id="contact"><div class="inner contact-section"></div></section>
-<footer></footer>
 
 <script>
-// ===== 內嵌資料（編輯 data.json 後請同步此區塊） =====
-window.__DATA__ = {"nav":{"logo":"Brian","links":[{"label":"About","href":"#about"},{"label":"Experience","href":"#experience"},{"label":"Skills","href":"#skills"},{"label":"Research","href":"#research"},{"label":"Projects","href":"#projects"}],"cta":{"label":"Contact","href":"#contact"}},"hero":{"photo":"images/photo.jpg","greeting":"Hello, I'm Brian.","subtitle":"半導體物理 × AI 系統 — 以第一原理思考，用智慧自動化實踐"},"about":{"title":"關於我","description":"Physicist turned AI engineer — building systems that think and compute.","paragraphs":["我是 Brian，一位專注於半導體物理與 AI 系統整合的研究者。碩士期間以第一原理計算（DFT）研究 ZnO 與異質結構的電子特性，發表 3 篇 SCI 論文，涵蓋能帶工程、催化反應等前沿主題。","我同時也是 AI agent 技術的實踐者——自架 LLM 服務、設計 RAG 知識庫、打造個人 AI 工作系統。我相信：好的工程師不只是解決問題，而是建立一套能持續演進的系統。"],"info":[{"text":"國立成功大學 材料科學與工程學系 學士 / 碩士"},{"text":"3 篇研究論文發表"},{"text":"AI Vibe Coding & 自動化"},{"text":"2 年半導體封裝製程工程師經驗"}]},"experience":{"title":"學經歷","description":"學術研究與專業發展軌跡","items":[{"date":"2016 – 2020","title":"學士學位 — 材料科學與工程","org":"國立成功大學 材料科學及工程學系","details":["Understanding the crystal structure and related defects of semiconductor materials","Master <strong>material analysis methods</strong> and mechanisms（XRD / SEM / AFM …）","Taking semiconductor courses to <strong>comprehend the structure of common PN junction / MOSFET device</strong>"]},{"date":"2020 – 2022","title":"碩士學位 — 材料科學與工程","org":"國立成功大學 材料科學及工程學研究所","details":["<strong>Collaborate with multi lab teams</strong> to complete the Research Project","Investigate and <strong>publish 3 journal papers</strong> in green energy materials by simulation method"]},{"date":"2023 – 2025","title":"Bumping 製程工程師","org":"台星科股份有限公司","description":"負責晶圓級封裝之 bumping 製程開發與良率提升，涵蓋電鍍、濺鍍、微影及蝕刻等關鍵模組。"}]},"skills":{"title":"專業技能","description":"跨領域技術棧","categories":[{"name":"計算材料","tags":["VASP","DFT","Quantum ESPRESSO","Band Structure","DOS","NEB"]},{"name":"AI & LLM","tags":["RAG 架構","Agent 設計","OpenRouter API","LangChain","Prompt Engineering","Local LLM"]},{"name":"開發 & 維運","tags":["Python","Git","Linux/WSL","Docker","HTML/CSS/JS","GitHub Pages"]},{"name":"知識管理","tags":["Obsidian","Knowledge Graph","Zettelkasten","Mermaid","PKM 系統設計"]}]},"research":{"title":"研究發表","description":"3 篇 SCI 國際期刊論文","papers":[{"title":"Machine-Learning-Aided DFT-1/2 Calculations for Bandgaps of Zinc Oxide Thin Films","journal":"Thin Solid Films, 2022 — IF: 2.1","description":"結合 DFT-1/2 方法與基因演算法人工神經網路（GANNs），精準預測 ZnO 薄膜能隙。GANNs 預測值與 DFT-1/2 計算值誤差 < 5%，與實驗數據高度吻合。","tags":["DFT-1/2","GANNs","ZnO","Machine Learning"]},{"title":"Catalytic Hydrogen Evolution Reaction on Metal-Nanoparticle-Coated Zinc-Based Oxides","journal":"International Journal of Hydrogen Energy, 2022 — IF: 7.2","description":"以第一原理計算研究 Pt/Au/Ag 奈米粒子塗覆 ZnO 表面的氫析出反應（HER）催化機制。Au/ZnO 吸附自由能最接近零，Pt/ZnO 在 Volmer-Heyrovsky 路徑上表現最佳。","tags":["HER","ZnO","Catalysis","DFT"]},{"title":"MgFe₂O₅ Nanoparticle-Decorated CaFe₂O₄−Ca₂Fe₂O₅ Heterostructure for Efficient Photocatalytic CO₂ Conversion","journal":"ACS Sustainable Chemistry & Engineering, 2022 — IF: 8.4","description":"合成 CaFe₂O₄−Ca₂Fe₂O₅ 異質結構並以 MgFe₂O₅ 奈米粒子修飾，用於光催化 CO₂ 還原。DFT 計算揭示 Type-II 電荷轉移機制，CH₄ 選擇性達 81.7%。","tags":["CO₂RR","Heterojunction","Photocatalysis","DFT"]}]},"projects":{"title":"精選作品","description":"個人專案與技術實踐","items":[{"icon":"🗺️","img":"images/knowledge-map.png","title":"半導體物理知識地圖","description":"417 節點互動式 SVG 知識圖譜，含域區塊、語義縮放、MathJax 渲染。","link":"projects/knowledge-map/"},{"icon":"🏠","img":"images/ai-work-system.png","title":"個人 AI 工作系統","description":"整合 LLM、RAG 與自動化排程，利用 AI 輔助學習研究、提升工作效率、打造個人化自動化流程。","link":"projects/ai-work-system/"},{"icon":"📵","img":"images/3c-detox.png","title":"3C Detox App","description":"數位排毒輔助工具，幫助使用者管理螢幕時間、建立健康的手機使用習慣。","link":"projects/3c-detox/"},{"icon":"👴","img":"images/elder-life.png","title":"Elder Life App","description":"銀髮族生活便利應用，整合健康監控、用藥提醒、緊急聯絡等日常輔助功能。","link":"projects/elder-life/"}]},"contact":{"title":"聯絡我","description":"期待與您交流 — 技術討論、工作機會、合作提案","links":[{"icon":"ph ph-envelope","label":"brian861114@gmail.com","href":"mailto:brian861114@gmail.com"},{"icon":"ph ph-phone","label":"0979-415-008","href":"tel:+886979415008"},{"icon":"ph ph-linkedin-logo","label":"LinkedIn","href":"#"}]},"footer":{"text":"© 2026 Brian — Built with ❤️ in Taichung, Taiwan."},"page":{"title":"Brian | 半導體 & AI 工程師"}};
-</script>
-<script>
-(function() {
-  const d = window.__DATA__;
+function render(d) {
 
   document.title = d.page.title;
 
@@ -377,11 +501,13 @@ window.__DATA__ = {"nav":{"logo":"Brian","links":[{"label":"About","href":"#abou
   const nav = document.getElementById('main-nav');
   nav.innerHTML = `
     <div class="nav-inner">
-      <span class="logo">${d.nav.logo}</span>
-      <ul class="nav-links">
-        ${d.nav.links.map(l => `<li><a href="${l.href}">${l.label}</a></li>`).join('')}
-        <li><a href="${d.nav.cta.href}" class="nav-cta">${d.nav.cta.label}</a></li>
-      </ul>
+      <a href="#hero-section" class="logo">${d.nav.logo}</a>
+      <div class="nav-end">
+        <ul class="nav-links">
+          ${d.nav.links.map(l => `<li><a href="${l.href}">${l.label}</a></li>`).join('')}
+        </ul>
+        <a href="${d.nav.cta.href}" class="nav-cta">${d.nav.cta.label}</a>
+      </div>
     </div>`;
 
   // --- Hero ---
@@ -424,44 +550,83 @@ window.__DATA__ = {"nav":{"logo":"Brian","links":[{"label":"About","href":"#abou
     <p class="section-desc">${d.skills.description}</p>
     <div class="skills-grid">
       ${d.skills.categories.map(c => `
-        <div class="skill-card">
+        ${c.link ? `<a href="${c.link}" class="skill-card">` : '<div class="skill-card">'}
           <h3>${c.name}</h3>
           <div class="tag-list">
             ${c.tags.map(t => `<span class="tag">${t}</span>`).join('')}
           </div>
-        </div>`).join('')}
+        ${c.link ? '</a>' : '</div>'}`).join('')}
     </div>`;
+
+  const trackControls = `
+    <div class="card-track-nav">
+      <button type="button" class="track-btn" data-track-prev aria-label="上一則"><i class="ph ph-arrow-left"></i></button>
+      <button type="button" class="track-btn" data-track-next aria-label="下一則"><i class="ph ph-arrow-right"></i></button>
+    </div>`;
+
+  function setupCardTrack(root) {
+    const scroller = root.querySelector('.card-track-scroll');
+    const prev = root.querySelector('[data-track-prev]');
+    const next = root.querySelector('[data-track-next]');
+    if (!scroller || !prev || !next) return;
+
+    const step = () => {
+      const card = scroller.firstElementChild;
+      if (!card) return scroller.clientWidth;
+      const gap = parseFloat(getComputedStyle(scroller).gap) || 16;
+      return card.getBoundingClientRect().width + gap;
+    };
+    const update = () => {
+      const max = scroller.scrollWidth - scroller.clientWidth - 2;
+      prev.disabled = scroller.scrollLeft <= 2;
+      next.disabled = scroller.scrollLeft >= max;
+    };
+
+    prev.addEventListener('click', () => scroller.scrollBy({ left: -step(), behavior: 'smooth' }));
+    next.addEventListener('click', () => scroller.scrollBy({ left: step(), behavior: 'smooth' }));
+    scroller.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
 
   // --- Research ---
   const resInner = document.querySelector('#research .inner');
   resInner.innerHTML = `
     <h2>${d.research.title}</h2>
     <p class="section-desc">${d.research.description}</p>
-    <div class="research-grid">
-      ${d.research.papers.map(p => `
-        <div class="research-card">
-          <h3>${p.title}</h3>
-          <div class="journal">${p.journal}</div>
-          <p>${p.description}</p>
-          <div class="tag-list">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-        </div>`).join('')}
+    <div class="card-track">
+      ${trackControls}
+      <div class="card-track-scroll" tabindex="0">
+        ${d.research.papers.map(p => `
+          <article class="research-card">
+            <h3>${p.title}</h3>
+            <div class="journal">${p.journal}</div>
+            <p>${p.description}</p>
+            <div class="tag-list">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+          </article>`).join('')}
+      </div>
     </div>`;
 
   // --- Projects ---
   document.getElementById('projects').innerHTML = `
     <h2>${d.projects.title}</h2>
     <p class="section-desc">${d.projects.description}</p>
-    <div class="projects-grid">
-      ${d.projects.items.map(p => `
-        ${p.link ? `<a href="${p.link}" class="project-card">` : '<div class="project-card">'}
-          <div class="card-img">${p.img ? `<img src="${p.img}" alt="${p.title}">` : p.icon}</div>
-          <div class="card-body">
-            <h3>${p.title}</h3>
-            <p>${p.description}</p>
-          </div>
-        ${p.link ? '</a>' : '</div>'}
+    <div class="card-track">
+      ${trackControls}
+      <div class="card-track-scroll" tabindex="0">
+        ${d.projects.items.map(p => `
+          ${p.link ? `<a href="${p.link}" class="project-card">` : '<div class="project-card">'}
+            <div class="card-img">${p.img ? `<img src="${p.img}" alt="${p.title}">` : p.icon}</div>
+            <div class="card-body">
+              <h3>${p.title}</h3>
+              <p>${p.description}</p>
+            </div>
+          ${p.link ? '</a>' : '</div>'}
         `).join('')}
+      </div>
     </div>`;
+
+  document.querySelectorAll('.card-track').forEach(setupCardTrack);
 
   // --- Contact ---
   const contact = document.querySelector('#contact .inner');
@@ -469,14 +634,31 @@ window.__DATA__ = {"nav":{"logo":"Brian","links":[{"label":"About","href":"#abou
     <h2>${d.contact.title}</h2>
     <p class="section-desc">${d.contact.description}</p>
     <div class="contact-links">
-      ${d.contact.links.map(l => `
-        <a class="contact-link" href="${l.href}"><i class="${l.icon}"></i> ${l.label}</a>
-      `).join('')}
+      ${d.contact.links.map(l => {
+        const external = /^https?:/i.test(l.href);
+        const extra = external ? ' target="_blank" rel="noopener noreferrer"' : '';
+        return `<a class="contact-link" href="${l.href}"${extra}><i class="${l.icon}"></i> ${l.label}</a>`;
+      }).join('')}
     </div>`;
+}
 
-  // --- Footer ---
-  document.querySelector('footer').textContent = d.footer.text;
-})();
+async function boot() {
+  try {
+    const res = await fetch('data.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error(res.statusText);
+    render(await res.json());
+  } catch (err) {
+    console.error(err);
+    document.body.innerHTML = `
+      <p class="data-error">
+        無法載入 <code>data.json</code>。請用本機伺服器或 GitHub Pages 開啟，不要直接雙擊 HTML。<br>
+        在專案目錄執行 <code>node serve.mjs</code>，再開
+        <code>http://127.0.0.1:8766/style-4-notion-warm.html</code>。
+      </p>`;
+  }
+}
+
+boot();
 </script>
 
 </body>

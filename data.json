@@ -1,6 +1,6 @@
 {
   "nav": {
-    "logo": "Brian",
+    "logo": "Wei-Che Tseng 曾為哲 個人簡歷",
     "links": [
       { "label": "About", "href": "#about" },
       { "label": "Experience", "href": "#experience" },
@@ -11,7 +11,7 @@
     "cta": { "label": "Contact", "href": "#contact" }
   },
   "hero": {
-    "photo": "images/photo.jpg",
+    "photo": "images/photo.jpg?v=20260918",
     "greeting": "Hello, I'm Brian.",
     "subtitle": "半導體物理 × AI 系統 — 以第一原理思考，用智慧自動化實踐"
   },
@@ -69,18 +69,22 @@
     "categories": [
       {
         "name": "計算材料",
+        "link": "skills/computational-materials/index.html",
         "tags": ["VASP", "DFT", "Quantum ESPRESSO", "Band Structure", "DOS", "NEB"]
       },
       {
         "name": "AI & LLM",
+        "link": "skills/ai-llm/index.html",
         "tags": ["RAG 架構", "Agent 設計", "OpenRouter API", "LangChain", "Prompt Engineering", "Local LLM"]
       },
       {
         "name": "開發 & 維運",
+        "link": "skills/dev-ops/index.html",
         "tags": ["Python", "Git", "Linux/WSL", "Docker", "HTML/CSS/JS", "GitHub Pages"]
       },
       {
         "name": "知識管理",
+        "link": "skills/knowledge-management/index.html",
         "tags": ["Obsidian", "Knowledge Graph", "Zettelkasten", "Mermaid", "PKM 系統設計"]
       }
     ]
@@ -152,13 +156,11 @@
     "links": [
       {"icon":"ph ph-envelope","label":"brian861114@gmail.com","href":"mailto:brian861114@gmail.com"},
       { "icon": "ph ph-phone", "label": "0979-415-008", "href": "tel:+886979415008" },
-      { "icon": "ph ph-linkedin-logo", "label": "LinkedIn", "href": "#" }
+      { "icon": "ph ph-linkedin-logo", "label": "LinkedIn", "href": "https://www.linkedin.com/in/wei-che-tseng-213113220/" },
+      { "icon": "ph ph-briefcase", "label": "104", "href": "https://pda.104.com.tw/profile/share/eWBzVEu53K4LasEqPbCOAHRluqvDWHv7" }
     ]
   },
-  "footer": {
-    "text": "© 2026 Brian — Built with ❤️ in Taichung, Taiwan."
-  },
   "page": {
-    "title": "Brian | 半導體 & AI 工程師"
+    "title": "Wei-Che Tseng 曾為哲 個人簡歷"
   }
 }
