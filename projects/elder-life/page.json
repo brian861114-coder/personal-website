@@ -1,0 +1,22 @@
+{
+  "kind": "project",
+  "kicker": "精選作品",
+  "title": "Elder Life App",
+  "meta": "",
+  "tags": [],
+  "homeHref": "../../style-4-notion-warm.html",
+  "backHref": "../../style-4-notion-warm.html#projects",
+  "contactHref": "../../style-4-notion-warm.html#contact",
+  "soWhat": "",
+  "problem": "",
+  "role": "",
+  "method": "",
+  "figure": "",
+  "figureCaption": "",
+  "metric": "",
+  "transfer": "",
+  "links": [
+    { "label": "Demo", "href": "" },
+    { "label": "GitHub", "href": "" }
+  ]
+}

@@ -69,23 +69,35 @@
     "categories": [
       {
         "name": "計算材料",
+        "slug": "computational-materials",
         "link": "skills/computational-materials/index.html",
-        "tags": ["VASP", "DFT", "Quantum ESPRESSO", "Band Structure", "DOS", "NEB"]
-      },
-      {
-        "name": "AI & LLM",
-        "link": "skills/ai-llm/index.html",
-        "tags": ["RAG 架構", "Agent 設計", "OpenRouter API", "LangChain", "Prompt Engineering", "Local LLM"]
-      },
-      {
-        "name": "開發 & 維運",
-        "link": "skills/dev-ops/index.html",
-        "tags": ["Python", "Git", "Linux/WSL", "Docker", "HTML/CSS/JS", "GitHub Pages"]
-      },
-      {
-        "name": "知識管理",
-        "link": "skills/knowledge-management/index.html",
-        "tags": ["Obsidian", "Knowledge Graph", "Zettelkasten", "Mermaid", "PKM 系統設計"]
+        "intro": "碩士期間以第一原理計算研究氧化物電子結構與催化反應，成果寫進 3 篇 SCI 論文。",
+        "tags": [
+          {
+            "name": "VASP",
+            "detail": "主要計算引擎。用來跑 ZnO 薄膜、金屬奈米粒子／氧化物界面的結構鬆弛與電子結構。"
+          },
+          {
+            "name": "DFT",
+            "detail": "研究主軸。處理能帶、吸附與反應路徑；論文中亦搭配 DFT-1/2 修正 ZnO 能隙低估。"
+          },
+          {
+            "name": "Quantum ESPRESSO",
+            "detail": "可獨立跑平面波 DFT 的備援／對照工具，與 VASP 同一套工作流（結構、能帶、態密度）。"
+          },
+          {
+            "name": "Band Structure",
+            "detail": "用來解釋 ZnO 薄膜能隙與異質結構的 Type-II 能帶排列，對應能隙預測與光催化電荷分離。"
+          },
+          {
+            "name": "DOS",
+            "detail": "用來看表面與吸附體系的電子態分布，輔助判斷電荷轉移與活性位。"
+          },
+          {
+            "name": "NEB",
+            "detail": "用來估計表面反應的過渡態與能壘（如 HER 路徑），把吸附能延伸到反應動力學。"
+          }
+        ]
       }
     ]
   },
@@ -98,13 +110,15 @@
         "title": "Machine-Learning-Aided DFT-1/2 Calculations for Bandgaps of Zinc Oxide Thin Films",
         "journal": "Thin Solid Films, 2022 — IF: 2.1",
         "description": "結合 DFT-1/2 方法與基因演算法人工神經網路（GANNs），精準預測 ZnO 薄膜能隙。GANNs 預測值與 DFT-1/2 計算值誤差 < 5%，與實驗數據高度吻合。",
-        "tags": ["DFT-1/2", "GANNs", "ZnO", "Machine Learning"]
+        "tags": ["DFT-1/2", "GANNs", "ZnO", "Machine Learning"],
+        "link": "research/zno-bandgap/"
       },
       {
         "title": "Catalytic Hydrogen Evolution Reaction on Metal-Nanoparticle-Coated Zinc-Based Oxides",
         "journal": "International Journal of Hydrogen Energy, 2022 — IF: 7.2",
         "description": "以第一原理計算研究 Pt/Au/Ag 奈米粒子塗覆 ZnO 表面的氫析出反應（HER）催化機制。Au/ZnO 吸附自由能最接近零，Pt/ZnO 在 Volmer-Heyrovsky 路徑上表現最佳。",
-        "tags": ["HER", "ZnO", "Catalysis", "DFT"]
+        "tags": ["HER", "ZnO", "Catalysis", "DFT"],
+        "link": "research/her-zno/"
       },
       {
         "title": "MgFe₂O₅ Nanoparticle-Decorated CaFe₂O₄−Ca₂Fe₂O₅ Heterostructure for Efficient Photocatalytic CO₂ Conversion",

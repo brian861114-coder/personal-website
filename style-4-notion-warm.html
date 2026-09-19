@@ -15,7 +15,7 @@
       --bg-gradient-mid: #eef5fc;
       --bg-gradient-end: #f4f8fd;
       --text-primary: rgba(0,0,0,0.95);
-      --text-secondary: #4a5568;
+      --text-secondary: var(--text-primary);
       --text-tertiary: #718096;
       --accent: #0075de;
       --accent-hover: #005bab;
@@ -243,14 +243,14 @@
     }
     .timeline-item h3 { font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
     .timeline-item .org { font-size: 17px; color: var(--text-secondary); margin-bottom: 4px; }
-    .timeline-item p { font-size: 16px; color: var(--text-tertiary); }
+    .timeline-item p { font-size: 16px; color: var(--text-primary); }
     .timeline-item .details { margin-top: 8px; padding-left: 16px; }
     .timeline-item .details li { font-size: 15px; color: var(--text-secondary); line-height: 1.6; list-style: disc; }
 
     /* Skills */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 12px;
     }
     .skill-card {
@@ -341,7 +341,15 @@
       flex-direction: column;
       height: 100%;
     }
+    a.research-card { text-decoration: none; color: inherit; cursor: pointer; }
     .research-card:hover { transform: translateY(-2px); }
+    .card-more {
+      margin-top: auto;
+      padding-top: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+    }
     .research-card h3 {
       font-size: 18px;
       font-weight: 700;
@@ -553,7 +561,7 @@ function render(d) {
         ${c.link ? `<a href="${c.link}" class="skill-card">` : '<div class="skill-card">'}
           <h3>${c.name}</h3>
           <div class="tag-list">
-            ${c.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+            ${c.tags.map(t => `<span class="tag">${typeof t === 'string' ? t : t.name}</span>`).join('')}
           </div>
         ${c.link ? '</a>' : '</div>'}`).join('')}
     </div>`;
@@ -598,12 +606,13 @@ function render(d) {
       ${trackControls}
       <div class="card-track-scroll" tabindex="0">
         ${d.research.papers.map(p => `
-          <article class="research-card">
+          ${p.link ? `<a href="${p.link}" class="research-card">` : '<article class="research-card">'}
             <h3>${p.title}</h3>
             <div class="journal">${p.journal}</div>
             <p>${p.description}</p>
             <div class="tag-list">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-          </article>`).join('')}
+            ${p.link ? '<div class="card-more">查看介紹 →</div>' : ''}
+          ${p.link ? '</a>' : '</article>'}`).join('')}
       </div>
     </div>`;
 

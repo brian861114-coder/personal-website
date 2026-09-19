@@ -2,6 +2,8 @@
 
 Brian 的履歷／作品集靜態站。畫面上的文字幾乎都來自 **`data.json`**，改完存檔、重新整理瀏覽器即可。不必改 HTML，也不必再複製一份進網頁。
 
+Agent 動手前記 `AGENTS.md`（技能頁模板、資料單一來源、研究／作品另一套內頁）。
+
 本機預覽：雙擊專案裡的 **`start-website.lnk`**（或 `start-site.bat`），或桌面上的 **Personal-Website**。會啟動伺服器並打開瀏覽器。**不要雙擊 HTML**，否則讀不到 `data.json`。關掉標題為「個人網站預覽」的黑色視窗就會停止伺服器。也可在專案目錄執行 `node serve.mjs`。
 
 ---
@@ -49,28 +51,35 @@ Brian 的履歷／作品集靜態站。畫面上的文字幾乎都來自 **`data
 
 ### 專業技能 `skills.categories`
 
-每一張卡：
+內頁模板：複製 `skills/_template/` 整夾，改成新的英文資料夾名（= `slug`）。內頁會依資料夾名去對 `data.json`，**不必改 HTML 標題或表格**。
+
+每一張卡（完整範例見計算材料）：
 
 ```json
 {
   "name": "計算材料",
+  "slug": "computational-materials",
   "link": "skills/computational-materials/index.html",
-  "tags": ["VASP", "DFT"]
+  "intro": "這張卡點進去後，標題底下的一句話。",
+  "tags": [
+    { "name": "VASP", "detail": "我實際用它做過什麼（不是工具百科）。" }
+  ]
 }
 ```
 
-- 改卡名、標籤：改 `name`、`tags`。標籤增刪就是改這個陣列。
-- **新增一類：** 複製一張卡；`link` 指到新路徑；在 `skills/` 下建同名資料夾，放入 `index.html`（可先複製現有佔位頁再改標題）。沒有 `link` 的卡仍會顯示，但點了不會開新頁。
-- **刪除一類：** 從 `categories` 拿掉該物件。對應資料夾可一併刪，避免留下死頁。
-
-點進去之後的內文，改的是 `skills/<資料夾>/index.html`，不是 `data.json`。
+- `slug`、資料夾名、`link` 三處必須相同（英文小寫、連字號）。
+- 首頁標籤只顯示 `name`；內頁表格兩欄是「能力｜我實際做過什麼」（`detail`）。
+- **新增一類：** 複製 `_template` → `skills/<slug>/`；在 `categories` 加一筆如上。不要另寫一份 HTML 文案。
+- **刪除一類：** 從 `categories` 拿掉；對應資料夾一併刪。不要刪 `_template`。
+- 沒有 `link` 的卡仍會顯示，但點了不開新頁。
 
 ### 研究發表 `research.papers`
 
-每一篇：`title`、`journal`、`description`、`tags`。
+每一篇：`title`、`journal`、`description`、`tags`。可選 `link` 指向介紹頁，例如 `research/zno-bandgap/`。
 
 - 新增／刪除論文 = 增刪 `papers` 裡的物件。超過三篇會進入左右滑軌道，不必改版面。
 - 區標題旁的「3 篇 SCI…」是 `research.description` 這句字，篇數變了要**手動改這句**。
+- **介紹頁內容**不在 `data.json`，而在該資料夾的 `page.json`（見下方）。
 
 ### 精選作品 `projects.items`
 
@@ -83,9 +92,28 @@ Brian 的履歷／作品集靜態站。畫面上的文字幾乎都來自 **`data
 | `icon` | 沒圖時的後備 emoji |
 | `link` | 點進去的頁面，例如 `projects/my-app/` |
 
-- 新增作品：複製一筆、改欄位；把圖放到 `images/`；在 `projects/` 建資料夾與 `index.html`。沒有 `link` 的卡不能點。
+- 新增作品：複製一筆、改欄位；把圖放到 `images/`；在 `projects/` 建資料夾，放入 `index.html`（從 `templates/detail.html` 複製）與 `page.json`。沒有 `link` 的卡不能點。
 - 刪除：從 `items` 拿掉；圖與資料夾可一併刪。
 - 卡片超過三張同樣自動可左右滑。
+
+### 論文／作品介紹頁 `page.json`
+
+首頁卡片只負責標題與摘要。點進去的五塊寫在各資料夾的 **`page.json`**，存檔後重新整理該頁即可。空字串會顯示「待填」提示，不會假裝已完成。Agent 改模板或加頁時以根目錄 `AGENTS.md` 為準。
+
+| 欄位 | 填什麼 |
+|---|---|
+| `soWhat` | 核心理念 |
+| `problem` | 遭遇挑戰 |
+| `role` / `method` | 貢獻；成果 |
+| `figure` | 圖檔路徑，例如 `../../images/foo.png`（檔放進 `images/`） |
+| `figureCaption` | 圖說 |
+| `metric` | 補充說明（數字或脈絡） |
+| `transfer` | 對下一份工作可轉移的能力 |
+| `links[].href` | PDF、DOI、repo。**href 空白的按鈕不會出現** |
+
+新增一頁：複製 `templates/detail.html` → `research/<短名>/index.html` 或 `projects/<短名>/index.html`；再複製 `templates/page.json` 改內容；在 `data.json` 該筆加上 `link`。
+
+`index.html` 不用改。版面改 `css/detail.css` 與 `js/detail.js`，所有介紹頁一起變。
 
 ### 聯絡 `contact.links`
 
@@ -124,9 +152,9 @@ Array order is display order. Add an item by copying a neighbour object; delete 
 | Hero | `hero` | `photo`, `greeting`, `subtitle` |
 | About | `about` | `paragraphs[]` strings; `info[].text` cards (`icon` optional) |
 | Timeline | `experience.items` | `date`, `title`, `org`; `details[]` and/or `description` |
-| Skills | `skills.categories` | `name`, `tags`, `link` to `skills/<folder>/index.html` |
-| Research | `research.papers` | extra papers become a horizontal track; update `description` if the count sentence changes |
+| Skills | `skills.categories` | `name`, `slug`, `intro`, `tags[{name,detail}]`; copy `skills/_template/` |
+| Research | `research.papers` | optional `link` to `research/<folder>/`; extra papers become a horizontal track; update `description` if the count sentence changes |
 | Projects | `projects.items` | `img` under `images/`; `link` to `projects/<folder>/` |
 | Contact | `contact.links` | Phosphor `icon`, `label`, `href` (`mailto:`, `tel:`, or URL) |
 
-Skill/project **detail pages** are the `index.html` files in those folders, not `data.json`. New skill/project cards that should open a page need a matching folder. Nav edits do not create new page sections.
+New **skills**: copy `skills/_template/` to `skills/<slug>/`, add a matching object in `data.json` (`slug` = folder name; tag `detail` lives in JSON). Project detail pages are still their own `index.html`. Nav edits do not create new page sections.
