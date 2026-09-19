@@ -52,6 +52,8 @@ function render(d) {
 
   const meta = isFilled(d.meta) ? `<p class="meta">${d.meta}</p>` : '';
 
+  document.body.className = d.kind === 'project' ? 'detail-project' : 'detail-research';
+
   document.body.innerHTML = `
     <nav>
       <div class="nav-inner">

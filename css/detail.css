@@ -34,6 +34,34 @@ body {
   min-height: 100vh;
 }
 
+/* 作品介紹頁：淺灰底 + 白卡片（研究頁保留上方藍色漸層） */
+body.detail-project {
+  --page-bg: #f8fafc;
+  --card-bg: #ffffff;
+  background: var(--page-bg);
+  background-attachment: scroll;
+}
+
+body.detail-project nav {
+  background: rgba(248, 250, 252, 0.92);
+}
+
+body.detail-project .block {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px 22px;
+  box-shadow: var(--shadow-card);
+}
+
+body.detail-project .placeholder {
+  background: var(--page-bg);
+}
+
+body.detail-project .figure-slot {
+  background: var(--card-bg);
+}
+
 nav {
   position: sticky;
   top: 0;
