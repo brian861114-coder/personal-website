@@ -7,12 +7,26 @@
   "homeHref": "../../style-4-notion-warm.html",
   "backHref": "../../style-4-notion-warm.html#research",
   "contactHref": "../../style-4-notion-warm.html#contact",
-  "soWhat": "",
-  "problem": "",
-  "role": "",
-  "method": "",
-  "figure": "",
-  "figureCaption": "",
+  "soWhat": "以計算模擬的方式探討不同材料組合的化學催化活性，找尋最佳的產氫材料並探討背後熱力學機制，以及相關實驗對照。",
+  "problem": "篩選可能的材料組合，針對模擬上的觀察提出原理解釋。",
+  "role": "分別由熱力學與動力學的角度分析催化過程的化學活性。",
+  "method": "發現 Au/ZnO 結構具備最佳的熱力學偏好性；Pt/ZnO 則具有動力學上最小的能障值及氫溢流（spillover）機制，協助解釋相關論文中這些材料具有相對優良催化表現的反應機制。",
+  "figure": "images/fig1-charge-ak.png",
+  "figureCaption": "論文 Fig. 1(a–k)：H 吸附在 NP/ZTO 與 NP/ZnO 的變形電荷密度側視圖。黃（藍）為得（失）電子。",
+  "figures": [
+    {
+      "src": "images/fig1-charge-ak.png",
+      "caption": "論文 Fig. 1(a–k)：H 吸附在 NP/ZTO 與 NP/ZnO 的變形電荷密度側視圖。黃（藍）為得（失）電子。"
+    },
+    {
+      "src": "images/fig5-mechanism-ij.png",
+      "caption": "論文 Fig. 5(i–j)：Pt 表面再吸附／spillover，以及 Pt/ZnO 上 Volmer–spillover–Heyrovsky 機制示意。"
+    },
+    {
+      "src": "images/table1-prefer-paths.png",
+      "caption": "論文 Table 1：各結構優選路徑的吸附自由能（Ead）與主要能壘（Ebarrier）。"
+    }
+  ],
   "metric": "",
   "transfer": "",
   "links": [

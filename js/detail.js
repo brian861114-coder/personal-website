@@ -4,9 +4,7 @@ const HINTS = {
   role: '你的貢獻：第一作者、DFT 協作、還是獨立開發。',
   method: '成果：做成了什麼、得到什麼結果。',
   figure: '把圖放到 images/，在 page.json 填 figure 路徑。',
-  metric: '補充說明：補充圖說以外的脈絡或數字。',
-  transfer: '這份工作證明你能做製程／模擬／系統裡的哪一類事。',
-  links: '補 PDF、DOI 或 repo 連結。空的 href 不會顯示。'
+  metric: '補充說明：補充圖說以外的脈絡或數字。'
 };
 
 function isFilled(value) {
@@ -23,24 +21,34 @@ function renderTags(tags) {
   return `<div class="tag-list">${tags.map((t) => `<span class="tag">${t}</span>`).join('')}</div>`;
 }
 
-function renderLinks(links) {
-  const items = (links || []).filter((l) => isFilled(l.href) && isFilled(l.label));
-  if (!items.length) {
-    return `<p class="placeholder">${HINTS.links}</p>`;
+function figureItems(d) {
+  if (Array.isArray(d.figures) && d.figures.length) {
+    return d.figures.filter((f) => isFilled(f.src));
   }
-  return `<div class="links">${items.map((l, i) => {
-    const cls = i === 0 ? '' : ' class="secondary"';
-    const extra = /^https?:/i.test(l.href) ? ' target="_blank" rel="noopener noreferrer"' : '';
-    return `<a href="${l.href}"${cls}${extra}>${l.label}</a>`;
-  }).join('')}</div>`;
+  if (isFilled(d.figure)) {
+    return [{ src: d.figure, caption: d.figureCaption || '' }];
+  }
+  return [];
+}
+
+function renderContribution(d) {
+  const chunks = [d.role, d.method].filter((v) => isFilled(v));
+  if (!chunks.length) {
+    return `<div class="role-stack">${textOrPlaceholder('', HINTS.role)}${textOrPlaceholder('', HINTS.method)}</div>`;
+  }
+  return `<div class="prose">${chunks.join('')}</div>`;
 }
 
 function renderFigure(d) {
-  if (isFilled(d.figure)) {
-    const cap = isFilled(d.figureCaption) ? `<p class="figure-caption">${d.figureCaption}</p>` : '';
-    return `<div class="figure-slot"><img src="${d.figure}" alt="${d.figureCaption || d.title || ''}"></div>${cap}`;
+  const items = figureItems(d);
+  if (!items.length) {
+    return `<div class="figure-slot empty">${HINTS.figure}</div>`;
   }
-  return `<div class="figure-slot empty">${HINTS.figure}</div>`;
+  return items.map((f) => {
+    const cap = isFilled(f.caption) ? `<p class="figure-caption">${f.caption}</p>` : '';
+    const alt = f.caption || d.figureCaption || d.title || '';
+    return `<div class="figure-item"><div class="figure-slot"><img src="${f.src}" alt="${alt}"></div>${cap}</div>`;
+  }).join('');
 }
 
 function render(d) {
@@ -62,42 +70,37 @@ function render(d) {
       </div>
     </nav>
     <main>
-      <p class="kicker">${d.kicker || backLabel}</p>
-      <h1 class="hero-title">${d.title || '未命名'}</h1>
-      ${meta}
-      ${renderTags(d.tags)}
-
-      <section class="block">
-        <h2>核心理念</h2>
-        ${textOrPlaceholder(d.soWhat, HINTS.soWhat)}
-      </section>
-
-      <section class="block">
-        <h2>遭遇挑戰</h2>
-        ${textOrPlaceholder(d.problem, HINTS.problem)}
-      </section>
-
-      <section class="block">
-        <h2>貢獻與成果</h2>
-        <div class="role-grid">
-          ${textOrPlaceholder(d.role, HINTS.role)}
-          ${textOrPlaceholder(d.method, HINTS.method)}
+      <header class="detail-hero">
+        <p class="kicker">${d.kicker || backLabel}</p>
+        <h1 class="hero-title">${d.title || '未命名'}</h1>
+        ${meta}
+        ${renderTags(d.tags)}
+      </header>
+      <div class="detail-grid">
+        <div class="detail-copy">
+          <section class="block">
+            <h2>核心理念</h2>
+            ${textOrPlaceholder(d.soWhat, HINTS.soWhat)}
+          </section>
+          <section class="block">
+            <h2>遭遇挑戰</h2>
+            ${textOrPlaceholder(d.problem, HINTS.problem)}
+          </section>
+          <section class="block">
+            <h2>貢獻與成果</h2>
+            ${renderContribution(d)}
+          </section>
         </div>
-      </section>
-
-      <section class="block">
-        <h2>補充說明</h2>
-        <div class="evidence">
-          ${renderFigure(d)}
-          ${textOrPlaceholder(d.metric, HINTS.metric)}
-        </div>
-      </section>
-
-      <section class="block">
-        <h2>可轉移能力</h2>
-        ${textOrPlaceholder(d.transfer, HINTS.transfer)}
-        ${renderLinks(d.links)}
-      </section>
+        <aside class="detail-evidence">
+          <section class="block">
+            <h2>補充說明</h2>
+            <div class="evidence">
+              ${renderFigure(d)}
+              ${isFilled(d.metric) ? `<div class="prose">${d.metric}</div>` : ''}
+            </div>
+          </section>
+        </aside>
+      </div>
     </main>
   `;
 }

@@ -73,7 +73,7 @@ nav {
 }
 
 nav .nav-inner {
-  max-width: 760px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 max(24px, env(safe-area-inset-left));
   padding-right: max(24px, env(safe-area-inset-right));
@@ -104,11 +104,40 @@ nav a:hover { color: var(--accent); }
 .nav-cta:hover { background: var(--accent-hover); }
 
 main {
-  max-width: 760px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 48px 24px 80px;
   padding-left: max(24px, env(safe-area-inset-left));
   padding-right: max(24px, env(safe-area-inset-right));
+}
+
+.detail-hero .tag-list { margin-bottom: 28px; }
+
+.detail-grid {
+  display: block;
+}
+
+@media (min-width: 800px) {
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    column-gap: 40px;
+    align-items: start;
+  }
+
+  .detail-copy .block:last-child,
+  .detail-evidence .block:last-child {
+    margin-bottom: 0;
+  }
+
+  .detail-evidence .figure-slot img {
+    max-width: 100%;
+    max-height: 220px;
+  }
+
+  .detail-evidence .figure-slot.empty {
+    min-height: 140px;
+  }
 }
 
 .kicker {
@@ -147,16 +176,15 @@ main {
 }
 
 .block {
-  margin-bottom: 36px;
+  margin-bottom: 28px;
 }
 
 .block h2 {
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  line-height: 1.65;
   color: var(--text-primary);
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .block .prose {
@@ -173,37 +201,44 @@ main {
   border-radius: 8px;
   padding: 14px 16px;
   color: var(--text-tertiary);
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: 17px;
+  line-height: 1.65;
 }
 
-.role-grid {
+.role-stack {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 12px;
 }
 
 .evidence {
   display: grid;
-  gap: 16px;
+  gap: 10px;
+}
+
+.figure-item + .figure-item {
+  margin-top: 0;
 }
 
 .figure-slot {
   width: 100%;
-  min-height: 200px;
-  border-radius: 12px;
+  min-height: 64px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   background: var(--card-bg);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 8px 10px;
 }
 
 .figure-slot img {
-  width: 100%;
+  width: auto;
+  max-width: min(100%, 580px);
+  max-height: 360px;
   height: auto;
   display: block;
+  object-fit: contain;
 }
 
 .figure-slot.empty {
@@ -216,9 +251,10 @@ main {
 }
 
 .figure-caption {
-  margin-top: 8px;
-  font-size: 13px;
-  color: var(--text-primary);
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-secondary);
 }
 
 .metric {
@@ -271,6 +307,12 @@ main {
   nav .nav-inner { height: auto; min-height: 54px; padding-top: 10px; padding-bottom: 10px; }
   .hero-title { font-size: 26px; }
   main { padding: 32px 20px 64px; }
-  .role-grid { grid-template-columns: 1fr; }
+  .block { margin-bottom: 24px; }
+  .block h2,
   .block .prose { font-size: 16px; }
+  .placeholder { font-size: 16px; }
+  .figure-slot img {
+    max-width: 100%;
+    max-height: 280px;
+  }
 }

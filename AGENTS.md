@@ -42,26 +42,26 @@
 - 首頁 `data.json` 該筆加 `link` 指向該資料夾。論文卡與作品卡同一套點擊。
 - **不要**套用 `skills/_template`。
 
-畫面五塊（標題固定；括號是 `page.json` 鍵）：
+畫面四塊（標題固定；括號是 `page.json` 鍵）。`transfer`、`links` 暫不渲染，欄位保留在 `page.json`。
 
 | 畫面標題 | 鍵 | 寫什麼 |
 |---|---|---|
 | 核心理念 | `soWhat` | 非專家也聽得懂的主軸 |
 | 遭遇挑戰 | `problem` | 當時卡在哪 |
 | 貢獻與成果 | `role`、`method` | 他的貢獻；做成什麼 |
-| 補充說明 | `figure`、`figureCaption`、`metric` | 一張圖 + 脈絡／數字 |
-| 可轉移能力 | `transfer`、`links` | 對製程／模擬／系統哪一類工作；PDF／DOI／repo |
+| 補充說明 | `figure`、`figures`、`figureCaption`、`metric` | 圖 + 可選脈絡。單張用 `figure`；多張用 `figures[{src,caption}]`。`metric` 沒填就不要畫 |
 
 第三篇 CO₂ 文聽起來偏實驗：角色必須寫清他做計算還是製備，缺資料就停、問 Brian。
 
-空字串顯示 placeholder。不要刪欄位來「看起來做完」，也不要替他編造內文、IF 崇拜或嵌入整份 PDF（`links` 連出去即可）。`links[].href` 空白則不畫按鈕。
+空字串顯示 placeholder。不要刪欄位來「看起來做完」，也不要替他編造內文、IF 崇拜或嵌入整份 PDF。
 
-新增完成標準：首頁卡點得進去、五塊標題在、空欄是提示不是假內容、返回連回對應錨點（`#research` 或 `#projects`）。
+新增完成標準：首頁卡點得進去、四塊標題在、空欄是提示不是假內容、返回連回對應錨點（`#research` 或 `#projects`）。
 
 ## 版面
 
 - 研究／作品：CSS 橫向 scroll-snap + 箭頭。不要上 Swiper。
-- 電腦版現有桌面排版維持；手機規則已在主頁 CSS（約 640px）。
+- 介紹頁：標題全寬；**約 800px 以上**左文（核心理念／挑戰／貢獻）右圖（補充說明），`main` 約 1080px。不要 sticky 圖欄。窄螢幕單欄、文在上圖在下。
+- 電腦版首頁現有桌面排版維持；手機規則已在主頁 CSS（約 640px）。
 - 技能區單卡不要拉滿整行：`auto-fill` + `minmax(260px, 1fr)`。
 
 ## 預覽

@@ -7,5 +7,5 @@ alwaysApply: true
 
 - 首頁文案只在 `data.json`，主頁 fetch，不要 `window.__DATA__`。
 - 新技能：複製 `skills/_template/` 為 `skills/<slug>/`，並在 `skills.categories` 加同 slug 的物件（`name`、`intro`、`tags[{name,detail}]`、`link`）。內頁不當文案來源。保留 `_template`。
-- 研究／作品內頁：`templates/detail.html` + `page.json`；區塊標題與五塊規則只以 `AGENTS.md`「研究／作品內頁」為準。不要套技能模板。
+- 研究／作品內頁：`templates/detail.html` + `page.json`；區塊標題與畫面規則只以 `AGENTS.md`「研究／作品內頁」為準。不要套技能模板。
 - 本機用 `node serve.mjs` 或捷徑；論文與工具使用範圍不發明。

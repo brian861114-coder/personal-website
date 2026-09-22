@@ -98,22 +98,22 @@ Agent 動手前記 `AGENTS.md`（技能頁模板、資料單一來源、研究�
 
 ### 論文／作品介紹頁 `page.json`
 
-首頁卡片只負責標題與摘要。點進去的五塊寫在各資料夾的 **`page.json`**，存檔後重新整理該頁即可。空字串會顯示「待填」提示，不會假裝已完成。Agent 改模板或加頁時以根目錄 `AGENTS.md` 為準。
+首頁卡片只負責標題與摘要。點進去的四塊寫在各資料夾的 **`page.json`**，存檔後重新整理該頁即可。空字串會顯示「待填」提示，不會假裝已完成。Agent 改模板或加頁時以根目錄 `AGENTS.md` 為準。
 
 | 欄位 | 填什麼 |
 |---|---|
 | `soWhat` | 核心理念 |
 | `problem` | 遭遇挑戰 |
 | `role` / `method` | 貢獻；成果 |
-| `figure` | 圖檔路徑，例如 `../../images/foo.png`（檔放進 `images/`） |
-| `figureCaption` | 圖說 |
-| `metric` | 補充說明（數字或脈絡） |
-| `transfer` | 對下一份工作可轉移的能力 |
-| `links[].href` | PDF、DOI、repo。**href 空白的按鈕不會出現** |
+| `figure` | 單張圖路徑，例如 `images/foo.png`（放該頁資料夾的 `images/`） |
+| `figures` | 多張圖：`[{ "src": "images/foo.png", "caption": "圖說" }]`。有此欄就不再重複畫 `figure` |
+| `figureCaption` | 單張圖的圖說 |
+| `metric` | 可選。圖下方的脈絡／數字；空白就不顯示 |
+| `transfer`、`links` | 暫不顯示。欄位可留空，之後若加回區塊再填 |
 
 新增一頁：複製 `templates/detail.html` → `research/<短名>/index.html` 或 `projects/<短名>/index.html`；再複製 `templates/page.json` 改內容；在 `data.json` 該筆加上 `link`。
 
-`index.html` 不用改。版面改 `css/detail.css` 與 `js/detail.js`，所有介紹頁一起變。
+`index.html` 不用改。版面改 `css/detail.css` 與 `js/detail.js`，所有介紹頁一起變。電腦約 800px 以上是標題全寬、左文右圖；窄螢幕單欄。
 
 ### 聯絡 `contact.links`
 
