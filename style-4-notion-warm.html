@@ -17,7 +17,7 @@
       --bg-gradient-end: #f4f8fd;
       --text-primary: rgba(0,0,0,0.95);
       --text-secondary: var(--text-primary);
-      --text-tertiary: #718096;
+      --text-tertiary: #5a6b82;
       --accent: #0075de;
       --accent-hover: #005bab;
       --badge-bg: #e8f4fd;
@@ -99,39 +99,74 @@
       font-size: 14px;
     }
     .nav-cta:hover { background: var(--accent-hover); color: #fff !important; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+
+    /* 語言切換：次要層級，讓藍色 Contact 保持唯一的主要行動。
+       放在 nav 右端，sticky nav 讓它在手機上也一直可見。 */
+    .nav-lang {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 11px;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+    .nav-lang:hover { color: var(--accent); border-color: var(--accent); }
 
     /* Hero */
     .hero {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 100px 24px 80px;
+      padding: 56px 24px 24px;
       text-align: center;
     }
     .hero h1 {
-      font-size: 64px;
+      font-size: 48px;
       font-weight: 700;
       color: var(--text-primary);
-      line-height: 1.00;
+      line-height: 1.05;
       letter-spacing: -0.033em;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
     }
     .hero .photo {
-      width: 220px;
-      height: 220px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       object-fit: cover;
       object-position: center 22%;
       border: 4px solid rgba(255,255,255,0.8);
       box-shadow: 0 4px 20px rgba(0,0,0,0.10);
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
     .hero .subtitle {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
       color: var(--text-secondary);
       line-height: 1.4;
       letter-spacing: -0.006em;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .hero-stats .stat { display: flex; flex-direction: column; align-items: center; }
+    .hero-stats .stat b {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .hero-stats .stat span {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 3px;
     }
     .hero .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
     .btn-primary {
@@ -387,7 +422,6 @@
       transition: transform 0.2s;
       text-decoration: none;
       color: inherit;
-      height: 100%;
     }
     .project-card:hover { transform: translateY(-2px); }
     .project-card .card-img {
@@ -406,7 +440,17 @@
       object-fit: cover;
     }
     .project-card .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
-    .project-card h3 { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+    .project-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      min-height: 2.4em;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
     .project-card p {
       font-size: 14px;
       color: var(--text-secondary);
@@ -415,6 +459,7 @@
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      min-height: 4.5em;
     }
 
     /* Contact */
@@ -456,13 +501,16 @@
       nav .nav-inner { height: auto; min-height: 54px; padding-top: 10px; padding-bottom: 10px; }
       nav .logo { font-size: 14px; }
       .hero {
-        padding: 48px 20px 40px;
+        padding: 36px 20px 16px;
         padding-left: max(20px, env(safe-area-inset-left));
         padding-right: max(20px, env(safe-area-inset-right));
       }
-      .hero h1 { font-size: 32px; line-height: 1.15; letter-spacing: -0.03em; }
-      .hero .photo { width: 160px; height: 160px; }
-      .hero .subtitle { font-size: 16px; margin-bottom: 0; }
+      .hero h1 { font-size: 30px; line-height: 1.15; letter-spacing: -0.03em; }
+      .hero .photo { width: 112px; height: 112px; }
+      .hero .subtitle { font-size: 15px; margin-bottom: 22px; }
+      .hero-stats { gap: 26px; }
+      .hero-stats .stat b { font-size: 22px; }
+      .hero-stats .stat span { font-size: 12px; }
       section h2 { font-size: 32px; }
       section {
         padding: 48px 20px;
@@ -502,8 +550,54 @@
 <section class="warm" id="contact"><div class="inner contact-section"></div></section>
 
 <script>
+// 語言由網址決定：/en/ 之下是英文版，其餘是中文版。
+// 首頁 HTML 在中英兩邊是同一份，所以切換鍵與資料檔名都在這裡算。
+const LANG = location.pathname.replace(/\/index\.html?$/i, '/').split('/').filter(Boolean)[0] === 'en'
+  ? 'en' : 'zh';
+const IS_EN = LANG === 'en';
+
+const UI = {
+  zh: {
+    prev: '上一則',
+    next: '下一則',
+    more: '查看介紹 →',
+    langLabel: 'EN',
+    langAria: 'Switch to English',
+    langTag: 'en',
+    langHreflang: 'en',
+    loadError: '無法載入 <code>data.json</code>。請用本機伺服器或 GitHub Pages 開啟，不要直接雙擊 HTML。<br>'
+      + '在專案目錄執行 <code>node serve.mjs</code>，再開 <code>http://127.0.0.1:8766/style-4-notion-warm.html</code>。'
+  },
+  en: {
+    prev: 'Previous',
+    next: 'Next',
+    more: 'View details →',
+    langLabel: '中文',
+    langAria: '切換至中文版',
+    langTag: 'zh-Hant',
+    langHreflang: 'zh-Hant',
+    loadError: 'Could not load <code>data.json</code>. Open the site through a local server or GitHub Pages — '
+      + 'do not double-click the HTML file.<br>Run <code>node serve.mjs</code> in the project folder, then open '
+      + '<code>http://127.0.0.1:8766/</code>.'
+  }
+};
+const T = UI[LANG];
+
+// 語言切換。中英首頁在樹上的深度不同（/ 與 /en/），所以各自寫一條相對路徑；
+// GitHub Pages 是 repo 子路徑，不能用 /en/... 這種站根絕對路徑。
+// onclick 只記住選擇，讓 root 的語言入口下次直接帶到對的版本。
+function langSwitch() {
+  const href = IS_EN ? '../style-4-notion-warm.html' : 'en/';
+  const remember = IS_EN ? 'zh' : 'en';
+  return `<a class="nav-lang" href="${href}" lang="${T.langTag}" hreflang="${T.langHreflang}"`
+    + ` aria-label="${T.langAria}"`
+    + ` onclick="try{localStorage.setItem('site-lang','${remember}')}catch(e){}">${T.langLabel}</a>`;
+}
+
 function render(d) {
 
+  // <html lang> 要放「這一頁自己的語言」，不是切換鍵要去的語言（T.langTag）
+  document.documentElement.lang = IS_EN ? 'en' : 'zh-Hant';
   document.title = d.page.title;
 
   // --- Nav ---
@@ -515,7 +609,10 @@ function render(d) {
         <ul class="nav-links">
           ${d.nav.links.map(l => `<li><a href="${l.href}">${l.label}</a></li>`).join('')}
         </ul>
-        <a href="${d.nav.cta.href}" class="nav-cta">${d.nav.cta.label}</a>
+        <div class="nav-actions">
+          ${langSwitch()}
+          <a href="${d.nav.cta.href}" class="nav-cta">${d.nav.cta.label}</a>
+        </div>
       </div>
     </div>`;
 
@@ -524,6 +621,7 @@ function render(d) {
     ${d.hero.photo ? `<img class="photo" src="${d.hero.photo}" alt="Brian">` : ''}
     <h1>${d.hero.greeting}</h1>
     <p class="subtitle">${d.hero.subtitle}</p>
+    ${d.hero.stats ? `<div class="hero-stats">${d.hero.stats.map(s => `<div class="stat"><b>${s.value}</b><span>${s.label}</span></div>`).join('')}</div>` : ''}
     ${d.hero.buttons ? `<div class="cta-group">${d.hero.buttons.map(b => `<a href="${b.href}" class="${b.class}">${b.label}</a>`).join('')}</div>` : ''}`;
 
   // --- About ---
@@ -569,8 +667,8 @@ function render(d) {
 
   const trackControls = `
     <div class="card-track-nav">
-      <button type="button" class="track-btn" data-track-prev aria-label="上一則"><i class="ph ph-arrow-left"></i></button>
-      <button type="button" class="track-btn" data-track-next aria-label="下一則"><i class="ph ph-arrow-right"></i></button>
+      <button type="button" class="track-btn" data-track-prev aria-label="${T.prev}"><i class="ph ph-arrow-left"></i></button>
+      <button type="button" class="track-btn" data-track-next aria-label="${T.next}"><i class="ph ph-arrow-right"></i></button>
     </div>`;
 
   function setupCardTrack(root) {
@@ -612,7 +710,7 @@ function render(d) {
             <div class="journal">${p.journal}</div>
             <p>${p.description}</p>
             <div class="tag-list">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-            ${p.link ? '<div class="card-more">查看介紹 →</div>' : ''}
+            ${p.link ? `<div class="card-more">${T.more}</div>` : ''}
           ${p.link ? '</a>' : '</article>'}`).join('')}
       </div>
     </div>`;
@@ -654,17 +752,14 @@ function render(d) {
 
 async function boot() {
   try {
-    const res = await fetch('data.json', { cache: 'no-store' });
+    // 英文版讀自己的資料檔；檔名明示語言，避免兩份資料改錯邊
+    const dataUrl = IS_EN ? 'data.en.json' : 'data.json';
+    const res = await fetch(dataUrl, { cache: 'no-store' });
     if (!res.ok) throw new Error(res.statusText);
     render(await res.json());
   } catch (err) {
     console.error(err);
-    document.body.innerHTML = `
-      <p class="data-error">
-        無法載入 <code>data.json</code>。請用本機伺服器或 GitHub Pages 開啟，不要直接雙擊 HTML。<br>
-        在專案目錄執行 <code>node serve.mjs</code>，再開
-        <code>http://127.0.0.1:8766/style-4-notion-warm.html</code>。
-      </p>`;
+    document.body.innerHTML = `<p class="data-error">${T.loadError}</p>`;
   }
 }
 

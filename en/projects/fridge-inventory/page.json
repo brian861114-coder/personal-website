@@ -1,0 +1,35 @@
+{
+  "kind": "project",
+  "kicker": "Projects",
+  "title": "Fridge Inventory App",
+  "shortTitle": "Fridge inventory system",
+  "meta": "Next.js × FastAPI × PostgreSQL × Docker",
+  "tags": ["Next.js", "FastAPI", "Docker", "REST API", "Concurrency control"],
+  "homeHref": "../../../style-4-notion-warm.html",
+  "backHref": "../../../style-4-notion-warm.html#projects",
+  "contactHref": "../../../style-4-notion-warm.html#contact",
+  "soWhat": "A cloud-hosted fridge inventory app whose stock records and running-low alerts make the food in the fridge go further and reduce how often fridge and pantry items are bought, forgotten, and left to expire.",
+  "problem": "A paper list and memory make it awkward for a family to share what is actually in the fridge, and without knowing how much is left at home, shopping tends to repeat purchases or leave items to expire.",
+  "role": "Designed a cloud-hosted fridge inventory app around actual needs, using a Next.js front end with FastAPI and PostgreSQL for storage. Stock can be adjusted with a simple + / - control, and besides entering items by hand it supports OCR of shopping receipts to import stock automatically, cutting down the friction of keeping records;",
+  "method": "The app groups items into categories — vegetables, meat, dry goods, canned food, and so on — to cut search effort, writes every change to an event log, and lets you set running-low alerts to refer to when shopping.",
+  "figure": "",
+  "figureCaption": "",
+  "figures": [
+    {
+      "video": "videos/inventory.mp4",
+      "poster": "images/poster-inventory.webp",
+      "caption": "Inventory list grouped by category (fish / meat / vegetables / dry goods), with quantity adjustment, editing, and deletion inline."
+    },
+    {
+      "video": "videos/add-flow.mp4",
+      "poster": "images/poster-add-flow.webp",
+      "caption": "Adding food: manual entry or scanning a receipt, with three tracking modes — exact count, estimated remaining, or simply in stock."
+    }
+  ],
+  "metric": "",
+  "transfer": "",
+  "links": [
+    { "label": "Demo", "href": "" },
+    { "label": "GitHub", "href": "" }
+  ]
+}

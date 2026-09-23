@@ -13,7 +13,13 @@
   "hero": {
     "photo": "images/photo.jpg?v=20260918",
     "greeting": "Hello, I'm Brian.",
-    "subtitle": "半導體物理 × AI 系統 — 以第一原理思考，用智慧自動化實踐"
+    "subtitle": "半導體物理 × AI 系統 — 以第一原理思考，用智慧自動化實踐",
+    "stats": [
+      { "value": "3", "label": "篇 SCI 論文" },
+      { "value": "8.4", "label": "最高期刊影響因子" },
+      { "value": "6", "label": "個完整專案" },
+      { "value": "2", "label": "年封裝製程經驗" }
+    ]
   },
   "about": {
     "id": "about",
@@ -152,25 +158,29 @@
         "icon": "🇯🇵",
         "title": "日文文法學習站 MyJapan",
         "description": "離線 JLPT N4–N2 文法學習站。講義 PDF 結構化成課文 JSON，內建 AI 拆詞、TTS 語音、字典與學習進度追蹤。",
-        "link": "projects/japanese-learning/"
+        "link": "projects/japanese-learning/",
+        "img": "images/japanese-learning.webp"
       },
       {
         "icon": "📚",
         "title": "互動式理工教材網站",
         "description": "7 大主題、83 章互動式理工教材，含 18 個互動模型與 1,209 道練習，涵蓋微積分、半導體物理與量子力學。",
-        "link": "projects/stem-learning/"
+        "link": "projects/stem-learning/",
+        "img": "images/stem-learning.webp"
       },
       {
         "icon": "🧊",
         "title": "冰箱庫存管理系統",
         "description": "Next.js + FastAPI 全端庫存管理系統。樂觀併發控制、冪等 API、原子性事件記錄與 Docker 部署。",
-        "link": "projects/fridge-inventory/"
+        "link": "projects/fridge-inventory/",
+        "img": "images/fridge-inventory.webp"
       },
       {
         "icon": "📊",
         "title": "人生角色儀表板",
         "description": "把人生角色化的本機優先桌面應用（React + Electron + PWA），整合任務追蹤與完成率統計，可離線使用。",
-        "link": "projects/life-dashboard/"
+        "link": "projects/life-dashboard/",
+        "img": "images/life-dashboard.webp"
       }
     ]
   },

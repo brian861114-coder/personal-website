@@ -1,0 +1,22 @@
+{
+  "kind": "project",
+  "kicker": "Projects",
+  "title": "Elder Life App",
+  "meta": "Flutter × Hive (local-first, AES encryption)",
+  "tags": ["Flutter", "Dart", "Hive", "Offline-first"],
+  "homeHref": "../../../style-4-notion-warm.html",
+  "backHref": "../../../style-4-notion-warm.html#projects",
+  "contactHref": "../../../style-4-notion-warm.html#contact",
+  "soWhat": "A phone companion designed for older adults: weather and going-out advice, clinic and medication reminders, a magnifier, and AI Q&A — and the reminders export as plain text so family can set them up on the user's behalf.",
+  "problem": "Older adults are put off by the type sizes and layered menus of ordinary apps, and most health apps assume a smartphone-savvy user who is comfortable keeping personal data in the cloud.",
+  "role": "Sole developer, covering the app features, the local data encryption, and the backend integration.",
+  "method": "Built with Flutter for Android on a local-first architecture: contacts, reminders, and settings live in an encrypted on-device database (Hive + AES), so the app works without a network — only the AI Q&A needs the self-hosted backend. Reminders export to a block of text, which can be pasted back in when switching phones or asking family for help.",
+  "figure": "",
+  "figureCaption": "",
+  "metric": "",
+  "transfer": "",
+  "links": [
+    { "label": "Demo", "href": "" },
+    { "label": "GitHub", "href": "" }
+  ]
+}

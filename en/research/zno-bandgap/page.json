@@ -1,0 +1,43 @@
+{
+  "kind": "research",
+  "kicker": "Research",
+  "title": "Machine-Learning-Aided DFT-1/2 Calculations for Bandgaps of Zinc Oxide Thin Films",
+  "shortTitle": "Machine-learning bandgap prediction",
+  "meta": "Thin Solid Films, 2022 — IF: 2.1",
+  "tags": ["DFT-1/2", "GANNs", "ZnO", "Machine Learning"],
+  "homeHref": "../../../style-4-notion-warm.html",
+  "backHref": "../../../style-4-notion-warm.html#research",
+  "contactHref": "../../../style-4-notion-warm.html#contact",
+  "soWhat": "Built a machine-learning model that predicts bandgaps of semiconductor materials, tuned the training architecture for the best accuracy, and checked the predictions against experimental values.",
+  "problem": "Choosing the machine-learning architecture, then optimising and validating the model.",
+  "role": "I trained a two-hidden-layer neural network (8 and 6 neurons) with a genetic algorithm, producing a model with a very small RMSE (0.016).",
+  "method": "Verification runs on the predicted points confirmed errors below 5% against the reference values, which makes the model practically useful: it reduces the setup tuning needed for future semiconductor material simulations.",
+  "figure": "images/fig1-gann-flowchart.png",
+  "figureCaption": "Paper Fig. 1(c): the GANN workflow for predicting ZnO bandgaps (iterating between neural network and genetic algorithm).",
+  "figures": [
+    {
+      "src": "images/fig1-gann-flowchart.png",
+      "caption": "Paper Fig. 1(c): the GANN workflow for predicting ZnO bandgaps (iterating between neural network and genetic algorithm)."
+    },
+    {
+      "src": "images/fig4-contour-bandgap.png",
+      "caption": "Paper Fig. 4: bandgap contour maps from the trained GANN at power index = 8, 20 and 50 (2,600 data points)."
+    },
+    {
+      "src": "images/fig5-dft-vs-gann.png",
+      "caption": "Paper Fig. 5: DFT-1/2 versus GANN predictions along the lines Rcut(O)=2.4 and Rcut(Zn)=1.2 (error < 5%)."
+    }
+  ],
+  "metric": "",
+  "transfer": "",
+  "links": [
+    {
+      "label": "PDF",
+      "href": "../../../files/Machine-learning-aided-DFT-1-2-calculations-for-bandgaps-of-ZnO-thin-films.pdf"
+    },
+    {
+      "label": "DOI",
+      "href": "https://doi.org/10.1016/j.tsf.2022.139326"
+    }
+  ]
+}

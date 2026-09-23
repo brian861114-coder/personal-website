@@ -1,0 +1,201 @@
+{
+  "nav": {
+    "logo": "Wei-Che Tseng",
+    "links": [
+      { "label": "About", "href": "#about" },
+      { "label": "Experience", "href": "#experience" },
+      { "label": "Skills", "href": "#skills" },
+      { "label": "Research", "href": "#research" },
+      { "label": "Projects", "href": "#projects" }
+    ],
+    "cta": { "label": "Contact", "href": "#contact" }
+  },
+  "hero": {
+    "photo": "../images/photo.jpg?v=20260918",
+    "greeting": "Hello, I'm Brian.",
+    "subtitle": "Semiconductor physics × AI systems — reasoning from first principles, automating with intelligence",
+    "stats": [
+      { "value": "3", "label": "SCI journal papers" },
+      { "value": "8.4", "label": "Highest impact factor" },
+      { "value": "6", "label": "Complete projects" },
+      { "value": "2", "label": "Years in packaging process engineering" }
+    ]
+  },
+  "about": {
+    "id": "about",
+    "title": "About",
+    "description": "Physicist turned AI engineer — building systems that think and compute.",
+    "paragraphs": [
+      "I'm Brian, a researcher working where semiconductor physics meets AI systems. During my master's I used first-principles calculations (DFT) to study the electronic properties of ZnO and heterostructures, and published 3 SCI journal papers on band engineering and catalytic reactions.",
+      "I also build AI agent systems hands-on — self-hosted LLM services, RAG knowledge bases, and a personal AI work system. I believe a good engineer doesn't just solve problems; they build systems that keep evolving."
+    ],
+    "info": [
+      { "text": "B.S. & M.S. in Materials Science and Engineering, National Cheng Kung University" },
+      { "text": "3 published journal papers" },
+      { "text": "AI vibe coding & automation" },
+      { "text": "2 years as a semiconductor packaging process engineer" }
+    ]
+  },
+  "experience": {
+    "id": "experience",
+    "title": "Background",
+    "description": "Academic research and professional track",
+    "items": [
+      {
+        "date": "2016 – 2020",
+        "title": "B.S. — Materials Science and Engineering",
+        "org": "National Cheng Kung University",
+        "details": [
+          "Understanding the crystal structure and related defects of semiconductor materials",
+          "Master <strong>material analysis methods</strong> and mechanisms (XRD / SEM / AFM …)",
+          "Taking semiconductor courses to <strong>comprehend the structure of common PN junction / MOSFET device</strong>"
+        ]
+      },
+      {
+        "date": "2020 – 2022",
+        "title": "M.S. — Materials Science and Engineering",
+        "org": "National Cheng Kung University",
+        "details": [
+          "<strong>Collaborate with multi lab teams</strong> to complete the Research Project",
+          "Investigate and <strong>publish 3 journal papers</strong> in green energy materials by simulation method"
+        ]
+      },
+      {
+        "date": "2023 – 2025",
+        "title": "Bumping Process Engineer",
+        "org": "Winstek Semiconductor Co., Ltd.",
+        "description": "Developed and improved bumping processes for wafer-level packaging, covering key modules including electroplating, sputtering, lithography, and etching."
+      }
+    ]
+  },
+  "skills": {
+    "id": "skills",
+    "title": "Skills",
+    "description": "Cross-disciplinary technical stack",
+    "categories": [
+      {
+        "name": "Computational Materials",
+        "slug": "computational-materials",
+        "link": "skills/computational-materials/index.html",
+        "intro": "Used first-principles calculations during my master's to study oxide electronic structure and catalytic reactions; the results went into 3 SCI journal papers.",
+        "tags": [
+          {
+            "name": "VASP",
+            "detail": "Primary calculation engine. Used for structure relaxation and electronic structure of ZnO thin films and metal-nanoparticle / oxide interfaces."
+          },
+          {
+            "name": "DFT",
+            "detail": "The core method: band structures, adsorption, and reaction pathways. Also paired with DFT-1/2 to correct the bandgap underestimation of ZnO."
+          },
+          {
+            "name": "Quantum ESPRESSO",
+            "detail": "Standalone plane-wave DFT tool used as a cross-check, following the same workflow as VASP (structure, band structure, DOS)."
+          },
+          {
+            "name": "Band Structure",
+            "detail": "Used to explain ZnO thin-film bandgaps and Type-II band alignment in heterostructures, connecting bandgap prediction to photocatalytic charge separation."
+          },
+          {
+            "name": "DOS",
+            "detail": "Used to inspect electronic state distributions of surfaces and adsorbate systems, helping identify charge transfer and active sites."
+          },
+          {
+            "name": "NEB",
+            "detail": "Used to estimate transition states and energy barriers of surface reactions (such as the HER pathway), extending adsorption energies into reaction kinetics."
+          }
+        ]
+      }
+    ]
+  },
+  "research": {
+    "id": "research",
+    "title": "Research",
+    "description": "3 SCI journal papers",
+    "papers": [
+      {
+        "title": "Machine-Learning-Aided DFT-1/2 Calculations for Bandgaps of Zinc Oxide Thin Films",
+        "journal": "Thin Solid Films, 2022 — IF: 2.1",
+        "description": "Combined the DFT-1/2 method with genetic-algorithm artificial neural networks (GANNs) to predict ZnO thin-film bandgaps. GANN predictions differ from the DFT-1/2 values by less than 5% and match experimental data closely.",
+        "tags": ["DFT-1/2", "GANNs", "ZnO", "Machine Learning"],
+        "link": "research/zno-bandgap/"
+      },
+      {
+        "title": "Catalytic Hydrogen Evolution Reaction on Surfaces of Metal-Nanoparticle-Coated Zinc-Based Oxides by First-Principles Calculations",
+        "journal": "International Journal of Hydrogen Energy, 2022 — IF: 7.2",
+        "description": "Used first-principles calculations to study the hydrogen evolution reaction (HER) catalysed by Pt/Au/Ag nanoparticle-coated ZnO surfaces. Au/ZnO showed adsorption free energy closest to zero, while Pt/ZnO performed best along the Volmer–Heyrovsky pathway.",
+        "tags": ["HER", "ZnO", "Catalysis", "DFT"],
+        "link": "research/her-zno/"
+      },
+      {
+        "title": "Mg₂Fe₂O₅ Nanoparticle-Decorated Ca₂Fe₂O₅−CaFe₂O₄ Heterostructure for Efficient Photocatalytic CO₂ Conversion",
+        "journal": "ACS Sustainable Chemistry & Engineering, 2022 — IF: 8.4",
+        "description": "The study paired a Mg₂Fe₂O₅-decorated Ca₂Fe₂O₅−CaFe₂O₄ heterostructure with DFT calculations for photocatalytic CO₂ reduction. The calculations revealed a Type-II charge-transfer mechanism and accounted for the 81.7% CH₄ selectivity.",
+        "tags": ["CO₂RR", "Heterojunction", "Photocatalysis", "DFT"],
+        "link": "research/co2-heterostructure/"
+      }
+    ]
+  },
+  "projects": {
+    "id": "projects",
+    "title": "Selected projects",
+    "description": "Personal projects and technical work",
+    "items": [
+      {
+        "icon": "📵",
+        "img": "../images/3c-detox.webp",
+        "title": "3C Detox App",
+        "description": "Cross-platform focus tool built with Flutter. Pomodoro timer, app blocking (native Android foreground monitoring), scheduled sessions, and immersive music.",
+        "link": "projects/3c-detox/"
+      },
+      {
+        "icon": "👴",
+        "img": "../images/elder-life.webp",
+        "title": "Elder Life App",
+        "description": "Assistive app for older adults: weather-based going-out advice, clinic and medication reminders, magnifier, and AI Q&A — on a local-first architecture (Hive + AES encryption).",
+        "link": "projects/elder-life/"
+      },
+      {
+        "icon": "🇯🇵",
+        "img": "../images/japanese-learning.webp",
+        "title": "MyJapan — offline JLPT grammar site",
+        "description": "Offline JLPT N4–N2 grammar study site. Lecture PDFs are turned into structured lesson JSON, with built-in AI word splitting, TTS, dictionary, and progress tracking.",
+        "link": "projects/japanese-learning/"
+      },
+      {
+        "icon": "📚",
+        "img": "../images/stem-learning.webp",
+        "title": "Interactive STEM textbook site",
+        "description": "83 chapters across 7 subjects with 18 interactive models and 1,209 practice questions, covering calculus, semiconductor physics, and quantum mechanics.",
+        "link": "projects/stem-learning/"
+      },
+      {
+        "icon": "🧊",
+        "img": "../images/fridge-inventory.webp",
+        "title": "Fridge inventory management system",
+        "description": "Full-stack inventory system built with Next.js + FastAPI. Optimistic concurrency control, idempotent APIs, atomic event logging, and Docker deployment.",
+        "link": "projects/fridge-inventory/"
+      },
+      {
+        "icon": "📊",
+        "img": "../images/life-dashboard.webp",
+        "title": "Life roles dashboard",
+        "description": "Local-first desktop app (React + Electron + PWA) that organises life by role, combining task tracking with completion-rate statistics and offline use.",
+        "link": "projects/life-dashboard/"
+      }
+    ]
+  },
+  "contact": {
+    "id": "contact",
+    "title": "Contact",
+    "description": "Happy to talk — technical discussions, job opportunities, or collaboration",
+    "links": [
+      { "icon": "ph ph-envelope", "label": "brian861114@gmail.com", "href": "mailto:brian861114@gmail.com" },
+      { "icon": "ph ph-phone", "label": "0979-415-008", "href": "tel:+886****5008" },
+      { "icon": "ph ph-linkedin-logo", "label": "LinkedIn", "href": "https://www.linkedin.com/in/wei-che-tseng-213113220/" },
+      { "icon": "ph ph-briefcase", "label": "104", "href": "https://pda.104.com.tw/profile/share/eWBzVEu53K4LasEqPbCOAHRluqvDWHv7" }
+    ]
+  },
+  "page": {
+    "title": "Wei-Che Tseng — Semiconductor Physics × AI Systems"
+  }
+}

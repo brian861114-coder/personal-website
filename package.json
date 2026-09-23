@@ -1,10 +1,13 @@
 {
   "name": "personal-website",
   "version": "1.0.0",
-  "description": "Brian 的履歷／作品集靜態站。畫面上的文字幾乎都來自 **`data.json`**，改完存檔、重新整理瀏覽器即可。不必改 HTML，也不必再複製一份進網頁。",
+  "description": "Brian 的履歷／作品集靜態站，中英雙語。畫面上的文字幾乎都來自資料檔（data.json 與 en/data.en.json），改完存檔、重新整理瀏覽器即可。",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node serve.mjs",
+    "test": "node tools/check-i18n.mjs",
+    "check:pages": "node tools/verify-pages.mjs",
+    "check:mobile": "node tools/check-mobile.mjs"
   },
   "repository": {
     "type": "git",

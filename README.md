@@ -1,10 +1,49 @@
 # personal-website
 
-Brian 的履歷／作品集靜態站。畫面上的文字幾乎都來自 **`data.json`**，改完存檔、重新整理瀏覽器即可。不必改 HTML，也不必再複製一份進網頁。
+Brian 的履歷／作品集靜態站，**中英雙語**。畫面上的文字幾乎都來自資料檔（中文 `data.json`、英文 `en/data.en.json`），改完存檔、重新整理瀏覽器即可。不必改 HTML，也不必再複製一份進網頁。
 
-Agent 動手前記 `AGENTS.md`（技能頁模板、資料單一來源、研究／作品另一套內頁）。
+Agent 動手前記 `AGENTS.md`（技能頁模板、資料單一來源、研究／作品另一套內頁、雙語同步規則）。
+
+| 版本 | 網址 | 首頁資料 |
+|---|---|---|
+| 中文 | `style-4-notion-warm.html` | `data.json` |
+| English | `en/`（即 `en/index.html`） | `en/data.en.json` |
+
+站根的 `index.html` 是語言入口：依「上次選過的語言 → 瀏覽器語言 → 中文」把訪客帶到對的版本。兩個版本都有固定網址，可以直接分享，不必先進來再切換。
+
+右上角那顆 **EN / 中文** 就是語言切換。它永遠帶你到「同一頁的另一個語言版本」——從中文論文頁切過去，落地的是同一篇論文的英文頁，不是回首頁。
 
 本機預覽：雙擊專案裡的 **`start-website.lnk`**（或 `start-site.bat`），或桌面上的 **Personal-Website**。會啟動伺服器並打開瀏覽器。**不要雙擊 HTML**，否則讀不到 `data.json`。關掉標題為「個人網站預覽」的黑色視窗就會停止伺服器。也可在專案目錄執行 `node serve.mjs`。
+
+---
+
+## 雙語版怎麼維護
+
+**改內容時兩個語言都要改。** 中英是兩份獨立資料，不會自動同步：
+
+| 改什麼 | 中文 | 英文 |
+|---|---|---|
+| 首頁文字 | `data.json` | `en/data.en.json` |
+| 作品介紹頁 | `projects/<slug>/page.json` | `en/projects/<slug>/page.json` |
+| 論文介紹頁 | `research/<slug>/page.json` | `en/research/<slug>/page.json` |
+| 技能內頁 | `data.json` 的 `skills.categories` | `en/data.en.json` 的同一區塊 |
+
+英文版的圖片、影片、PDF 路徑**比中文多一層 `../`**（`en/` 在中文樹的下一層）。例如中文寫 `images/x.webp`，英文寫 `../images/x.webp`。
+
+改完跑一次檢查（純檔案比對，不必先起伺服器）：
+
+```bash
+node tools/check-i18n.mjs
+```
+
+它會抓出：兩邊資料結構不對齊、英文版漏頁、路徑指到不存在的檔案、首頁 HTML 只改了一邊、內頁渲染出錯語言。
+
+想連瀏覽器行為一起驗（需要另一個視窗先跑 `node serve.mjs`）：
+
+```bash
+node tools/verify-pages.mjs    # 真的開 Chrome：JS 錯誤、404、切換鍵能不能點
+node tools/check-mobile.mjs    # 375 / 320px 下 header 會不會擠爆
+```
 
 ---
 
@@ -135,16 +174,28 @@ Agent 動手前記 `AGENTS.md`（技能頁模板、資料單一來源、研究�
 
 ## 主要檔案
 
-- `data.json` — 首頁文字與列表的唯一來源
-- `style-4-notion-warm.html` — 版面與互動（一般改內容不必動）
-- `serve.mjs` — 本機預覽
-- `images/`、`files/`、`projects/`、`skills/` — 圖、PDF、子頁
+| 路徑 | 用途 |
+|---|---|
+| `data.json` / `en/data.en.json` | 中／英首頁文字與列表的唯一來源 |
+| `style-4-notion-warm.html` / `en/index.html` | 中／英首頁版面與互動。一般改內容不必動；兩份只差 `lang`、`title`、favicon 路徑，改完要複製過去 |
+| `index.html` | 語言入口：依瀏覽器語言把訪客導到中文或英文版 |
+| `research/`、`projects/` | 各頁 `index.html` + `page.json`；英文版在 `en/` 下的同名路徑 |
+| `skills/_template/` | 新增技能頁的模板（`_template` 與現有技能頁內容相同） |
+| `templates/detail.html`、`templates/detail-en.html` | 新增介紹頁的中／英模板（只差資源路徑層數） |
+| `js/detail.js`、`css/detail.css` | 介紹頁的渲染與樣式，中英共用一份，語言由網址判斷 |
+| `tools/` | `check-i18n.mjs`、`verify-pages.mjs`、`check-mobile.mjs`、截圖工具 |
+| `images/`、`files/`、`assets/` | 卡片封面、論文 PDF、網站 icon（中英共用，不複製） |
+| `serve.mjs` | 本機預覽 |
 
 ---
 
 ## English
 
-Edit **`data.json` only** for homepage copy. Preview with `node serve.mjs` → `http://127.0.0.1:8766/style-4-notion-warm.html`. Do not double-click the HTML file.
+This site ships in two languages. Homepage copy lives in **`data.json`** (Chinese) and **`en/data.en.json`** (English). Preview with `node serve.mjs` → `http://127.0.0.1:8766/` (the root picks a language by browser setting) or go straight to `http://127.0.0.1:8766/en/`. Do not double-click the HTML file.
+
+**Every content change has to be made in both languages — there is no automatic sync.** English pages live under `en/` and carry their own `page.json`. Asset paths there are one level deeper (`../images/x.webp` versus `images/x.webp`), because shared assets stay in the repo root.
+
+After editing, run `node tools/check-i18n.mjs`. It catches mismatched JSON structure, pages missing on the English side, dead asset paths, and a homepage HTML that was only edited on one side.
 
 Array order is display order. Add an item by copying a neighbour object; delete by removing the whole object. JSON forbids a trailing comma after the last item.
 

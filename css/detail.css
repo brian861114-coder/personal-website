@@ -6,7 +6,7 @@
   --bg-gradient-end: #f4f8fd;
   --text-primary: rgba(0, 0, 0, 0.95);
   --text-secondary: var(--text-primary);
-  --text-tertiary: #718096;
+  --text-tertiary: #5a6b82;
   --accent: #0075de;
   --accent-hover: #005bab;
   --badge-bg: #e8f4fd;
@@ -78,6 +78,31 @@ nav a:hover { color: var(--accent); }
 }
 
 .nav-cta:hover { background: var(--accent-hover); }
+
+/* 語言切換：次要層級，讓藍色 Contact 保持唯一的主要行動。
+   放在 nav 右端，sticky nav 讓它在手機上也一直可見。 */
+.nav-end {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.nav-lang {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 11px;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.nav-lang:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
 
 main {
   max-width: 1080px;

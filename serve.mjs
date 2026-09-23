@@ -20,7 +20,7 @@ const types = {
 
 function resolveFile(urlPath) {
   let rel = decodeURIComponent((urlPath || '/').split('?')[0]).replace(/^[/\\]+/, '');
-  if (!rel) rel = 'style-4-notion-warm.html';
+  if (!rel) rel = 'index.html';
   const abs = path.normalize(path.join(root, rel));
   if (!abs.startsWith(root)) return null;
   if (fs.existsSync(abs) && fs.statSync(abs).isDirectory()) {

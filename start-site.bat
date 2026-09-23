@@ -15,4 +15,4 @@ if errorlevel 1 (
   ping -n 2 127.0.0.1 >nul
 )
 
-start "" "http://127.0.0.1:8766/style-4-notion-warm.html"
+start "" "http://127.0.0.1:8766/"

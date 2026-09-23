@@ -1,0 +1,34 @@
+{
+  "kind": "project",
+  "kicker": "Projects",
+  "title": "3C Detox App",
+  "meta": "Flutter × Dart × Kotlin (native Android foreground monitoring)",
+  "tags": ["Flutter", "Dart", "Kotlin", "Provider"],
+  "homeHref": "../../../style-4-notion-warm.html",
+  "backHref": "../../../style-4-notion-warm.html#projects",
+  "contactHref": "../../../style-4-notion-warm.html#contact",
+  "soWhat": "Self-built app that limits phone usage time, removing the recurring subscription cost that ordinary screen-time apps put on your cash flow.",
+  "problem": "Daily life is easily pulled apart by outside stimuli such as social media, yet the usual Pomodoro apps only keep time — they never block the apps that actually distract you. The apps that do offer real blocking tend to put it behind a paid plan, so to cut the long-term cash outflow I built an app with those capabilities myself.",
+  "role": "Used AI-assisted development on a Flutter project to build the 3C Detox app,",
+  "method": "On Android, native Kotlin hooks into UsageStatsManager to monitor the foreground app, and opening a blocked app forces a switch to the focus screen. It also provides weekly recurring schedules, a choice of multiple blocklists, immersive music during a focus session, and a Chinese / English / Japanese interface.",
+  "figure": "",
+  "figureCaption": "",
+  "figures": [
+    {
+      "video": "videos/focus-timer.mp4",
+      "poster": "images/poster-focus-timer.webp",
+      "caption": "Focus timer: Pomodoro and strict-mode settings, then the running countdown. Strict mode uses Android foreground monitoring to block the apps on the blocklist."
+    },
+    {
+      "video": "videos/schedule.mp4",
+      "poster": "images/poster-schedule.webp",
+      "caption": "Schedules: weekly recurring block windows, each bound to a different blocklist and enabled or disabled individually."
+    }
+  ],
+  "metric": "",
+  "transfer": "",
+  "links": [
+    { "label": "Demo", "href": "" },
+    { "label": "GitHub", "href": "" }
+  ]
+}

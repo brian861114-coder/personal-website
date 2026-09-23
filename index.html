@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wei-Che Tseng 曾為哲</title>
+  <link rel="icon" type="image/png" href="assets/application-icon.png">
+
+  <!-- 語言入口。中英兩版都有各自的固定網址（style-4-notion-warm.html 與 en/），
+       這一頁只負責把直接打開站根的人帶到對的版本：
+       1. 先看上次在切換鍵選過的語言
+       2. 再看瀏覽器語言（非中文一律先給英文版）
+       3. 都沒有線索時預設中文 -->
+  <script>
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('site-lang'); } catch (e) {}
+      var browser = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      var lang = (saved === 'en' || saved === 'zh')
+        ? saved
+        : (browser.indexOf('zh') === 0 ? 'zh' : 'en');
+      location.replace(lang === 'en' ? 'en/' : 'style-4-notion-warm.html');
+    })();
+  </script>
+</head>
+<body>
+  <p>
+    <a href="style-4-notion-warm.html">中文版</a> ·
+    <a href="en/">English version</a>
+  </p>
+  <noscript>
+    <p>JavaScript 已停用，請直接選擇版本：<a href="style-4-notion-warm.html">中文</a> / <a href="en/">English</a></p>
+  </noscript>
+</body>
+</html>

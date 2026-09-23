@@ -1,0 +1,39 @@
+{
+  "kind": "research",
+  "kicker": "Research",
+  "title": "Mg₂Fe₂O₅ Nanoparticle-Decorated Ca₂Fe₂O₅−CaFe₂O₄ Heterostructure for Efficient Photocatalytic CO₂ Conversion",
+  "shortTitle": "CO₂ photocatalytic heterostructure",
+  "meta": "ACS Sustainable Chemistry & Engineering, 2022 — IF: 8.4",
+  "tags": ["CO₂RR", "Heterojunction", "Photocatalysis", "DFT"],
+  "homeHref": "../../../style-4-notion-warm.html",
+  "backHref": "../../../style-4-notion-warm.html#research",
+  "contactHref": "../../../style-4-notion-warm.html#contact",
+  "soWhat": "Used DFT to pin down where CO₂ and water turn into hydrocarbons on a Ca₂Fe₂O₅−CaFe₂O₄ heterostructure, and how the charge separation works.",
+  "problem": "The heterostructure contains several metal sites. Once the experiments showed improved activity, it was still unclear which site actually drives the reduction and how the Type-II band alignment suppresses charge recombination.",
+  "role": "Second author. I was responsible for the simulation work; material synthesis and photocatalytic measurements were done by the other authors.",
+  "method": "The calculations show that the formaldehyde pathway at the Fe site of Ca₂Fe₂O₅ (001) converts CO₂ into CH₄ and is the preferred active site. The band diagram matches Type-II charge transfer: electrons stay on Ca₂Fe₂O₅ for the reduction while holes move to CaFe₂O₄ for water oxidation.",
+  "figure": "images/fig7-dft-pes.png",
+  "figureCaption": "Paper Fig. 7: DFT potential energy surface for CO₂ and H₂O conversion into CH₄ at the Fe site of Ca₂Fe₂O₅ (001).",
+  "figures": [
+    {
+      "src": "images/fig7-dft-pes.png",
+      "caption": "Paper Fig. 7: DFT potential energy surface for CO₂ and H₂O conversion into CH₄ at the Fe site of Ca₂Fe₂O₅ (001)."
+    },
+    {
+      "src": "images/fig8-band-diagram.png",
+      "caption": "Paper Fig. 8: band diagram of the Ca₂Fe₂O₅−CaFe₂O₄ heterojunction and the photocatalytic CO₂ conversion mechanism."
+    }
+  ],
+  "metric": "",
+  "transfer": "",
+  "links": [
+    {
+      "label": "PDF",
+      "href": "../../../files/Mg2Fe2O5-Decorated-Ca2Fe2O5-CaFe2O4-Heterostructure-for-Photocatalytic-CO2-Conversion.pdf"
+    },
+    {
+      "label": "DOI",
+      "href": "https://doi.org/10.1021/acssuschemeng.2c03378"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "kind": "project",
+  "kicker": "Projects",
+  "title": "MyJapan — offline JLPT grammar study site",
+  "shortTitle": "JLPT grammar study site MyJapan",
+  "meta": "Python build pipeline × static site × OpenRouter AI word splitting",
+  "tags": ["Python", "OpenRouter", "TTS", "JLPT N4–N2", "Static site"],
+  "homeHref": "../../../style-4-notion-warm.html",
+  "backHref": "../../../style-4-notion-warm.html#projects",
+  "contactHref": "../../../style-4-notion-warm.html#contact",
+  "soWhat": "Gathers Japanese material scattered across lecture PDFs, vocabulary books, and audio files into one offline site, making review and expansion easy. Grammar handouts become structured lessons, reading passages and vocabulary or grammar can be imported from outside sources, and AI fills in the Chinese translation, reading, and definition.",
+  "problem": "Japanese study material comes in inconsistent formats — video, paper, audio files, and more — which makes it awkward to carry around and review day to day. Switching between tools costs time, what has been learned tends to scatter, and off-the-shelf apps cannot be adapted to my own material and reading habits.",
+  "role": "Built a one-stop study site that uses AI to consolidate paper and video material: a Python pipeline turns lecture PDFs into lesson JSON and generates a static site that works offline, with a dictionary, flashcards, review, and progress tracking built in, so it can be carried and read anywhere.",
+  "method": "Designed the site front end around my own needs and added AI that fills in pronunciation and example sentences. An article can be split into words locally, then enriched with Chinese translation, reading, and definition through AI before being imported into the vocabulary bank, improving the completeness of the vocabulary and grammar database overall.",
+  "figure": "",
+  "figureCaption": "",
+  "figures": [
+    {
+      "video": "videos/grammar.mp4",
+      "poster": "images/poster-grammar.webp",
+      "caption": "Grammar unit list: lesson counts, textbook page ranges, and completion progress for each N3 unit."
+    },
+    {
+      "video": "videos/extract.mp4",
+      "poster": "images/poster-extract.webp",
+      "caption": "Article splitting: paste a Japanese passage, split it into words locally, add translation, reading, and definition, then import into the vocabulary bank."
+    },
+    {
+      "video": "videos/vocab.mp4",
+      "poster": "images/poster-vocab.webp",
+      "caption": "Automatic conjugation: verb forms (ます / て / た / ない) filled into the dictionary in one click."
+    },
+    {
+      "video": "videos/flashcard.mp4",
+      "poster": "images/poster-flashcard.webp",
+      "caption": "Flashcards: pick which fields go on the front and back with a live preview, used together with the review schedule."
+    }
+  ],
+  "metric": "",
+  "transfer": "",
+  "links": [
+    { "label": "Demo", "href": "" },
+    { "label": "GitHub", "href": "" }
+  ]
+}

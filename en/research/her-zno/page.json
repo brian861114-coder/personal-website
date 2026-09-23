@@ -1,0 +1,43 @@
+{
+  "kind": "research",
+  "kicker": "Research",
+  "title": "Catalytic Hydrogen Evolution Reaction on Surfaces of Metal-Nanoparticle-Coated Zinc-Based Oxides by First-Principles Calculations",
+  "shortTitle": "Screening hydrogen-evolution catalysts by simulation",
+  "meta": "International Journal of Hydrogen Energy, 2022 — IF: 7.2",
+  "tags": ["HER", "ZnO", "Catalysis", "DFT"],
+  "homeHref": "../../../style-4-notion-warm.html",
+  "backHref": "../../../style-4-notion-warm.html#research",
+  "contactHref": "../../../style-4-notion-warm.html#contact",
+  "soWhat": "Used computational simulation to compare how chemically active different material combinations are, find the best candidates for hydrogen evolution, and explain the thermodynamics behind them alongside the related experiments.",
+  "problem": "Screening the plausible material combinations, then giving a mechanistic explanation for what the simulations showed.",
+  "role": "I analysed the catalytic process from both the thermodynamic and the kinetic side.",
+  "method": "Au/ZnO showed the best thermodynamic preference, while Pt/ZnO had the lowest kinetic barrier together with a hydrogen spillover mechanism. That combination explains why these materials show relatively strong catalytic performance in the related experimental literature.",
+  "figure": "images/fig1-charge-ak.png",
+  "figureCaption": "Paper Fig. 1(a–k): side views of the deformation charge density for H adsorption on NP/ZTO and NP/ZnO. Yellow (blue) indicates electron gain (loss).",
+  "figures": [
+    {
+      "src": "images/fig1-charge-ak.png",
+      "caption": "Paper Fig. 1(a–k): side views of the deformation charge density for H adsorption on NP/ZTO and NP/ZnO. Yellow (blue) indicates electron gain (loss)."
+    },
+    {
+      "src": "images/fig5-mechanism-ij.png",
+      "caption": "Paper Fig. 5(i–j): re-adsorption / spillover on the Pt surface, and the Volmer–spillover–Heyrovsky mechanism on Pt/ZnO."
+    },
+    {
+      "src": "images/table1-prefer-paths.png",
+      "caption": "Paper Table 1: adsorption free energy (Ead) and main energy barrier (Ebarrier) of the preferred pathway for each structure."
+    }
+  ],
+  "metric": "",
+  "transfer": "",
+  "links": [
+    {
+      "label": "PDF",
+      "href": "../../../files/Catalytic-hydrogen-evolution-reaction-on-metal-nanoparticle-coated-zinc-based-oxides.pdf"
+    },
+    {
+      "label": "DOI",
+      "href": "https://doi.org/10.1016/j.ijhydene.2021.09.173"
+    }
+  ]
+}
