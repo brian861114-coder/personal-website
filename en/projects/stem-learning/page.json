@@ -11,7 +11,12 @@
   "soWhat": "Unpacks dense, hard-to-read textbook material into interactive web pages: each chapter has sections for concept explanations, derivations, figures, worked examples, and a self-check, so a reader can quickly find the content they are after, absorb core concepts in segments, and draw on extra supporting material and notes to study more efficiently.",
   "problem": "Derivations in printed textbooks often skip steps and keep figures separate from the text; limited page space means the prose is often too condensed and under-explained, and it is hard to get back to the passage you need when reviewing. Material from different subjects also comes in its own format, with no standard way of presenting it.",
   "role": "Sole developer of the textbook conversion pipeline and the site front-end design.",
-  "method": "Established a textbook generation SOP that uses AI to turn textbook content into structured chapters; the site provides chapter navigation, reading progress, three display modes (standard / focus / full), and an end-of-chapter self-check, so a reader never has to start over from the front of a heavy textbook. The material produced so far covers calculus, materials science and engineering, semiconductor physics and devices, and quantum mechanics.",
+  "method": [
+    "Established a textbook generation SOP that uses AI to turn textbook content into structured chapters",
+    "The site provides chapter navigation, reading progress, three display modes (standard / focus / full), and an end-of-chapter self-check",
+    "A reader never has to start over from the front of a heavy textbook",
+    "The material produced so far covers calculus, materials science and engineering, semiconductor physics and devices, and quantum mechanics"
+  ],
   "figure": "",
   "figureCaption": "",
   "figures": [

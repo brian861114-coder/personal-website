@@ -326,15 +326,15 @@ function renderPage(lang, kind, slug) {
 }
 
 // 每個 kind 的四個區塊標題（對應 js/detail.js 的 KIND_COPY）：
-// 作品頁的「遭遇挑戰」換成「想解決什麼問題」、「貢獻與成果」換成「我做了什麼與結果」。
+// 作品頁把「遭遇挑戰」換成「問題與痛點」、「貢獻與成果」換成「過程與產出」。
 const SECTION_TITLES = {
   zh: {
     research: ['核心理念', '遭遇挑戰', '貢獻與成果', '補充說明'],
-    project: ['核心理念', '想解決什麼問題', '我做了什麼與結果', '補充說明']
+    project: ['核心理念', '問題與痛點', '過程與產出', '補充說明']
   },
   en: {
     research: ['Core idea', 'The challenge', 'Contribution & results', 'Supporting material'],
-    project: ['Core idea', 'The problem', 'What I built & results', 'Supporting material']
+    project: ['Core idea', 'Problem & pain points', 'Process & deliverables', 'Supporting material']
   }
 };
 

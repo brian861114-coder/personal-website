@@ -221,7 +221,27 @@ main {
   color: #1a1a1a;
 }
 
-.block .prose p + p { margin-top: 12px; }
+/* 段落之間、段落與清單之間都要留白，否則又變成一坨 */
+.block .prose p + p,
+.block .prose p + ul,
+.block .prose ul + p { margin-top: 12px; }
+
+/* 條列：method 這類「做了哪幾件事」用清單，掃一眼就有重點 */
+.block .prose ul {
+  padding-left: 1.2em;
+}
+
+.block .prose li {
+  margin-top: 8px;
+  padding-left: 2px;
+}
+
+.block .prose li:first-child { margin-top: 0; }
+
+.block .prose li::marker {
+  color: var(--text-tertiary);
+  font-size: 0.9em;
+}
 
 .placeholder {
   border: 1px dashed rgba(0, 0, 0, 0.18);

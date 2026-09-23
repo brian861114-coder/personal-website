@@ -11,7 +11,11 @@
   "soWhat": "Splits life goals into short-term tasks and long-term directions: it makes the things to do, habits to build, and progress on long-term goals easy to monitor over time, and brings personal status records together on a single dashboard.",
   "problem": "To-do lists such as Google Calendar only record what to do and cannot be tied to a long-term direction; habit building and physical health records are also scattered across other apps, which makes them awkward to keep and observe in one place.",
   "role": "Designed and used AI to develop a personal desktop app, integrating the target features into its separate pages.",
-  "method": "Tasks can be set as required or optional, one-off or recurring, and linked to a long-term personal direction; life metrics can be customised for activity observation and recorded with the quick-entry feature on the home page for easy statistics and analysis. The related private data stays on the local machine, with a password-encrypted backup export provided.",
+  "method": [
+    "Tasks can be set as required or optional, one-off or recurring, and linked to a long-term personal direction",
+    "Life metrics can be customised for activity observation and recorded with the quick-entry feature on the home page for easy statistics and analysis",
+    "The related private data stays on the local machine, with a password-encrypted backup export provided"
+  ],
   "figure": "",
   "figureCaption": "",
   "figures": [

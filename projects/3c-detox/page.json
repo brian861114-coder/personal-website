@@ -9,8 +9,14 @@
   "contactHref": "../../style-4-notion-warm.html#contact",
   "soWhat": "自主研發手機使用時間限制app，擺脫常規手機限制應用需要訂閱付費的現金流壓力。",
   "problem": "日常生活容易被社交網站等外部刺激分散注意力，常見的番茄鐘 App 只負責計時，不會擋下真正讓人分心的程式；真正具備軟體限制功能的應用又把相關功能放在付費功能中，為了減少長期的現金流花費，自主研發具備相應功能的應用程式。",
-  "role": "使用AI輔助開發Flutter專案，建立3c detox應用程式，",
-  "method": "設計上使用Android 端用原生 Kotlin 接 UsageStatsManager 監聽前景 App的方式，偵測到手機開啟封鎖名單中的程式就強制切換至專注畫面。並且設計每週重複的預約排程功能、多組封鎖名單可供選擇、限制期間可撥放沉浸式音樂等功能，支援中英日三語介面。",
+  "role": "使用AI輔助開發Flutter專案，建立3c detox應用程式。",
+  "method": [
+    "以 Android 端原生 Kotlin 接 UsageStatsManager 監聽前景 App，偵測到手機開啟封鎖名單中的程式就強制切換至專注畫面",
+    "每週重複的預約排程功能",
+    "多組封鎖名單可供選擇",
+    "限制期間可播放沉浸式音樂",
+    "支援中英日三語介面"
+  ],
   "figure": "",
   "figureCaption": "",
   "figures": [

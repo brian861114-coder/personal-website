@@ -10,8 +10,12 @@
   "contactHref": "../../../style-4-notion-warm.html#contact",
   "soWhat": "A cloud-hosted fridge inventory app whose stock records and running-low alerts make the food in the fridge go further and reduce how often fridge and pantry items are bought, forgotten, and left to expire.",
   "problem": "A paper list and memory make it awkward for a family to share what is actually in the fridge, and without knowing how much is left at home, shopping tends to repeat purchases or leave items to expire.",
-  "role": "Designed a cloud-hosted fridge inventory app around actual needs, using a Next.js front end with FastAPI and PostgreSQL for storage. Stock can be adjusted with a simple + / - control, and besides entering items by hand it supports OCR of shopping receipts to import stock automatically, cutting down the friction of keeping records;",
-  "method": "The app groups items into categories — vegetables, meat, dry goods, canned food, and so on — to cut search effort, writes every change to an event log, and lets you set running-low alerts to refer to when shopping.",
+  "role": "Designed a cloud-hosted fridge inventory app around actual needs, using a Next.js front end with FastAPI and PostgreSQL for storage. Stock can be adjusted with a simple + / - control, and besides entering items by hand it supports OCR of shopping receipts to import stock automatically, cutting down the friction of keeping records.",
+  "method": [
+    "Groups items into categories — vegetables, meat, dry goods, canned food, and so on — to cut search effort",
+    "Writes every change to an event log",
+    "Lets you set running-low alerts to refer to when shopping"
+  ],
   "figure": "",
   "figureCaption": "",
   "figures": [

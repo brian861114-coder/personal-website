@@ -26,8 +26,9 @@
     "title": "About",
     "description": "Physicist turned AI engineer — building systems that think and compute.",
     "paragraphs": [
-      "I'm Brian, a researcher working where semiconductor physics meets AI systems. During my master's I used first-principles calculations (DFT) to study the electronic properties of ZnO and heterostructures, and published 3 SCI journal papers on band engineering and catalytic reactions.",
-      "I also build AI agent systems hands-on — self-hosted LLM services, RAG knowledge bases, and a personal AI work system. I believe a good engineer doesn't just solve problems; they build systems that keep evolving."
+      "I'm Wei-Che, an engineer with a materials science background and two years of packaging process experience, and a strong passion for applying AI to everyday life. I graduated from the Department of Materials Science at National Cheng Kung University and earned my master's from the same department. During my studies I took several semiconductor electives, including \"Principles of Semiconductor and Photoelectrochemistry\" and \"Micro/Nano Device Process and Design.\" In my master's I used first-principles calculations to study the catalytic and electrical characteristics of materials, and published three related papers.",
+      "I am willing to help others and take responsibility. In college I served as vice president of a student club, coordinating club courses and recruitment outreach. In graduate school I was a liaison for international students in the lab. At work, handling production-line issues also trained me to communicate and collaborate with other departments.",
+      "As AI has developed, I have also focused on applying it to everyday problems — from automating the cleanup and analysis of RAW DATA at work, to building a personal knowledge base and small tools with AI. By folding AI into my life and work, I keep exploring ways to improve myself and optimize processes. I believe a good engineer doesn't just solve problems; they build systems that keep evolving."
     ],
     "info": [
       { "text": "B.S. & M.S. in Materials Science and Engineering, National Cheng Kung University" },
@@ -88,21 +89,62 @@
             "detail": "The core method: band structures, adsorption, and reaction pathways. Also paired with DFT-1/2 to correct the bandgap underestimation of ZnO."
           },
           {
-            "name": "Quantum ESPRESSO",
-            "detail": "Standalone plane-wave DFT tool used as a cross-check, following the same workflow as VASP (structure, band structure, DOS)."
+            "name": "first principle calculation",
+            "detail": ""
           },
           {
-            "name": "Band Structure",
+            "name": "Band Structure Simulation",
             "detail": "Used to explain ZnO thin-film bandgaps and Type-II band alignment in heterostructures, connecting bandgap prediction to photocatalytic charge separation."
           },
           {
-            "name": "DOS",
-            "detail": "Used to inspect electronic state distributions of surfaces and adsorbate systems, helping identify charge transfer and active sites."
-          },
-          {
-            "name": "NEB",
-            "detail": "Used to estimate transition states and energy barriers of surface reactions (such as the HER pathway), extending adsorption energies into reaction kinetics."
+            "name": "Catalytic activity simulation",
+            "detail": ""
           }
+        ]
+      },
+      {
+        "name": "Analytical techniques",
+        "slug": "analytical-techniques",
+        "link": "skills/analytical-techniques/index.html",
+        "intro": "Common methods for surface and crystal-structure analysis.",
+        "tags": [
+          { "name": "SEM", "detail": "" },
+          { "name": "AFM", "detail": "" },
+          { "name": "XRD", "detail": "" }
+        ]
+      },
+      {
+        "name": "AI automation",
+        "slug": "ai-automation",
+        "link": "skills/ai-automation/index.html",
+        "intro": "AI tools used in day-to-day work and development.",
+        "tags": [
+          { "name": "ChatGPT", "detail": "" },
+          { "name": "Cursor", "detail": "" },
+          { "name": "Deepseek", "detail": "" },
+          { "name": "Vibe Coding", "detail": "" }
+        ]
+      },
+      {
+        "name": "Materials processing",
+        "slug": "materials-process",
+        "link": "skills/materials-process/index.html",
+        "intro": "Thin-film and packaging-related processes.",
+        "tags": [
+          { "name": "PVD", "detail": "" },
+          { "name": "DESCUM", "detail": "" },
+          { "name": "Coating", "detail": "" },
+          { "name": "Laminating", "detail": "" }
+        ]
+      },
+      {
+        "name": "Languages",
+        "slug": "languages",
+        "link": "skills/languages/index.html",
+        "intro": "English and Japanese test scores.",
+        "tags": [
+          { "name": "TOEIC 930", "detail": "" },
+          { "name": "JLPT N3", "detail": "" }
         ]
       }
     ]

@@ -143,7 +143,7 @@ node tools/check-mobile.mjs    # 375 / 320px 下 header 會不會擠爆
 |---|---|
 | `soWhat` | 核心理念 |
 | `problem` | 遭遇挑戰（作品頁的標題會顯示成「想解決什麼問題」） |
-| `role` / `method` | 貢獻；成果。**兩者會串成同一段**，所以 `role` 寫成完整句子、`method` 接著寫 |
+| `role` / `method` | 貢獻；成果。**兩者各成一段**（不再黏成一句）。寫字串＝一段文字；寫字串陣列＝條列，適合「做了哪幾件事」這種並列項目 |
 | `figure` | 單張圖路徑，例如 `images/foo.webp`（放該頁資料夾的 `images/`） |
 | `figures` | 多個素材。靜態圖：`{ "src": "images/x.webp", "caption": "圖說" }`；影片：`{ "video": "videos/x.mp4", "poster": "images/poster-x.webp", "caption": "圖說" }`。有此欄就不再重複畫 `figure` |
 | `figureCaption` | 單張圖的圖說 |
@@ -198,6 +198,8 @@ This site ships in two languages. Homepage copy lives in **`data.json`** (Chines
 After editing, run `node tools/check-i18n.mjs`. It catches mismatched JSON structure, pages missing on the English side, dead asset paths, and a homepage HTML that was only edited on one side.
 
 Array order is display order. Add an item by copying a neighbour object; delete by removing the whole object. JSON forbids a trailing comma after the last item.
+
+Inside a detail page's `page.json`, `soWhat`, `problem`, `role`, and `method` each accept either a string (one paragraph) or an array of strings (a bullet list). Use an array when the text lists parallel items — recruiters scan bullets far faster than a paragraph.
 
 | On screen | Key | Notes |
 |---|---|---|

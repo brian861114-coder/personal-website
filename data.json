@@ -26,8 +26,9 @@
     "title": "關於我",
     "description": "Physicist turned AI engineer — building systems that think and compute.",
     "paragraphs": [
-      "我是 Brian，一位專注於半導體物理與 AI 系統整合的研究者。碩士期間以第一原理計算（DFT）研究 ZnO 與異質結構的電子特性，發表 3 篇 SCI 論文，涵蓋能帶工程、催化反應等前沿主題。",
-      "我同時也是 AI agent 技術的實踐者——自架 LLM 服務、設計 RAG 知識庫、打造個人 AI 工作系統。我相信：好的工程師不只是解決問題，而是建立一套能持續演進的系統。"
+      "我是為哲，一名有著材料科學背景與兩年封裝製程經驗，又對 AI 應用於生活有著強烈熱情的工程師。我畢業於成功大學的材料系，並在同校材料所取得碩士學位。在學期間有修習多門半導體的選修課程，如「半導體與光電化學原理」及「微奈米元件製程與設計」。碩士期間致力於使用第一原理計算模擬探討材料的催化與電性特徵，有三篇相關論文發表。",
+      "我的個性樂於助人，勇於承擔。大學期間，我曾擔任社團的副社長，統籌社課及招生的推廣；研究所時則擔任研究室中外籍生的交流嚮導。工作上為了應對產線的種種異常，也鍛鍊了我與其他部門的溝通協作能力。",
+      "隨著 AI 技術的發展，我也致力於將 AI 技術應用於解決生活中的種種難題，從工作時對 RAW DATA 進行整理與分析自動化處理，到使用 AI 建立自己的個人知識庫與小工具。經由將人工智慧納入生活工作流中，我不斷探索自我提升與流程優化的可能性。我相信：好的工程師不只是解決問題，而是建立一套能持續演進的系統。"
     ],
     "info": [
       { "text": "國立成功大學 材料科學與工程學系 學士 / 碩士" },
@@ -88,21 +89,62 @@
             "detail": "研究主軸。處理能帶、吸附與反應路徑；論文中亦搭配 DFT-1/2 修正 ZnO 能隙低估。"
           },
           {
-            "name": "Quantum ESPRESSO",
-            "detail": "可獨立跑平面波 DFT 的備援／對照工具，與 VASP 同一套工作流（結構、能帶、態密度）。"
+            "name": "first principle calculation",
+            "detail": ""
           },
           {
-            "name": "Band Structure",
+            "name": "Band Structure Simulation",
             "detail": "用來解釋 ZnO 薄膜能隙與異質結構的 Type-II 能帶排列，對應能隙預測與光催化電荷分離。"
           },
           {
-            "name": "DOS",
-            "detail": "用來看表面與吸附體系的電子態分布，輔助判斷電荷轉移與活性位。"
-          },
-          {
-            "name": "NEB",
-            "detail": "用來估計表面反應的過渡態與能壘（如 HER 路徑），把吸附能延伸到反應動力學。"
+            "name": "Catalytic activity simulation",
+            "detail": ""
           }
+        ]
+      },
+      {
+        "name": "分析技術",
+        "slug": "analytical-techniques",
+        "link": "skills/analytical-techniques/index.html",
+        "intro": "材料表面與晶體結構的常用分析手法。",
+        "tags": [
+          { "name": "SEM", "detail": "" },
+          { "name": "AFM", "detail": "" },
+          { "name": "XRD", "detail": "" }
+        ]
+      },
+      {
+        "name": "AI 自動化",
+        "slug": "ai-automation",
+        "link": "skills/ai-automation/index.html",
+        "intro": "日常工作與開發使用的 AI 工具。",
+        "tags": [
+          { "name": "ChatGPT", "detail": "" },
+          { "name": "Cursor", "detail": "" },
+          { "name": "Deepseek", "detail": "" },
+          { "name": "Vibe Coding", "detail": "" }
+        ]
+      },
+      {
+        "name": "材料製程",
+        "slug": "materials-process",
+        "link": "skills/materials-process/index.html",
+        "intro": "薄膜與封裝相關製程。",
+        "tags": [
+          { "name": "PVD", "detail": "" },
+          { "name": "DESCUM", "detail": "" },
+          { "name": "Coating", "detail": "" },
+          { "name": "Laminating", "detail": "" }
+        ]
+      },
+      {
+        "name": "外語能力",
+        "slug": "languages",
+        "link": "skills/languages/index.html",
+        "intro": "英語與日語檢定成績。",
+        "tags": [
+          { "name": "多益 930", "detail": "" },
+          { "name": "JLPT N3", "detail": "" }
         ]
       }
     ]

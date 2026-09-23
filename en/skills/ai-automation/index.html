@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Skills</title>
+  <link rel="icon" type="image/png" href="../../../assets/application-icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-warm: #e8f2fb;
+      --bg-gradient-start: #e8f2fb;
+      --bg-gradient-mid: #eef5fc;
+      --bg-gradient-end: #f4f8fd;
+      --text-primary: rgba(0,0,0,0.95);
+      --text-secondary: var(--text-primary);
+      --text-tertiary: #5a6b82;
+      --accent: #0075de;
+      --accent-hover: #005bab;
+      --badge-bg: #e8f4fd;
+      --badge-text: #0068d6;
+      --border: rgba(0,0,0,0.08);
+      --card-bg: rgba(255,255,255,0.75);
+      --shadow-card: rgba(0,0,0,0.04) 0px 4px 18px, rgba(0,0,0,0.02) 0px 2px 7px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text-primary);
+      background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 40%, var(--bg-gradient-end) 100%);
+      background-attachment: fixed;
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(232,242,251,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding-top: env(safe-area-inset-top);
+    }
+    nav .nav-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      padding-left: max(24px, env(safe-area-inset-left));
+      padding-right: max(24px, env(safe-area-inset-right));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 54px;
+    }
+    nav .logo {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      min-width: 0;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    /* 語言切換：次要層級，讓藍色按鈕保持唯一的主要行動 */
+    .nav-lang {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 11px;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+    .nav-lang:hover { color: var(--accent); border-color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 7px 15px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--accent-hover); }
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      padding-left: max(24px, env(safe-area-inset-left));
+      padding-right: max(24px, env(safe-area-inset-right));
+      padding-bottom: max(80px, env(safe-area-inset-bottom));
+    }
+    h1 {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .lede {
+      color: var(--text-secondary);
+      font-size: 16px;
+      margin-bottom: 36px;
+      max-width: 40rem;
+    }
+    .skill-table-wrap {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+    table.skill-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table.skill-table th,
+    table.skill-table td {
+      text-align: left;
+      padding: 16px 20px;
+      vertical-align: top;
+    }
+    table.skill-table thead th {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--badge-text);
+      background: var(--badge-bg);
+      border-bottom: 1px solid var(--border);
+    }
+    table.skill-table tbody tr + tr td {
+      border-top: 1px solid var(--border);
+    }
+    table.skill-table .name {
+      font-weight: 700;
+      font-size: 15px;
+      white-space: nowrap;
+      width: 28%;
+    }
+    table.skill-table .detail {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .data-error {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-top: 20vh;
+    }
+    @media (max-width: 640px) {
+      /* 加了語言切換鍵後，窄螢幕的 nav 容易把 logo 擠成兩行（69px vs 其他頁 55px），縮一級就好 */
+      nav .logo { font-size: 13px; }
+      .nav-lang { padding: 4px 9px; }
+      .nav-cta { padding: 6px 11px; font-size: 13px; }
+      h1 { font-size: 32px; }
+      main { padding-top: 32px; }
+      table.skill-table thead { display: none; }
+      table.skill-table,
+      table.skill-table tbody,
+      table.skill-table tr,
+      table.skill-table td {
+        display: block;
+        width: 100%;
+      }
+      table.skill-table .name {
+        white-space: normal;
+        width: 100%;
+        padding-bottom: 4px;
+        color: var(--badge-text);
+      }
+      table.skill-table .detail { padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+<nav id="skill-nav"></nav>
+<main id="main"></main>
+<script>
+(async function () {
+  // 語言由網址決定：/en/ 之下是英文版，其餘是中文版。
+  // 技能頁 HTML 在中英兩邊是同一份，路徑與文案都在這裡算。
+  let path = location.pathname.replace(/\/index\.html?$/i, '/');
+  if (!path.endsWith('/')) path += '/';
+  const SEGMENTS = path.split('/').filter(Boolean);
+  const LANG = SEGMENTS[0] === 'en' ? 'en' : 'zh';
+  const IS_EN = LANG === 'en';
+  const UP = '../'.repeat(SEGMENTS.length);           // 回到站根的相對前綴
+  const slug = SEGMENTS[SEGMENTS.length - 1] || '';   // 資料夾名 = slug
+  const home = `${UP}style-4-notion-warm.html`;
+
+  const UI = {
+    zh: {
+      back: '返回技能',
+      colSkill: '能力',
+      colDetail: '我實際做過什麼',
+      langLabel: 'EN',
+      langAria: 'Switch to English',
+      langTag: 'en',
+      langHreflang: 'en',
+      loadError: '無法載入資料。請用 <code>node serve.mjs</code> 或捷徑開啟網站，不要直接雙擊此頁。'
+    },
+    en: {
+      back: 'Back to skills',
+      colSkill: 'Skill',
+      colDetail: "What I've actually used it for",
+      langLabel: '中文',
+      langAria: '切換至中文版',
+      langTag: 'zh-Hant',
+      langHreflang: 'zh-Hant',
+      loadError: 'Could not load the data. Open the site with <code>node serve.mjs</code> or the desktop shortcut — do not double-click this page.'
+    }
+  };
+  const T = UI[LANG];
+
+  // 切到另一語言的同一頁：中英技能頁結構對稱，用相對層數算就好。
+  // GitHub Pages 是 repo 子路徑，不能用 /en/... 這種站根絕對路徑。
+  const altHref = UP + (IS_EN ? SEGMENTS.slice(1) : ['en', ...SEGMENTS]).join('/') + '/';
+
+  // <html lang> 要放「這一頁自己的語言」，不是切換鍵要去的語言（T.langTag）
+  document.documentElement.lang = IS_EN ? 'en' : 'zh-Hant';
+  document.getElementById('skill-nav').innerHTML = `
+    <div class="nav-inner">
+      <a class="logo" id="nav-logo" href="${home}">${T.back}</a>
+      <div class="nav-actions">
+        <a class="nav-lang" href="${altHref}" lang="${T.langTag}" hreflang="${T.langHreflang}"
+           aria-label="${T.langAria}"
+           onclick="try{localStorage.setItem('site-lang','${IS_EN ? 'zh' : 'en'})}catch(e){}">${T.langLabel}</a>
+        <a class="nav-cta" href="${home}#skills">${T.back}</a>
+      </div>
+    </div>`;
+
+  const main = document.getElementById('main');
+  try {
+    const dataUrl = IS_EN ? `${UP}en/data.en.json` : `${UP}data.json`;
+    const res = await fetch(dataUrl, { cache: 'no-store' });
+    if (!res.ok) throw new Error(res.statusText);
+    const d = await res.json();
+    const cat = (d.skills.categories || []).find(c =>
+      c.slug === slug || (c.link && c.link.indexOf('skills/' + slug + '/') !== -1)
+    );
+    if (!cat) throw new Error('category missing: ' + slug);
+    document.title = cat.name + ' — ' + d.nav.logo;
+    document.getElementById('nav-logo').textContent = d.nav.logo;
+    const rows = (cat.tags || []).map(t => {
+      const name = typeof t === 'string' ? t : t.name;
+      const detail = typeof t === 'string' ? '' : (t.detail || '');
+      return `<tr><th class="name" scope="row">${name}</th><td class="detail">${detail}</td></tr>`;
+    }).join('');
+    main.innerHTML = `
+      <h1>${cat.name}</h1>
+      <p class="lede">${cat.intro || ''}</p>
+      <div class="skill-table-wrap">
+        <table class="skill-table">
+          <thead>
+            <tr><th>${T.colSkill}</th><th>${T.colDetail}</th></tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+  } catch (err) {
+    console.error(err);
+    main.innerHTML = `<p class="data-error">${T.loadError}</p>`;
+  }
+})();
+</script>
+</body>
+</html>

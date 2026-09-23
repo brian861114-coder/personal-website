@@ -209,13 +209,14 @@ function thumbSource(f) {
   return f.poster || f.src;
 }
 
+// role 與 method 各自成段落（method 是陣列時成條列），不再黏成一句到底
 function renderContribution(d) {
   const hints = HINT;
-  const chunks = [d.role, d.method].filter((v) => isFilled(v));
+  const chunks = [d.role, d.method].filter(hasContent);
   if (!chunks.length) {
     return `<div class="role-stack">${textOrPlaceholder('', hints.role)}${textOrPlaceholder('', hints.method)}</div>`;
   }
-  return `<div class="prose">${chunks.join('')}</div>`;
+  return `<div class="prose">${chunks.map((v) => renderRich(v, '')).join('')}</div>`;
 }
 
 function renderFigure(d) {

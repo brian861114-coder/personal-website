@@ -62,7 +62,7 @@
 - 首頁 `data.json` 該筆加 `link` 指向該資料夾。論文卡與作品卡同一套點擊。
 - **不要**套用 `skills/_template`。
 
-畫面四塊（**結構固定**；括號是 `page.json` 鍵）。h2 文字隨 `kind` 換：研究頁用下表；作品頁把「遭遇挑戰」換成「想解決什麼問題」、「貢獻與成果」換成「我做了什麼與結果」（見 `KIND_COPY`）。`transfer` 暫不渲染，欄位保留在 `page.json`。
+畫面四塊（**結構固定**；括號是 `page.json` 鍵）。h2 文字隨 `kind` 換：研究頁用下表；作品頁把「遭遇挑戰」換成「問題與痛點」、「貢獻與成果」換成「過程與產出」（見 `KIND_COPY`；`tools/verify-pages.mjs` 與 `tools/check-i18n.mjs` 兩份檢查都對照同一組字，改 `KIND_COPY` 就要一起改）。`transfer` 暫不渲染，欄位保留在 `page.json`。
 
 | 畫面標題（研究頁） | 鍵 | 寫什麼 |
 |---|---|---|
