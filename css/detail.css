@@ -34,33 +34,9 @@ body {
   min-height: 100vh;
 }
 
-/* 作品介紹頁：淺灰底 + 白卡片（研究頁保留上方藍色漸層） */
-body.detail-project {
-  --page-bg: #f8fafc;
-  --card-bg: #ffffff;
-  background: var(--page-bg);
-  background-attachment: scroll;
-}
-
-body.detail-project nav {
-  background: rgba(248, 250, 252, 0.92);
-}
-
-body.detail-project .block {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px 22px;
-  box-shadow: var(--shadow-card);
-}
-
-body.detail-project .placeholder {
-  background: var(--page-bg);
-}
-
-body.detail-project .figure-slot {
-  background: var(--card-bg);
-}
+/* 介紹頁與首頁共用同一套視覺語言：淺藍漸層底 + 半透明白卡。
+   作品頁（detail-project）與研究頁（detail-research）不再分岔；
+   body 上的 class 只保留給除錯與未來擴充，CSS 不依賴它。 */
 
 nav {
   position: sticky;
@@ -112,6 +88,7 @@ main {
 }
 
 .detail-hero .tag-list { margin-bottom: 28px; }
+.detail-hero .links { margin-top: 0; margin-bottom: 40px; }
 
 .detail-grid {
   display: block;
@@ -120,7 +97,7 @@ main {
 @media (min-width: 800px) {
   .detail-grid {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 0.9fr 1.1fr;
     column-gap: 40px;
     align-items: start;
   }
@@ -130,9 +107,19 @@ main {
     margin-bottom: 0;
   }
 
-  .detail-evidence .figure-slot img {
+  /* 右欄是媒體區，內距比文字卡片小一點，把寬度讓給影片／圖 */
+  .detail-evidence .block {
+    padding: 16px 16px 18px;
+  }
+
+  .detail-evidence .figure-slot {
+    padding: 6px;
+  }
+
+  .detail-evidence .figure-slot img,
+  .detail-evidence .figure-slot video {
     max-width: 100%;
-    max-height: 220px;
+    max-height: 420px;
   }
 
   .detail-evidence .figure-slot.empty {
@@ -157,6 +144,14 @@ main {
   margin-bottom: 10px;
 }
 
+/* 論文全名：有填 shortTitle 時才出現，補在短標題下方當識別資訊 */
+.full-title {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+
 .meta {
   color: var(--text-secondary);
   font-size: 15px;
@@ -175,8 +170,16 @@ main {
   border-radius: 4px;
 }
 
+/* 區塊卡片：沿用首頁卡片語言（半透明白底 + 細邊框 + 圓角 + 柔和陰影） */
 .block {
   margin-bottom: 28px;
+  background: var(--card-bg);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px 22px;
+  box-shadow: var(--shadow-card);
 }
 
 .block h2 {
@@ -184,7 +187,7 @@ main {
   font-weight: 700;
   line-height: 1.65;
   color: var(--text-primary);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .block .prose {
@@ -215,10 +218,6 @@ main {
   gap: 10px;
 }
 
-.figure-item + .figure-item {
-  margin-top: 0;
-}
-
 .figure-slot {
   width: 100%;
   min-height: 64px;
@@ -232,7 +231,8 @@ main {
   padding: 8px 10px;
 }
 
-.figure-slot img {
+.figure-slot img,
+.figure-slot video {
   width: auto;
   max-width: min(100%, 580px);
   max-height: 360px;
@@ -255,6 +255,48 @@ main {
   font-size: 12px;
   line-height: 1.45;
   color: var(--text-secondary);
+}
+
+/* 多圖：主圖 + 縮圖列，點縮圖換主圖（見 js/detail.js setupFigureGallery） */
+.figure-gallery {
+  display: grid;
+  gap: 8px;
+}
+
+.figure-thumbs {
+  display: flex;
+  gap: 8px;
+}
+
+.figure-thumb {
+  flex: 0 0 62px;
+  width: 62px;
+  height: 62px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card-bg);
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+/* 縮圖一律裁切成正方形：橫式與直式素材並排時才不會大小不一 */
+.figure-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.figure-thumb:hover { border-color: rgba(0, 0, 0, 0.2); }
+
+.figure-thumb.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
 }
 
 .metric {
@@ -293,6 +335,60 @@ main {
 
 .links a.secondary:hover { background: rgba(0, 0, 0, 0.08); }
 
+/* 點擊放大：主圖區可點，overlay 以接近原始尺寸顯示 */
+.detail-evidence .figure-slot:not(.empty) { cursor: zoom-in; }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.86);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+}
+
+.lightbox[hidden] { display: none; }
+
+.lightbox-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-body img,
+.lightbox-body video {
+  max-width: min(96vw, 1600px);
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.lightbox-close:hover { background: rgba(255, 255, 255, 0.26); }
+
 .data-error {
   max-width: 40rem;
   margin: 20vh auto;
@@ -307,12 +403,14 @@ main {
   nav .nav-inner { height: auto; min-height: 54px; padding-top: 10px; padding-bottom: 10px; }
   .hero-title { font-size: 26px; }
   main { padding: 32px 20px 64px; }
-  .block { margin-bottom: 24px; }
+  .block { margin-bottom: 24px; padding: 18px 18px 20px; }
   .block h2,
   .block .prose { font-size: 16px; }
   .placeholder { font-size: 16px; }
-  .figure-slot img {
+  .figure-slot img,
+  .figure-slot video {
     max-width: 100%;
     max-height: 280px;
   }
+  .figure-thumb { height: 54px; }
 }

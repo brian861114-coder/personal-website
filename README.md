@@ -88,7 +88,7 @@ Agent 動手前記 `AGENTS.md`（技能頁模板、資料單一來源、研究�
 | 欄位 | 用途 |
 |---|---|
 | `title`、`description` | 卡片文字 |
-| `img` | 封面圖，路徑相對網站根，例如 `images/foo.png`（檔放進 `images/`） |
+| `img` | 封面圖，路徑相對網站根，例如 `images/foo.webp`（檔放進 `images/`）。**規格 640×640 WebP**，不要直接放原始 PNG（每張 5–6 MB，卡片只顯示 160px 高） |
 | `icon` | 沒圖時的後備 emoji |
 | `link` | 點進去的頁面，例如 `projects/my-app/` |
 
@@ -103,17 +103,20 @@ Agent 動手前記 `AGENTS.md`（技能頁模板、資料單一來源、研究�
 | 欄位 | 填什麼 |
 |---|---|
 | `soWhat` | 核心理念 |
-| `problem` | 遭遇挑戰 |
-| `role` / `method` | 貢獻；成果 |
-| `figure` | 單張圖路徑，例如 `images/foo.png`（放該頁資料夾的 `images/`） |
-| `figures` | 多張圖：`[{ "src": "images/foo.png", "caption": "圖說" }]`。有此欄就不再重複畫 `figure` |
+| `problem` | 遭遇挑戰（作品頁的標題會顯示成「想解決什麼問題」） |
+| `role` / `method` | 貢獻；成果。**兩者會串成同一段**，所以 `role` 寫成完整句子、`method` 接著寫 |
+| `figure` | 單張圖路徑，例如 `images/foo.webp`（放該頁資料夾的 `images/`） |
+| `figures` | 多個素材。靜態圖：`{ "src": "images/x.webp", "caption": "圖說" }`；影片：`{ "video": "videos/x.mp4", "poster": "images/poster-x.webp", "caption": "圖說" }`。有此欄就不再重複畫 `figure` |
 | `figureCaption` | 單張圖的圖說 |
 | `metric` | 可選。圖下方的脈絡／數字；空白就不顯示 |
-| `transfer`、`links` | 暫不顯示。欄位可留空，之後若加回區塊再填 |
+| `links` | 按鈕陣列 `[{ "label": "PDF", "href": "…" }]`。第一個是主按鈕、其餘次要。**`href` 空的就不會畫出來**，所以留空等於不顯示 |
+| `transfer` | 暫不顯示，欄位保留 |
+
+`figures` 超過一個時會自動變成「主圖 + 縮圖列」，點縮圖換素材；**主圖區可點擊放大**（全螢幕檢視，`Esc`、點背景或右上角 ✕ 關閉）。影片自動靜音循環播放，`poster` 是載入前的預覽圖、同時當縮圖。
 
 新增一頁：複製 `templates/detail.html` → `research/<短名>/index.html` 或 `projects/<短名>/index.html`；再複製 `templates/page.json` 改內容；在 `data.json` 該筆加上 `link`。
 
-`index.html` 不用改。版面改 `css/detail.css` 與 `js/detail.js`，所有介紹頁一起變。電腦約 800px 以上是標題全寬、左文右圖；窄螢幕單欄。
+`index.html` 不用改。版面改 `css/detail.css` 與 `js/detail.js`，所有介紹頁一起變。電腦約 800px 以上是標題全寬、兩欄（左文右媒體）；窄螢幕單欄。手機 App 的直式錄影在這裡會顯示得較小，**點擊放大**後才看得清細節。
 
 ### 聯絡 `contact.links`
 

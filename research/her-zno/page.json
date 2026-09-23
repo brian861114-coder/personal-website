@@ -1,7 +1,8 @@
 {
   "kind": "research",
   "kicker": "研究發表",
-  "title": "Catalytic Hydrogen Evolution Reaction on Metal-Nanoparticle-Coated Zinc-Based Oxides",
+  "title": "Catalytic Hydrogen Evolution Reaction on Surfaces of Metal-Nanoparticle-Coated Zinc-Based Oxides by First-Principles Calculations",
+  "shortTitle": "以計算模擬篩選高效率產氫觸媒",
   "meta": "International Journal of Hydrogen Energy, 2022 — IF: 7.2",
   "tags": ["HER", "ZnO", "Catalysis", "DFT"],
   "homeHref": "../../style-4-notion-warm.html",
@@ -30,7 +31,7 @@
   "metric": "",
   "transfer": "",
   "links": [
-    { "label": "PDF", "href": "" },
-    { "label": "DOI", "href": "" }
+    { "label": "PDF", "href": "../../files/Catalytic-hydrogen-evolution-reaction-on-metal-nanoparticle-coated-zinc-based-oxides.pdf" },
+    { "label": "DOI", "href": "https://doi.org/10.1016/j.ijhydene.2021.09.173" }
   ]
 }

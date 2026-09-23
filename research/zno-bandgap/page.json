@@ -2,6 +2,7 @@
   "kind": "research",
   "kicker": "研究發表",
   "title": "Machine-Learning-Aided DFT-1/2 Calculations for Bandgaps of Zinc Oxide Thin Films",
+  "shortTitle": "利用機器學習建立模擬參數預測模型",
   "meta": "Thin Solid Films, 2022 — IF: 2.1",
   "tags": ["DFT-1/2", "GANNs", "ZnO", "Machine Learning"],
   "homeHref": "../../style-4-notion-warm.html",
@@ -30,7 +31,7 @@
   "metric": "",
   "transfer": "",
   "links": [
-    { "label": "PDF", "href": "" },
-    { "label": "DOI", "href": "" }
+    { "label": "PDF", "href": "../../files/Machine-learning-aided-DFT-1-2-calculations-for-bandgaps-of-ZnO-thin-films.pdf" },
+    { "label": "DOI", "href": "https://doi.org/10.1016/j.tsf.2022.139326" }
   ]
 }

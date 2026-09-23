@@ -2,17 +2,29 @@
   "kind": "project",
   "kicker": "精選作品",
   "title": "3C Detox App",
-  "meta": "",
-  "tags": [],
+  "meta": "Flutter × Dart × Kotlin（Android 原生前景監聽）",
+  "tags": ["Flutter", "Dart", "Kotlin", "Provider"],
   "homeHref": "../../style-4-notion-warm.html",
   "backHref": "../../style-4-notion-warm.html#projects",
   "contactHref": "../../style-4-notion-warm.html#contact",
-  "soWhat": "",
-  "problem": "",
-  "role": "",
-  "method": "",
+  "soWhat": "把手機從干擾源變成專注工具：設好封鎖名單與時段，時間一到自動擋下分心的 App，只能回到專注畫面。",
+  "problem": "常見的番茄鐘 App 只負責計時，不會擋下真正讓人分心的程式；單靠意志力對抗通知與無限捲動，很難持續。",
+  "role": "獨立開發。介面、Android 原生整合與跨平台打包都由我實作。",
+  "method": "以 Flutter 開發，Android 端用原生 Kotlin 接 UsageStatsManager 監聽前景 App，偵測到封鎖名單中的程式就強制拉回專注畫面。另有每週重複的預約排程、多組封鎖名單、沉浸式音樂與中英日三語介面。",
   "figure": "",
   "figureCaption": "",
+  "figures": [
+    {
+      "video": "videos/focus-timer.mp4",
+      "poster": "images/poster-focus-timer.webp",
+      "caption": "專注計時：番茄鐘與嚴格模式設定、倒數中畫面。嚴格模式用 Android 前景監聽擋下封鎖名單裡的 App。"
+    },
+    {
+      "video": "videos/schedule.mp4",
+      "poster": "images/poster-schedule.webp",
+      "caption": "排程：設定每週重複的封鎖時段，可綁定不同封鎖名單並個別啟用／停用。"
+    }
+  ],
   "metric": "",
   "transfer": "",
   "links": [

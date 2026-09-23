@@ -1,22 +1,33 @@
 {
   "kind": "research",
   "kicker": "研究發表",
-  "title": "MgFe₂O₅ Nanoparticle-Decorated CaFe₂O₄−Ca₂Fe₂O₅ Heterostructure for Efficient Photocatalytic CO₂ Conversion",
+  "title": "Mg₂Fe₂O₅ Nanoparticle-Decorated Ca₂Fe₂O₅−CaFe₂O₄ Heterostructure for Efficient Photocatalytic CO₂ Conversion",
+  "shortTitle": "CO₂ 光催化異質結構",
   "meta": "ACS Sustainable Chemistry & Engineering, 2022 — IF: 8.4",
   "tags": ["CO₂RR", "Heterojunction", "Photocatalysis", "DFT"],
   "homeHref": "../../style-4-notion-warm.html",
   "backHref": "../../style-4-notion-warm.html#research",
   "contactHref": "../../style-4-notion-warm.html#contact",
-  "soWhat": "",
-  "problem": "",
-  "role": "",
-  "method": "",
-  "figure": "",
-  "figureCaption": "",
+  "soWhat": "以 DFT 釐清 Ca₂Fe₂O₅−CaFe₂O₄ 異質結構上，CO₂ 與水轉成碳氫化合物的活性位與電荷分離方式。",
+  "problem": "異質結構含多種金屬位點，實驗活性提升後，仍需判斷還原發生在哪、以及 Type-II 能帶如何抑制電荷再結合。",
+  "role": "第二作者，負責模擬計算，不含材料製備與光催化量測。",
+  "method": "計算顯示 Ca₂Fe₂O₅ (001) Fe 位的 formaldehyde 路徑可把 CO₂ 轉成 CH₄，並為優選活性位；能帶圖對應 Type-II 電荷轉移，電子留在 Ca₂Fe₂O₅ 做還原、電洞到 CaFe₂O₄ 做水氧化。",
+  "figure": "images/fig7-dft-pes.png",
+  "figureCaption": "論文 Fig. 7：Ca₂Fe₂O₅ (001) Fe 位上，CO₂ 與 H₂O 轉 CH₄ 的 DFT 勢能面。",
+  "figures": [
+    {
+      "src": "images/fig7-dft-pes.png",
+      "caption": "論文 Fig. 7：Ca₂Fe₂O₅ (001) Fe 位上，CO₂ 與 H₂O 轉 CH₄ 的 DFT 勢能面。"
+    },
+    {
+      "src": "images/fig8-band-diagram.png",
+      "caption": "論文 Fig. 8：Ca₂Fe₂O₅−CaFe₂O₄ 異質結能帶圖與光催化 CO₂ 轉換機制示意。"
+    }
+  ],
   "metric": "",
   "transfer": "",
   "links": [
-    { "label": "PDF", "href": "" },
-    { "label": "DOI", "href": "" }
+    { "label": "PDF", "href": "../../files/Mg2Fe2O5-Decorated-Ca2Fe2O5-CaFe2O4-Heterostructure-for-Photocatalytic-CO2-Conversion.pdf" },
+    { "label": "DOI", "href": "https://doi.org/10.1021/acssuschemeng.2c03378" }
   ]
 }

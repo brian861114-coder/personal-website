@@ -114,17 +114,18 @@
         "link": "research/zno-bandgap/"
       },
       {
-        "title": "Catalytic Hydrogen Evolution Reaction on Metal-Nanoparticle-Coated Zinc-Based Oxides",
+        "title": "Catalytic Hydrogen Evolution Reaction on Surfaces of Metal-Nanoparticle-Coated Zinc-Based Oxides by First-Principles Calculations",
         "journal": "International Journal of Hydrogen Energy, 2022 — IF: 7.2",
         "description": "以第一原理計算研究 Pt/Au/Ag 奈米粒子塗覆 ZnO 表面的氫析出反應（HER）催化機制。Au/ZnO 吸附自由能最接近零，Pt/ZnO 在 Volmer-Heyrovsky 路徑上表現最佳。",
         "tags": ["HER", "ZnO", "Catalysis", "DFT"],
         "link": "research/her-zno/"
       },
       {
-        "title": "MgFe₂O₅ Nanoparticle-Decorated CaFe₂O₄−Ca₂Fe₂O₅ Heterostructure for Efficient Photocatalytic CO₂ Conversion",
+        "title": "Mg₂Fe₂O₅ Nanoparticle-Decorated Ca₂Fe₂O₅−CaFe₂O₄ Heterostructure for Efficient Photocatalytic CO₂ Conversion",
         "journal": "ACS Sustainable Chemistry & Engineering, 2022 — IF: 8.4",
-        "description": "合成 CaFe₂O₄−Ca₂Fe₂O₅ 異質結構並以 MgFe₂O₅ 奈米粒子修飾，用於光催化 CO₂ 還原。DFT 計算揭示 Type-II 電荷轉移機制，CH₄ 選擇性達 81.7%。",
-        "tags": ["CO₂RR", "Heterojunction", "Photocatalysis", "DFT"]
+        "description": "合成 Ca₂Fe₂O₅−CaFe₂O₄ 異質結構並以 Mg₂Fe₂O₅ 奈米粒子修飾，用於光催化 CO₂ 還原。DFT 計算揭示 Type-II 電荷轉移機制，CH₄ 選擇性達 81.7%。",
+        "tags": ["CO₂RR", "Heterojunction", "Photocatalysis", "DFT"],
+        "link": "research/co2-heterostructure/"
       }
     ]
   },
@@ -134,32 +135,42 @@
     "description": "個人專案與技術實踐",
     "items": [
       {
-        "icon": "🗺️",
-        "img": "images/knowledge-map.png",
-        "title": "半導體物理知識地圖",
-        "description": "417 節點互動式 SVG 知識圖譜，含域區塊、語義縮放、MathJax 渲染。",
-        "link": "projects/knowledge-map/"
-      },
-      {
-        "icon": "🏠",
-        "img": "images/ai-work-system.png",
-        "title": "個人 AI 工作系統",
-        "description": "整合 LLM、RAG 與自動化排程，利用 AI 輔助學習研究、提升工作效率、打造個人化自動化流程。",
-        "link": "projects/ai-work-system/"
-      },
-      {
         "icon": "📵",
-        "img": "images/3c-detox.png",
+        "img": "images/3c-detox.webp",
         "title": "3C Detox App",
-        "description": "數位排毒輔助工具，幫助使用者管理螢幕時間、建立健康的手機使用習慣。",
+        "description": "Flutter 跨平台專注力管理工具。番茄鐘、App 封鎖（Android 原生前景監聽）、預約排程與沉浸式音樂。",
         "link": "projects/3c-detox/"
       },
       {
         "icon": "👴",
-        "img": "images/elder-life.png",
+        "img": "images/elder-life.webp",
         "title": "Elder Life App",
-        "description": "銀髮族生活便利應用，整合健康監控、用藥提醒、緊急聯絡等日常輔助功能。",
+        "description": "銀髮族生活輔助 App。天氣出門建議、門診與用藥提醒、放大鏡與 AI 問答，採本地優先架構（Hive + AES 加密）。",
         "link": "projects/elder-life/"
+      },
+      {
+        "icon": "🇯🇵",
+        "title": "日文文法學習站 MyJapan",
+        "description": "離線 JLPT N4–N2 文法學習站。講義 PDF 結構化成課文 JSON，內建 AI 拆詞、TTS 語音、字典與學習進度追蹤。",
+        "link": "projects/japanese-learning/"
+      },
+      {
+        "icon": "📚",
+        "title": "互動式理工教材網站",
+        "description": "7 大主題、83 章互動式理工教材，含 18 個互動模型與 1,209 道練習，涵蓋微積分、半導體物理與量子力學。",
+        "link": "projects/stem-learning/"
+      },
+      {
+        "icon": "🧊",
+        "title": "冰箱庫存管理系統",
+        "description": "Next.js + FastAPI 全端庫存管理系統。樂觀併發控制、冪等 API、原子性事件記錄與 Docker 部署。",
+        "link": "projects/fridge-inventory/"
+      },
+      {
+        "icon": "📊",
+        "title": "人生角色儀表板",
+        "description": "把人生角色化的本機優先桌面應用（React + Electron + PWA），整合任務追蹤與完成率統計，可離線使用。",
+        "link": "projects/life-dashboard/"
       }
     ]
   },

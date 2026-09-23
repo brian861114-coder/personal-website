@@ -1,0 +1,24 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "description": "Brian 的履歷／作品集靜態站。畫面上的文字幾乎都來自 **`data.json`**，改完存檔、重新整理瀏覽器即可。不必改 HTML，也不必再複製一份進網頁。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brian861114-coder/personal-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/brian861114-coder/personal-website/issues"
+  },
+  "homepage": "https://github.com/brian861114-coder/personal-website#readme",
+  "devDependencies": {
+    "playwright-core": "^1.63.0"
+  }
+}

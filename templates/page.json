@@ -1,7 +1,8 @@
 {
   "kind": "research",
   "kicker": "研究發表",
-  "title": "（標題）",
+  "title": "（論文全名）",
+  "shortTitle": "（短標題，建議 12 字內；留空則 h1 直接顯示 title）",
   "meta": "期刊、年份",
   "tags": [],
   "homeHref": "../../style-4-notion-warm.html",
@@ -13,6 +14,7 @@
   "method": "",
   "figure": "",
   "figureCaption": "",
+  "figures": [],
   "metric": "",
   "transfer": "",
   "links": [

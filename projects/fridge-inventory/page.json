@@ -1,0 +1,35 @@
+{
+  "kind": "project",
+  "kicker": "精選作品",
+  "title": "Fridge Inventory App — 冰箱庫存管理系統",
+  "shortTitle": "冰箱庫存管理系統",
+  "meta": "Next.js × FastAPI × PostgreSQL × Docker",
+  "tags": ["Next.js", "FastAPI", "Docker", "REST API", "併發控制"],
+  "homeHref": "../../style-4-notion-warm.html",
+  "backHref": "../../style-4-notion-warm.html#projects",
+  "contactHref": "../../style-4-notion-warm.html#contact",
+  "soWhat": "家裡的冰箱與乾貨常常買了忘記、放到過期。這個系統把庫存集中記錄，隨手加減數量，快用完的項目自動提醒。",
+  "problem": "紙本清單與記憶都不可靠，採買時不知道家裡還剩多少，容易重複購買或放到過期。",
+  "role": "獨立開發。API 契約、前端介面與部署設定都由我設計。",
+  "method": "Next.js 前端搭配 FastAPI 與 PostgreSQL，以 Docker Compose 部署。庫存調整採事件式設計，每次變更都寫入事件記錄，並以樂觀併發控制與冪等鍵避免重複操作或數量錯亂。",
+  "figure": "",
+  "figureCaption": "",
+  "figures": [
+    {
+      "video": "videos/inventory.mp4",
+      "poster": "images/poster-inventory.webp",
+      "caption": "庫存清單：依分類分組（魚類／肉類／蔬菜／常溫），可直接加減數量、編輯或刪除。"
+    },
+    {
+      "video": "videos/add-flow.mp4",
+      "poster": "images/poster-add-flow.webp",
+      "caption": "新增食品：手動新增或掃描發票入庫，支援精確計數／估計剩餘量／有無三種管理模式。"
+    }
+  ],
+  "metric": "",
+  "transfer": "",
+  "links": [
+    { "label": "Demo", "href": "" },
+    { "label": "GitHub", "href": "" }
+  ]
+}

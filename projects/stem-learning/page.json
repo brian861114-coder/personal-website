@@ -1,0 +1,35 @@
+{
+  "kind": "project",
+  "kicker": "精選作品",
+  "title": "理工學習中心 — 互動式理工教材網站",
+  "shortTitle": "互動式理工教材網站",
+  "meta": "7 大主題 · 83 章 · 18 互動模型 · 1,209 練習",
+  "tags": ["教材管線", "MathJax", "互動模型", "HTML/CSS/JS"],
+  "homeHref": "../../style-4-notion-warm.html",
+  "backHref": "../../style-4-notion-warm.html#projects",
+  "contactHref": "../../style-4-notion-warm.html#contact",
+  "soWhat": "把厚重的理工教科書拆成可回看的網頁教材：每章有概念說明、公式推導、圖表、例題與自我檢測，讓讀者能從卡住的地方直接開始。",
+  "problem": "原文教科書的推導常跳步、圖表與正文分離，複習時很難快速回到需要的段落；不同科目的教材格式又各異，讀法得重新適應一次。",
+  "role": "獨立開發，包含教材管線與網站前端。",
+  "method": "建立教材管線，把教科書內容轉成結構化章節；網站端提供章節導覽、閱讀進度、三種顯示模式（標準／專注／完整）與章末自我檢測。涵蓋微積分、材料科學與工程、半導體物理與元件、量子力學等主題。",
+  "figure": "",
+  "figureCaption": "",
+  "figures": [
+    {
+      "video": "videos/materials.mp4",
+      "poster": "images/poster-materials.webp",
+      "caption": "材料科學與工程：章節卡片顯示各章進度與上次閱讀位置，可直接續讀。"
+    },
+    {
+      "video": "videos/semiconductor.mp4",
+      "poster": "images/poster-semiconductor.webp",
+      "caption": "半導體物理與元件：章節目錄與教材頁，每節含判讀、常見誤解與可展開的教學補充。"
+    }
+  ],
+  "metric": "",
+  "transfer": "",
+  "links": [
+    { "label": "Demo", "href": "" },
+    { "label": "GitHub", "href": "" }
+  ]
+}
