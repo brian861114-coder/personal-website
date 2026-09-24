@@ -193,7 +193,7 @@
         "icon": "👴",
         "img": "../images/elder-life.webp",
         "title": "Elder Life App",
-        "description": "Assistive app for older adults: weather-based going-out advice, clinic and medication reminders, magnifier, and AI Q&A — on a local-first architecture (Hive + AES encryption).",
+        "description": "A one-stop companion for older adults. Weather and going-out advice, clinic and medication reminders, a magnifier, and AI Q&A — data stays in an encrypted on-device store (Hive + AES).",
         "link": "projects/elder-life/"
       },
       {

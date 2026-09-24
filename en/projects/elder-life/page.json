@@ -7,17 +7,28 @@
   "homeHref": "../../../style-4-notion-warm.html",
   "backHref": "../../../style-4-notion-warm.html#projects",
   "contactHref": "../../../style-4-notion-warm.html#contact",
-  "soWhat": "A phone companion designed for older adults: weather and going-out advice, clinic and medication reminders, a magnifier, and AI Q&A — and the reminders export as plain text so family can set them up on the user's behalf.",
-  "problem": "Older adults are put off by the type sizes and layered menus of ordinary apps, and most health apps assume a smartphone-savvy user who is comfortable keeping personal data in the cloud.",
-  "role": "Sole developer, covering the app features, the local data encryption, and the backend integration.",
+  "soWhat": "A phone companion designed for older adults who are not comfortable with consumer electronics. It brings commonly used functions into one hub — weather and going-out advice, clinic and medication reminders, a magnifier, and AI Q&A.",
+  "problem": "Routing between the apps on the phone, finding type size and layout that older adults can actually read, and setting up the backend for AI Q&A.",
+  "role": "",
   "method": [
-    "Built with Flutter for Android on a local-first architecture",
+    "Built four areas: transit, medical, daily life, and contacts",
+    "Transit page: quick shortcuts into the matching apps for taxi, bus, train, and similar modes",
+    "Medical page: nearby clinic search, medication reminders, and follow-up visit reminders",
+    "Daily-life page: AI answers to everyday questions, a magnifier, and shortcuts into phone settings",
+    "Contacts page: notes and contact-info records",
     "Contacts, reminders, and settings live in an encrypted on-device database (Hive + AES), so the app works without a network",
     "Only the AI Q&A needs the self-hosted backend",
     "Reminders export to a block of text, which can be pasted back in when switching phones or asking family for help"
   ],
   "figure": "",
   "figureCaption": "",
+  "figures": [
+    {
+      "video": "videos/intro.mp4",
+      "poster": "images/poster-intro.webp",
+      "caption": "App walkthrough: the home weather card and four shortcuts, then transit, medical reminders, and a life note."
+    }
+  ],
   "metric": "",
   "transfer": "",
   "links": [

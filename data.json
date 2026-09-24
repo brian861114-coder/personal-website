@@ -193,7 +193,7 @@
         "icon": "👴",
         "img": "images/elder-life.webp",
         "title": "Elder Life App",
-        "description": "銀髮族生活輔助 App。天氣出門建議、門診與用藥提醒、放大鏡與 AI 問答，採本地優先架構（Hive + AES 加密）。",
+        "description": "為長輩設計的一站式生活輔助 App。天氣與出門建議、門診與用藥提醒、放大鏡與 AI 問答，資料存在加密的本地庫（Hive + AES）。",
         "link": "projects/elder-life/"
       },
       {
