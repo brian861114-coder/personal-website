@@ -10,7 +10,7 @@
     --bg1: #e8f2fb; --bg2: #eef5fc; --bg3: #f4f8fd;
     --ink: rgba(0,0,0,.92); --muted: #5a6b82;
     --accent: #0075de; --accent2: #5ab0ff; --badge: #e8f4fd;
-    --card: rgba(255,255,255,.78);
+    --card: rgba(255,255,255,.82);
     --shadow: 0 18px 50px rgba(0,60,120,.10), 0 4px 12px rgba(0,0,0,.04);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -18,17 +18,23 @@
   body { font-family: 'Inter', 'Noto Sans TC', system-ui, sans-serif; color: var(--ink); }
   #stage { position: absolute; inset: 0; background: linear-gradient(160deg, var(--bg1), var(--bg2) 50%, var(--bg3)); overflow: hidden; }
   .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .55; }
-  #lattice { position: absolute; inset: -120px; opacity: .5; }
+  #bg, #fx { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+  #fx, #vignette { pointer-events: none; }
+  #vignette { position: absolute; inset: 0; background: radial-gradient(ellipse 75% 70% at 50% 45%, rgba(10,40,80,0) 60%, rgba(10,40,80,.09) 100%); }
+  #chr { position: absolute; left: 0; top: 0; width: 300px; height: 600px; transform-origin: 150px 600px; }
   .scene { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; }
   .kicker { font: 600 26px 'Inter'; letter-spacing: .28em; text-transform: uppercase; color: var(--accent); }
   .h2 { font: 800 64px 'Noto Sans TC', 'Inter'; margin-top: 14px; letter-spacing: .02em; }
+  /* 遮罩浮出：文字切成小段，每段從自己的遮罩底下升上來 */
+  .rv { display: inline-block; overflow: hidden; vertical-align: top; padding: .1em 0 .16em; margin: -.1em 0 -.16em; }
+  .rvi { display: inline-block; }
 
   /* S1 */
   #photoWrap { position: relative; width: 300px; height: 300px; }
   #photoWrap img { position: absolute; inset: 14px; width: 272px; height: 272px; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow); }
   #photoWrap svg { position: absolute; inset: 0; }
   #hello { font: 800 104px 'Inter'; margin-top: 48px; letter-spacing: -.02em; min-height: 126px; }
-  #hello .caret { display: inline-block; width: 6px; height: 88px; background: var(--accent); margin-left: 8px; vertical-align: -8px; }
+  #helloText { display: inline-block; }
   #name1 { font: 500 38px 'Noto Sans TC'; color: var(--muted); margin-top: 10px; letter-spacing: .08em; }
 
   /* S2 */
@@ -43,11 +49,11 @@
   .stats { display: flex; gap: 40px; margin-top: 70px; }
   .stat { width: 330px; height: 300px; border-radius: 28px; background: var(--card); box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,.9);
           display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .stat .v { font: 800 128px 'Inter'; color: var(--accent); line-height: 1; letter-spacing: -.03em; }
+  .stat .v { font: 800 128px 'Inter'; color: var(--accent); line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
   .stat .l { font: 500 32px 'Noto Sans TC'; margin-top: 22px; color: var(--ink); }
 
   /* S4 */
-  #tl { position: relative; width: 1560px; height: 420px; margin-top: 60px; }
+  #tl { position: relative; width: 1560px; height: 420px; margin-top: 170px; }
   #tlLine { position: absolute; left: 0; top: 70px; height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--accent2), var(--accent)); }
   .node { position: absolute; top: 0; width: 460px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; text-align: center; }
   .node .dot { width: 40px; height: 40px; border-radius: 50%; background: #fff; border: 8px solid var(--accent); margin-top: 53px; box-shadow: 0 0 0 10px rgba(0,117,222,.12); }
@@ -57,8 +63,8 @@
   .node .o { font: 500 26px 'Noto Sans TC'; color: var(--muted); margin-top: 10px; }
 
   /* S5 */
-  .papers { display: flex; gap: 40px; margin-top: 56px; }
-  .paper { width: 520px; border-radius: 26px; background: var(--card); box-shadow: var(--shadow); overflow: hidden; }
+  .papers { display: flex; gap: 40px; margin-top: 36px; }
+  .paper { width: 500px; border-radius: 26px; background: var(--card); box-shadow: var(--shadow); overflow: hidden; }
   .paper .fig { height: 290px; background: #fff; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(0,0,0,.06); }
   .paper .fig img { max-width: 92%; max-height: 92%; object-fit: contain; }
   .paper .body { padding: 26px 30px 30px; }
@@ -76,12 +82,13 @@
   /* S7 */
   #outroPhoto { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow); border: 6px solid #fff; }
   #outroName { font: 900 88px 'Noto Sans TC'; margin-top: 34px; letter-spacing: .04em; }
+  /* 收尾的光澤掃過：文字本身用漸層填色，掃動靠 background-position */
+  #outroName .rvi { background: linear-gradient(100deg, #111 42%, #7cc0ff 50%, #111 58%) no-repeat; background-size: 300% 100%;
+                    background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent; }
   #outroEn { font: 600 40px 'Inter'; color: var(--muted); margin-top: 6px; }
   #outroLine { font: 500 32px 'Inter'; margin-top: 34px; }
   .contacts { display: flex; gap: 28px; margin-top: 44px; }
-  .chip { padding: 16px 30px; border-radius: 999px; background: var(--card); box-shadow: var(--shadow); font: 600 28px 'Inter'; color: var(--accent); }
-
-  #progress { position: absolute; left: 0; bottom: 0; height: 6px; background: var(--accent); opacity: .7; }
+  .chip { padding: 16px 30px; border-radius: 999px; background: #fff; box-shadow: var(--shadow); font: 600 28px 'Inter'; color: var(--accent); }
 </style>
 </head>
 <body>
@@ -89,22 +96,7 @@
   <div class="blob" id="b1" style="width:760px;height:760px;background:#b9dcff"></div>
   <div class="blob" id="b2" style="width:620px;height:620px;background:#cfe6ff"></div>
   <div class="blob" id="b3" style="width:520px;height:520px;background:#d8ecff"></div>
-  <svg id="lattice" width="2160" height="1320">
-    <defs>
-      <pattern id="hex" width="60" height="104" patternUnits="userSpaceOnUse">
-        <circle cx="0" cy="0" r="2.6" fill="#0075de" opacity=".22"/>
-        <circle cx="60" cy="0" r="2.6" fill="#0075de" opacity=".22"/>
-        <circle cx="30" cy="52" r="2.6" fill="#0075de" opacity=".22"/>
-        <circle cx="0" cy="104" r="2.6" fill="#0075de" opacity=".22"/>
-        <circle cx="60" cy="104" r="2.6" fill="#0075de" opacity=".22"/>
-      </pattern>
-      <radialGradient id="fade" cx="50%" cy="50%" r="60%">
-        <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="1"/>
-      </radialGradient>
-      <mask id="m"><rect width="100%" height="100%" fill="#fff"/><rect width="100%" height="100%" fill="url(#fade)" opacity=".85"/></mask>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#hex)"/>
-  </svg>
+  <canvas id="bg" width="1920" height="1080"></canvas>
 
   <!-- S1 Hello -->
   <section class="scene" id="s1">
@@ -115,7 +107,7 @@
       </svg>
       <img id="photo" src="../../images/photo.jpg" alt="">
     </div>
-    <div id="hello"><span id="helloText"></span><span class="caret" id="caret"></span></div>
+    <div id="hello"><span id="helloText">Hello, I'm Brian.</span></div>
     <div id="name1">曾為哲　Wei-Che Tseng</div>
   </section>
 
@@ -196,128 +188,280 @@
     </div>
   </section>
 
-  <div id="progress"></div>
+  <div id="chr"></div>
+  <canvas id="fx" width="1920" height="1080"></canvas>
+  <div id="vignette"></div>
 </div>
 
+<script src="character.js"></script>
+<script src="scripts.js"></script>
 <script>
+/*
+ * 動畫核心：場景換場、背景、角色驅動、物理與特效工具。
+ * 角色要做什麼、內容怎麼被帶進場，寫在 scripts.js。
+ * 規則：每一格都只由時間 t 決定（不存狀態），錄影才能逐格重現；
+ * 慣性、回彈這類「看起來有記憶」的效果，用對過去一段時間取樣的彈簧卷積算出來（spring()）。
+ */
 const DUR = 30;
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const seg = (t, a, b) => clamp((t - a) / (b - a));
+const lerp = (a, b, k) => a + (b - a) * k;
 const outCubic = x => 1 - Math.pow(1 - x, 3);
+const inCubic = x => x * x * x;
 const outBack = x => { const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
 const inOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const sineIO = x => (1 - Math.cos(Math.PI * x)) / 2;
+function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let x = Math.imul(seed ^ seed >>> 15, 1 | seed); x = x + Math.imul(x ^ x >>> 7, 61 | x) ^ x; return ((x ^ x >>> 14) >>> 0) / 4294967296; }; }
 
-// [in, out] of each scene
-const SCENES = { s1: [0, 3.3], s2: [3.3, 7.2], s3: [7.2, 11.0], s4: [11.0, 15.5], s5: [15.5, 21.0], s6: [21.0, 26.5], s7: [26.5, 30.5] };
-const FADE = .45;
+const SCENES = { s1: [0, 3.3], s2: [3.3, 7.2], s3: [7.2, 11.0], s4: [11.0, 15.5], s5: [15.5, 21.0], s6: [21.0, 26.5], s7: [26.5, 31] };
+const CUTS = [3.3, 7.2, 11.0, 15.5, 21.0, 26.5];
 
-function sceneAlpha(t, [a, b]) {
-  return outCubic(seg(t, a, a + FADE)) * (1 - inOut(seg(t, b - FADE, b)));
+/* ---------- 物理：彈簧卷積 ---------- */
+// fn(τ) 經過二階彈簧（頻率 f Hz、阻尼 z）後在 t 的輸出；DC 增益為 1，所以靜止時等於輸入
+function spring(fn, t, f = 2.2, z = .38, win = 1.3, n = 40) {
+  const w = 2 * Math.PI * f, wd = w * Math.sqrt(1 - z * z), dt = win / n;
+  let acc = 0, norm = 0;
+  for (let i = 0; i < n; i++) { const tau = (i + .5) * dt, h = Math.exp(-z * w * tau) * Math.sin(wd * tau); acc += h * fn(t - tau); norm += h; }
+  return acc / norm;
 }
+const vel = (fn, t, h = 1 / 60) => (fn(t + h) - fn(t - h)) / (2 * h);
+
+/* ---------- 動態模糊（依速度挑一個方向性模糊濾鏡） ---------- */
+(() => {
+  let d = '';
+  for (let i = 1; i <= 12; i++) d += `<filter id="mbx${i}" x="-15%" y="-5%" width="130%" height="110%"><feGaussianBlur stdDeviation="${i * 1.5} 0"/></filter>`
+    + `<filter id="mby${i}" x="-5%" y="-15%" width="110%" height="130%"><feGaussianBlur stdDeviation="0 ${i * 1.5}"/></filter>`;
+  document.body.insertAdjacentHTML('beforeend', `<svg width="0" height="0" style="position:absolute"><defs>${d}</defs></svg>`);
+})();
+// 30fps、180° 快門的模糊長度約 v/60 px；取 σ ≈ v/450、上限 9px，文字高速移動時仍看得出字形
+function blurBy(el, vx, vy = 0) {
+  const v = Math.max(Math.abs(vx), Math.abs(vy)), lvl = Math.min(6, Math.round(v / 450 / 1.5));
+  el.style.filter = lvl ? `url(#mb${Math.abs(vx) >= Math.abs(vy) ? 'x' : 'y'}${lvl})` : 'none';
+}
+
+/* ---------- 文字：遮罩逐字浮出 ---------- */
+function split(el, mode) {
+  const text = el.textContent; el.textContent = '';
+  const parts = mode === 'block' ? [text] : mode === 'char' ? [...text] : text.split(/(\s+)/);
+  for (const p of parts) {
+    if (!p) continue;
+    if (/^\s+$/.test(p)) { el.appendChild(document.createTextNode(p)); continue; }
+    const o = document.createElement('span'); o.className = 'rv';
+    const i = document.createElement('span'); i.className = 'rvi'; i.textContent = p;
+    o.appendChild(i); el.appendChild(o);
+  }
+}
+function reveal(el, p, stagger = .06) {
+  const items = el.querySelectorAll('.rvi'), n = items.length, span = 1 + stagger * (n - 1);
+  items.forEach((it, j) => { const q = clamp(p * span - stagger * j), e = outCubic(q);
+    it.style.transform = `translateY(${((1 - e) * 110).toFixed(1)}%)`; it.style.opacity = q > 0 ? 1 : 0; });
+  el.style.opacity = 1; el.style.transform = 'none';
+}
+
+/* ---------- 進場工具 ---------- */
 function pop(el, p, dy = 40, s0 = .92) {
   const e = outCubic(p);
   el.style.opacity = e;
   el.style.transform = `translateY(${(1 - e) * dy}px) scale(${s0 + (1 - s0) * outBack(p)})`;
 }
+function natural(el) {
+  const prev = el.style.transform; el.style.transform = 'none';
+  const r = el.getBoundingClientRect(); el.style.transform = prev;
+  return { x: r.left + r.width / 2, y: r.top + r.height / 2, w: r.width, h: r.height, left: r.left, right: r.right, top: r.top, bottom: r.bottom };
+}
+function place(el, dx, dy = 0, op = 1, extra = '') { el.style.opacity = op; el.style.transform = `translate(${dx.toFixed(2)}px, ${dy.toFixed(2)}px) ${extra}`; }
 
-const HELLO = "Hello, I'm Brian.";
+/* ---------- 角色：路徑、面向、動作 ---------- */
+const CH = createCharacter($('#chr'));
+// 路徑關鍵格 [t, x(腳底中心), y(腳底), scale, 模式]
+// 模式：walk 等速、go 起步加速到停下減速、start 加速、stop 減速、hop 跳躍弧線、cut 瞬移、fall 落下、leap 飛撲
+function prepPath(keys) {
+  const D = [0];
+  for (let i = 1; i < keys.length; i++) {
+    const a = keys[i - 1], b = keys[i], air = ['cut', 'hop', 'fall', 'leap'].includes(b[4]);
+    D.push(D[i - 1] + (air ? 0 : Math.abs(b[1] - a[1]) / ((a[3] + b[3]) / 2) + Math.abs(b[3] - a[3]) * 800));
+  }
+  keys.D = D; return keys;
+}
+// 梯形速度：前 a 比例加速、後 d 比例減速、中間等速（走路起步與停下最自然）
+const trap = (a, d) => { const v = 1 / (1 - a / 2 - d / 2);
+  return p => v * (p < a ? p * p / (2 * a) : p <= 1 - d ? a / 2 + (p - a) : a / 2 + (1 - a - d) + (p - 1 + d) - (p - 1 + d) ** 2 / (2 * d)); };
+const EASE = { walk: p => p, go: trap(.3, .3), depart: trap(.35, 0), arrive: trap(0, .35), hop: inOut, cut: p => p < 1 ? 0 : 1, fall: p => p, leap: p => p, rise: outBack };
+function pathAt(t, keys) {
+  let i = keys.findIndex(k => k[0] > t);
+  if (i === -1) i = keys.length;
+  if (i === 0) { const k = keys[0]; return { x: k[1], y: k[2], s: k[3], dist: 0 }; }
+  if (i === keys.length) { const k = keys[i - 1]; return { x: k[1], y: k[2], s: k[3], dist: keys.D[i - 1] }; }
+  const a = keys[i - 1], b = keys[i], mode = b[4] || 'go', p = seg(t, a[0], b[0]), e = EASE[mode](p);
+  let y = lerp(a[2], b[2], e);
+  if (mode === 'hop') y -= Math.sin(Math.PI * p) * 150 * b[3];
+  if (mode === 'fall') y = lerp(a[2], b[2], p * p);
+  if (mode === 'leap') y = lerp(a[2], b[2], p * p) - Math.sin(Math.PI * p) * 110;
+  return { x: lerp(a[1], b[1], e), y, s: lerp(a[3], b[3], e), dist: keys.D[i - 1] + (keys.D[i] - keys.D[i - 1]) * e };
+}
+// 面向 [[t, ±1]]：換向時用 0.18 秒把 scaleX 翻過去（看起來像轉身）
+function faceAt(t, face) {
+  let v = face[0][1];
+  for (let i = 1; i < face.length; i++) { const [T, d] = face[i]; if (t >= T) v = lerp(face[i - 1][1], d, inOut(seg(t, T, T + .18))); }
+  return v;
+}
+// 動作時間軸 [[t0, 姿勢函式(t, c), 混合秒數]]
+function actAt(t, acts, c) {
+  let i = acts.length - 1; while (i > 0 && acts[i][0] > t) i--;
+  const cur = acts[i][1](t, c);
+  if (i === 0) return cur;
+  return mixPose(acts[i - 1][1](t, c), cur, inOut(seg(t, acts[i][0], acts[i][0] + (acts[i][2] ?? .22))));
+}
+function jumpAt(t) {
+  for (const [T, d, h] of V.jumps || []) { const p = seg(t, T, T + d); if (p > 0 && p < 1) return { y: h * Math.sin(Math.PI * p), k: p }; }
+  return { y: 0, k: -1 };
+}
+function charAt(t) {
+  const st = pathAt(t, V.path), flip = faceAt(t, V.face), h = 1 / 60;
+  const vx = (pathAt(t + h, V.path).x - pathAt(t - h, V.path).x) / (2 * h);
+  const dir = Math.abs(vx) > 5 ? Math.sign(vx) * Math.sign(flip || 1) : Math.sign(flip || 1);
+  const j = jumpAt(t);
+  st.flip = flip; st.y -= j.y; st.air = j.y / st.s;
+  st.pose = actAt(t, V.acts, { dist: st.dist, dir, jump: j.k, s: st.s });
+  return st;
+}
+const toScreen = (st, l) => ({ x: st.x + (l.x - 150) * st.s * st.flip, y: st.y + (l.y - 600) * st.s });
+const handAt = (t, side) => { const st = charAt(t); return toScreen(st, handOf(st.pose, side)); };
+const handsMid = t => { const a = handAt(t, 'L'), b = handAt(t, 'R'); return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }; };
+const groundAt = t => { const st = pathAt(t, V.path); return st.y - 16 * st.s; };
+function drawChar(t) {
+  const st = charAt(t), p = st.pose;
+  // 次要動作：實驗袍下擺跟著水平速度甩、落後、停下時往前盪；頭髮跟著垂直速度彈
+  const X = τ => { const q = pathAt(τ, V.path); return q.x / q.s * Math.sign(faceAt(τ, V.face) || 1); };
+  const Y = τ => { const q = charAt(τ); return q.y / q.s; };
+  const vxL = spring(τ => vel(X, τ), t, 1.8, .3, 1.2, 30);
+  const vyL = spring(τ => vel(Y, τ), t, 2.6, .3, .9, 24);
+  p.coat = clamp(-vxL * .011, -10, 10) + (Math.abs(vxL) > 40 ? Math.sin(p.hL * .2) * 1.2 : 0);
+  p.hair = clamp(-vyL * .012, -7, 7);
+  p.air = st.air;
+  CH.set(p);
+  $('#chr').style.transform = `translate(${(st.x - 150).toFixed(2)}px, ${(st.y - 600).toFixed(2)}px) scale(${(st.s * st.flip).toFixed(4)}, ${st.s})`;
+}
+
+/* ---------- 背景晶格：換場時整片往左滑（跟著鏡頭），並從中心擴散一圈波 ---------- */
+const bg = $('#bg').getContext('2d');
+const camX = t => CUTS.reduce((s, c) => s + inOut(seg(t, c - .5, c + .55)) * 90, 0);
+function drawBg(t) {
+  bg.clearRect(0, 0, 1920, 1080);
+  const ox = -(((t * 6) + camX(t)) % 60), oy = -((t * 3.5) % 104);
+  const waves = CUTS.filter(c => t > c - .4 && t < c + 1.3).map(c => (t - (c - .35)) * 1500);
+  bg.fillStyle = '#0075de';
+  for (let row = -1; row < 23; row++) for (let col = -1; col < 34; col++) {
+    const x = col * 60 + (row % 2 ? 30 : 0) + ox, y = row * 52 + oy, d = Math.hypot(x - 960, y - 540);
+    let w = 0;
+    for (const r of waves) w = Math.max(w, Math.exp(-(((d - r) / 80) ** 2)) * (1 - clamp(r / 2300)));
+    bg.globalAlpha = .1 + .35 * w;
+    bg.beginPath(); bg.arc(x, y, 2.5 * (1 + 1.2 * w), 0, Math.PI * 2); bg.fill();
+  }
+  bg.globalAlpha = 1;
+  const c = camX(t);
+  $('#b1').style.transform = `translate(${-120 + Math.sin(t * .25) * 120 - c * .3}px, ${-160 + Math.cos(t * .2) * 80}px)`;
+  $('#b2').style.transform = `translate(${1300 + Math.cos(t * .22) * 140 - c * .5}px, ${520 + Math.sin(t * .3) * 90}px)`;
+  $('#b3').style.transform = `translate(${820 + Math.sin(t * .18) * 200 - c * .4}px, ${-200 + Math.cos(t * .27) * 60}px)`;
+}
+
+/* ---------- 前景特效工具 ---------- */
+const fx = $('#fx').getContext('2d');
+function glow(x, y, r, a) {
+  const g = fx.createRadialGradient(x, y, 0, x, y, r);
+  g.addColorStop(0, `rgba(90,176,255,${a})`); g.addColorStop(1, 'rgba(90,176,255,0)');
+  fx.fillStyle = g; fx.beginPath(); fx.arc(x, y, r, 0, Math.PI * 2); fx.fill();
+}
+const SPARK = ['#0075de', '#5ab0ff', '#ffc24a'];
+function star(x, y, s, rot, color, a = 1) {
+  fx.save(); fx.globalAlpha = a; fx.fillStyle = color; fx.translate(x, y); fx.rotate(rot);
+  fx.beginPath(); fx.moveTo(0, -s); fx.quadraticCurveTo(0, 0, s, 0); fx.quadraticCurveTo(0, 0, 0, s); fx.quadraticCurveTo(0, 0, -s, 0); fx.quadraticCurveTo(0, 0, 0, -s); fx.fill();
+  fx.restore();
+}
+function burst(x, y, p, seed, n = 12, spread = 110) {
+  if (p <= 0 || p >= 1) return;
+  const R = rng(seed);
+  for (let k = 0; k < n; k++) {
+    const ang = k / n * Math.PI * 2 + R() * .5, dist = spread * (.35 + .65 * outCubic(p)) * (.7 + R() * .5);
+    star(x + Math.cos(ang) * dist, y + Math.sin(ang) * dist * .8, (1 - p) * (5 + R() * 4), ang + p * 2, SPARK[k % 3], 1 - p * p);
+  }
+}
+// 落地的小塵土
+function dust(x, y, p, seed, dir = 0) {
+  if (p <= 0 || p >= 1) return;
+  const R = rng(seed);
+  fx.save(); fx.fillStyle = '#9fb6cf';
+  for (let k = 0; k < 7; k++) { const side = dir || (k % 2 ? 1 : -1), dx = side * (20 + R() * 60) * outCubic(p), r = (6 + R() * 8) * (1 - p * .6);
+    fx.globalAlpha = .35 * (1 - p); fx.beginPath(); fx.arc(x + dx, y - R() * 14 * p - 4, r, 0, Math.PI * 2); fx.fill(); }
+  fx.restore();
+}
+// 繩子：依序經過各點，每段有下垂量；上面加一條虛線當麻繩紋路
+function rope(pts, sag = 0, alpha = 1) {
+  if (alpha <= 0 || pts.length < 2) return;
+  const path = () => { fx.beginPath(); fx.moveTo(pts[0].x, pts[0].y);
+    for (let i = 1; i < pts.length; i++) { const a = pts[i - 1], b = pts[i], sg = Array.isArray(sag) ? sag[i - 1] : sag;
+      fx.quadraticCurveTo((a.x + b.x) / 2, (a.y + b.y) / 2 + sg, b.x, b.y); } };
+  fx.save(); fx.globalAlpha = alpha; fx.lineCap = 'round'; fx.lineJoin = 'round';
+  path(); fx.strokeStyle = '#7b4f25'; fx.lineWidth = 6.5; fx.stroke();
+  path(); fx.strokeStyle = '#b8834f'; fx.lineWidth = 2.6; fx.setLineDash([5, 6]); fx.stroke();
+  fx.restore();
+}
+
+/* ---------- 版面量測（字型載入後、所有 transform 為空時） ---------- */
+const LAYOUT = {};
+function measure() {
+  const line = $('#tlLine'), tl = $('#tl').getBoundingClientRect();
+  LAYOUT.lineLeft = tl.left; LAYOUT.lineTop = tl.top + 70; LAYOUT.lineW = 1560;
+  LAYOUT.nodeX = $$('#s4 .node').map(n => tl.left + parseFloat(n.style.left));
+  LAYOUT.papers = $$('#s5 .paper').map(natural);
+}
+
+let V = null, ready = false;
+function init() {
+  measure();
+  split($('#name1'), 'word');
+  $$('.kicker, .h2').forEach(el => split(el, 'char'));
+  split($('#w1'), 'char'); split($('#tagline'), 'char'); split($('#tagline2'), 'word');
+  split($('#outroName'), 'block'); split($('#outroEn'), 'word'); split($('#outroLine'), 'char');
+  V = window.SCRIPT;
+  V.init(LAYOUT);
+  prepPath(V.path);
+  ready = true;
+}
 
 function render(t) {
-  // background drift
-  $('#b1').style.transform = `translate(${-120 + Math.sin(t * .25) * 120}px, ${-160 + Math.cos(t * .2) * 80}px)`;
-  $('#b2').style.transform = `translate(${1300 + Math.cos(t * .22) * 140}px, ${520 + Math.sin(t * .3) * 90}px)`;
-  $('#b3').style.transform = `translate(${820 + Math.sin(t * .18) * 200}px, ${-200 + Math.cos(t * .27) * 60}px)`;
-  $('#lattice').style.transform = `translate(${-(t * 6) % 60}px, ${-(t * 3.5) % 104}px)`;
-  $('#progress').style.width = (clamp(t / DUR) * 100) + '%';
-
-  for (const [id, r] of Object.entries(SCENES)) {
-    const a = sceneAlpha(t, r);
+  if (!ready) return;
+  // 換場：舊場景往左滑出並模糊，新場景從右滑入（像鏡頭橫移）
+  for (const [id, [a, b]] of Object.entries(SCENES)) {
     const el = document.getElementById(id);
-    el.style.opacity = a;
-    el.style.visibility = a > 0.001 ? 'visible' : 'hidden';
-    // gentle push-in during the scene, slight lift on exit
-    const k = seg(t, r[0], r[1]);
-    const exit = inOut(seg(t, r[1] - FADE, r[1]));
-    el.style.transform = `scale(${1 + k * .03}) translateY(${-exit * 30}px)`;
+    const pin = a === 0 ? 1 : outCubic(seg(t, a - .05, a + .5)), pout = inOut(seg(t, b - .5, b));
+    const alpha = pin * (1 - pout);
+    el.style.opacity = alpha;
+    el.style.visibility = alpha > .001 ? 'visible' : 'hidden';
+    const dx = (1 - pin) * 170 - pout * 170;
+    el.style.transform = `translateX(${dx.toFixed(1)}px) scale(${(1 + seg(t, a, b) * .02).toFixed(4)})`;
+    blurBy(el, vel(τ => (1 - (a === 0 ? 1 : outCubic(seg(τ, a - .05, a + .5)))) * 170 - inOut(seg(τ, b - .5, b)) * 170, t) * 1.6);
   }
-
-  // S1
-  {
-    const p = seg(t, .05, .7);
-    $('#photo').style.transform = `scale(${.6 + .4 * outBack(p)})`;
-    $('#photo').style.opacity = outCubic(p);
-    $('#ring').setAttribute('stroke-dashoffset', 911 * (1 - inOut(seg(t, .2, 1.2))));
-    const n = Math.floor(seg(t, .7, 1.8) * HELLO.length + .0001);
-    $('#helloText').textContent = HELLO.slice(0, n);
-    $('#caret').style.opacity = (t < 1.8 || Math.floor(t * 2.5) % 2 === 0) ? 1 : 0;
-    pop($('#name1'), seg(t, 1.8, 2.4), 24, 1);
-  }
-  // S2
-  {
-    const a = 3.3;
-    const p1 = outCubic(seg(t, a + .2, a + 1.0)), p2 = outCubic(seg(t, a + .5, a + 1.3));
-    $('#w1').style.transform = `translateX(${(1 - p1) * -160}px)`; $('#w1').style.opacity = p1;
-    $('#w2').style.transform = `translateX(${(1 - p2) * 160}px)`; $('#w2').style.opacity = p2;
-    const px = seg(t, a + .9, a + 1.5);
-    $('#wx').style.transform = `rotate(${(1 - outCubic(px)) * 180}deg) scale(${outBack(px)})`; $('#wx').style.opacity = px;
-    pop($('#tagline'), seg(t, a + 1.5, a + 2.2), 30, 1);
-    pop($('#tagline2'), seg(t, a + 2.1, a + 2.8), 20, 1);
-  }
-  // S3
-  {
-    const a = 7.2;
-    $$('#s3 .stat').forEach((el, i) => {
-      const p = seg(t, a + .3 + i * .22, a + 1.0 + i * .22);
-      pop(el, p, 60, .85);
-      const v = el.querySelector('.v');
-      const to = +v.dataset.to, dec = +v.dataset.dec;
-      const c = outCubic(seg(t, a + .4 + i * .22, a + 2.0 + i * .22));
-      v.textContent = (to * c).toFixed(dec);
-    });
-  }
-  // S4
-  {
-    const a = 11.0;
-    $('#tlLine').style.width = (1560 * inOut(seg(t, a + .3, a + 2.6))) + 'px';
-    $$('#s4 .node').forEach((el, i) => {
-      const p = seg(t, a + .6 + i * .6, a + 1.3 + i * .6);
-      pop(el.querySelector('.dot'), p, 0, 0);
-      pop(el.querySelector('.date'), seg(t, a + .75 + i * .6, a + 1.45 + i * .6), 20, 1);
-      pop(el.querySelector('.card'), seg(t, a + .9 + i * .6, a + 1.6 + i * .6), 40, .9);
-    });
-  }
-  // S5
-  {
-    const a = 15.5;
-    $$('#s5 .paper').forEach((el, i) => pop(el, seg(t, a + .4 + i * .3, a + 1.2 + i * .3), 80, .9));
-  }
-  // S6
-  {
-    const a = 21.0;
-    $$('#s6 .proj').forEach((el, i) => pop(el, seg(t, a + .4 + i * .18, a + 1.1 + i * .18), 60, .85));
-  }
-  // S7
-  {
-    const a = 26.5;
-    pop($('#outroPhoto'), seg(t, a + .1, a + .8), 0, .6);
-    pop($('#outroName'), seg(t, a + .4, a + 1.1), 30, 1);
-    pop($('#outroEn'), seg(t, a + .6, a + 1.3), 24, 1);
-    pop($('#outroLine'), seg(t, a + .9, a + 1.6), 24, 1);
-    $$('#s7 .chip').forEach((el, i) => pop(el, seg(t, a + 1.1 + i * .2, a + 1.8 + i * .2), 30, .9));
-  }
+  V.apply(t);
+  // 重物落地的輕微鏡頭震動（衰減正弦，幾個像素）
+  const sh = (V.shakes || []).reduce((o, [T, a]) => { const τ = t - T; if (τ < 0 || τ > .45) return o;
+    const d = a * Math.exp(-9 * τ); return { x: o.x + d * Math.sin(τ * 70), y: o.y + d * Math.cos(τ * 53) }; }, { x: 0, y: 0 });
+  $('#stage').style.transform = `translate(${sh.x.toFixed(2)}px, ${sh.y.toFixed(2)}px)`;
+  drawBg(t);
+  drawChar(t);
+  fx.clearRect(0, 0, 1920, 1080);
+  V.fx(t);
 }
 
 window.__render = render;
 window.__DUR = DUR;
-if (!location.search.includes('capture')) {
+document.fonts.ready.then(() => { init(); if (!location.search.includes('capture')) {
   let t0 = null;
   const loop = ts => { if (t0 === null) t0 = ts; render(((ts - t0) / 1000) % DUR); requestAnimationFrame(loop); };
-  document.fonts.ready.then(() => requestAnimationFrame(loop));
-} else {
-  render(0);
-}
+  requestAnimationFrame(loop);
+} });
 </script>
 </body>
 </html>

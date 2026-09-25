@@ -3,10 +3,11 @@
  * 30 秒介紹動畫錄製工具
  *
  * 用法：
- *   node tools/intro-video/render.mjs                  # 錄成 out/brian-intro-30s.mp4
- *   node tools/intro-video/render.mjs stills 5 18.5    # 只截指定秒數的靜態畫面（out/still-<秒>.png）
+ *   node tools/intro-video/render.mjs video               # 錄成 out/brian-intro.mp4
+ *   node tools/intro-video/render.mjs video v2            # 錄成 out/brian-intro-v2.mp4
+ *   node tools/intro-video/render.mjs stills 5 18.5       # 只截指定秒數的靜態畫面（out/still-<秒>.png）
  *
- * 動畫本體是 intro.html（直接用瀏覽器開啟會循環播放）。圖片直接引用站上的
+ * 動畫本體是 intro.html（瀏覽器直接開會循環播放）；角色在 character.js，劇本在 scripts.js。圖片直接引用站上的
  * images/ 與 research/<slug>/images/，不另存副本；文案寫在 intro.html 裡，
  * 改 data.json 不會自動同步到影片。
  *
@@ -24,10 +25,12 @@ const DIR = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(DIR, 'out');
 const FPS = 30;
 const mode = process.argv[2] || 'video';
+const args = process.argv.slice(3);
 
 await mkdir(OUT, { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome' });
 const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
+page.on('pageerror', e => { console.error('page error:', e.message); process.exitCode = 1; });
 await page.goto(pathToFileURL(path.join(DIR, 'intro.html')).href + '?capture');
 await page.evaluate(async () => {
   await document.fonts.ready;
@@ -36,12 +39,12 @@ await page.evaluate(async () => {
 const DUR = await page.evaluate(() => window.__DUR);
 
 if (mode === 'stills') {
-  for (const t of process.argv.slice(3).map(Number)) {
+  for (const t of args.map(Number)) {
     await page.evaluate(t => window.__render(t), t);
     await page.screenshot({ path: path.join(OUT, `still-${t}.png`) });
   }
 } else {
-  const out = path.join(OUT, 'brian-intro-30s.mp4');
+  const out = path.join(OUT, args[0] ? `brian-intro-${args[0]}.mp4` : 'brian-intro.mp4');
   // JPEG 是全範圍色彩，轉成標準 yuv420p（tv range），LinkedIn／104 播放顏色才不會偏
   const ff = spawn('ffmpeg', ['-y', '-v', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
     '-vf', 'scale=in_range=full:out_range=tv,format=yuv420p', '-color_range', 'tv',
