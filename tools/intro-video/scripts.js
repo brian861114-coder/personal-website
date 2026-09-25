@@ -1,6 +1,5 @@
 /*
  * 腳本「搬運工程師」：內容都是角色用力氣搬進場的——拉繩、托舉、拋、踩滑板畫時間軸。
- * （A 魔法實驗室、C 靈感泡泡兩版的原始碼備份在 out/archive-abc/，不進 Git。）
  *
  * intro.html 會在字型載入、量完版面後呼叫 init(L)，再每格呼叫 apply(t)、fx(t)。
  *   path  角色位置關鍵格 [t, x, y, scale, 模式]（模式見 intro.html 的 EASE）
@@ -76,7 +75,38 @@
         [26.45, P.push, 0], [REL7 - .12, K(P.push, REL7 - .12, REL7 + .3), .1],
         [28.2, K(P.present, 28.2, 28.7), .2], [29.0, K(P.glasses, 29.05, 29.7), .15],
       ];
+
+      // 聲音：音效觸發點（劇本時間；錄影時 render.mjs 會換算成影片時間）。
+      // x = 畫面水平位置（決定左右聲道），x2 = 移動類音效的終點，g = 音量，d = 長度，p = 音高（MIDI）
+      const statX = L.stats.map(s => s.x), nodeX = L.nodeX;
+      this.cues = [
+        ...T1.flatMap((T, i) => [{ t: T, type: 'tug', x: 1560 }, { t: T, type: 'drag', d: D1, x: 150 + i * 330, x2: 480 + i * 330 }]),
+        { t: 1.6, type: 'thud', x: 1000, g: .45 }, { t: REL1 + .22, type: 'ropeDrop', x: 1500 }, { t: 1.75, type: 'sparkle', x: 960, g: .35 },
+        { t: REL2 - .05, type: 'whooshUp', d: .5, x: 1640, x2: 1400 }, { t: REL2 + .5, type: 'thud', x: 1400, g: .9 },
+        { t: 5.3, type: 'reveal', x: 520, g: .5 }, { t: 5.85, type: 'ding', x: 1040, p: 84 }, { t: 5.9, type: 'sparkle', x: 1040, g: .5 },
+        { t: 5.95, type: 'reveal', x: 960, g: .35 },
+        ...T3.map(T => ({ t: T, type: 'tug', x: 1760 })), { t: T3[0], type: 'roll', d: 1.4, x: 150, x2: 1100 },
+        { t: 8.93, type: 'clunk', x: 1450, g: .9 }, { t: REL3 + .22, type: 'ropeDrop', x: 1800 },
+        { t: COUNT, type: 'count', d: 1.45, x: 960 },
+        ...statX.map((x, i) => ({ t: COUNT + 1.1 + i * .12, type: 'ding', x, p: [72, 76, 79, 84][i], g: .7 })),
+        { t: 11.05, type: 'fall', d: .45, x: 0, x2: 220 }, { t: LAND4, type: 'land', x: 220, g: .9 },
+        { t: LAND4, type: 'skate', d: T4end - LAND4, x: 220, x2: 1740, mute: S.hit.map(h => [h - .2, h + .22]) },
+        ...S.hit.flatMap((h, i) => [{ t: h - .22, type: 'ollie', x: nodeX[i] }, { t: h + .22, type: 'land', x: nodeX[i], g: .6 },
+          { t: h, type: 'pop', x: nodeX[i], p: [76, 79, 84][i] }]),
+        { t: T4end, type: 'ollie', x: 1740 }, { t: T4end, type: 'whoosh', d: .55, x: 1740, x2: 1920, g: .6 },
+        ...LIFTS.flatMap(([T, i]) => [{ t: T + .08, type: 'heave', x: S.paperX[i] }, { t: T + .165, type: 'whooshUp', d: .45, x: S.paperX[i], x2: S.paperX[i] },
+          { t: T + .72, type: 'pop', x: S.paperX[i], p: [79, 76, 72][i], g: .6 }]),
+        ...[...T6a, ...T6b].map(T => ({ t: T, type: 'tug', x: 150 })),
+        { t: T6a[0], type: 'roll', d: 1.0, x: 1900, x2: 900 }, { t: T6b[0], type: 'roll', d: 1.0, x: 1900, x2: 900 },
+        { t: REL6a, type: 'clunk', x: 1000, g: .7 }, { t: REL6b, type: 'clunk', x: 1000, g: .85 },
+        { t: REL6a + .22, type: 'ropeDrop', x: 200 }, { t: REL6b + .22, type: 'ropeDrop', x: 200 },
+        { t: 26.45, type: 'slide', d: REL7 - 26.45, x: 1500, x2: 1150 }, { t: REL7, type: 'whoosh', d: .5, x: 1200, x2: 900, g: .45 },
+        { t: REL7 + .5, type: 'clack', x: 960 }, { t: REL7 + .5, type: 'sparkle', x: 960, g: .45 },
+        { t: 26.75, type: 'reveal', x: 960, g: .4 }, { t: 28.9, type: 'shine', x: 960 }, { t: 29.3, type: 'click', x: 1560 },
+      ];
     },
+    // 配樂節拍：108.5 BPM；換場（影片時間）都落在拍點上，錄影時用分段線性時間校正把劇本的換場對齊過去
+    sync: { bpm: 108.5, offset: .53, cuts: [3.295, 7.166, 11.037, 15.461, 20.991, 26.521] },
 
     apply(t) {
       /* S1：用繩子把標題拉進來 */

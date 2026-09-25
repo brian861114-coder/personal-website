@@ -88,6 +88,20 @@
   #outroEn { font: 600 40px 'Inter'; color: var(--muted); margin-top: 6px; }
   #outroLine { font: 500 32px 'Inter'; margin-top: 34px; }
   .contacts { display: flex; gap: 28px; margin-top: 44px; }
+  /* 英文版：字比較長，字級與字型另外調 */
+  .en .h2, .en .dual .w, .en .paper .st, .en .proj .pt, .en .node .t { font-family: 'Inter', 'Noto Sans TC', sans-serif; letter-spacing: -.01em; }
+  .en .dual { gap: 40px; }
+  .en .dual .w { font-size: 88px; font-weight: 800; }
+  .en #tagline { font: 500 40px 'Inter'; letter-spacing: 0; }
+  .en .stat .l { font: 500 26px 'Inter'; text-align: center; padding: 0 22px; line-height: 1.25; }
+  .en .node .t { font-size: 27px; font-weight: 700; }
+  .en .node .o { font: 500 22px 'Inter'; }
+  .en .paper .st { font-size: 29px; font-weight: 700; line-height: 1.3; }
+  .en .proj .pt { font-size: 26px; font-weight: 700; }
+  .en .proj .ps { font-size: 19px; }
+  .en #outroName { font: 800 84px 'Inter'; letter-spacing: -.01em; }
+  .en #outroEn { font: 600 36px 'Inter', 'Noto Sans TC'; }
+  .en #outroLine { font-size: 28px; }
   .chip { padding: 16px 30px; border-radius: 999px; background: #fff; box-shadow: var(--shadow); font: 600 28px 'Inter'; color: var(--accent); }
 </style>
 </head>
@@ -193,6 +207,7 @@
   <div id="vignette"></div>
 </div>
 
+<script src="copy-en.js"></script>
 <script src="character.js"></script>
 <script src="scripts.js"></script>
 <script>
@@ -416,15 +431,26 @@ function measure() {
   LAYOUT.lineLeft = tl.left; LAYOUT.lineTop = tl.top + 70; LAYOUT.lineW = 1560;
   LAYOUT.nodeX = $$('#s4 .node').map(n => tl.left + parseFloat(n.style.left));
   LAYOUT.papers = $$('#s5 .paper').map(natural);
+  LAYOUT.stats = $$('#s3 .stat').map(natural);
 }
 
 let V = null, ready = false;
+const EN = new URLSearchParams(location.search).get('lang') === 'en';
+function applyCopy(list) {
+  for (const [sel, text] of list) {
+    const els = $$(sel), texts = Array.isArray(text) ? text : [text];
+    els.forEach((el, i) => { if (texts[i] !== undefined) el.textContent = texts[i]; });
+  }
+}
 function init() {
+  if (EN) { applyCopy(window.COPY_EN); document.body.classList.add('en'); document.documentElement.lang = 'en'; }
   measure();
+  const cjk = EN ? 'word' : 'char';          // 中文逐字浮出、英文逐字詞
   split($('#name1'), 'word');
-  $$('.kicker, .h2').forEach(el => split(el, 'char'));
-  split($('#w1'), 'char'); split($('#tagline'), 'char'); split($('#tagline2'), 'word');
-  split($('#outroName'), 'block'); split($('#outroEn'), 'word'); split($('#outroLine'), 'char');
+  $$('.kicker').forEach(el => split(el, 'char'));
+  $$('.h2').forEach(el => split(el, cjk));
+  split($('#w1'), cjk); split($('#tagline'), cjk); split($('#tagline2'), 'word');
+  split($('#outroName'), 'block'); split($('#outroEn'), 'word'); split($('#outroLine'), cjk);
   V = window.SCRIPT;
   V.init(LAYOUT);
   prepPath(V.path);
@@ -457,6 +483,8 @@ function render(t) {
 
 window.__render = render;
 window.__DUR = DUR;
+window.__CUTS = CUTS;
+window.__script = () => ({ cues: V.cues, sync: V.sync });
 document.fonts.ready.then(() => { init(); if (!location.search.includes('capture')) {
   let t0 = null;
   const loop = ts => { if (t0 === null) t0 = ts; render(((ts - t0) / 1000) % DUR); requestAnimationFrame(loop); };
