@@ -1,2 +1,5 @@
 # 截圖工具的依賴（playwright-core）
 node_modules/
+
+# 介紹動畫輸出（可由 tools/intro-video/render.mjs 重新產生）
+tools/intro-video/out/

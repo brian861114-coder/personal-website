@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>Brian Intro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=block" rel="stylesheet">
+<style>
+  :root {
+    --bg1: #e8f2fb; --bg2: #eef5fc; --bg3: #f4f8fd;
+    --ink: rgba(0,0,0,.92); --muted: #5a6b82;
+    --accent: #0075de; --accent2: #5ab0ff; --badge: #e8f4fd;
+    --card: rgba(255,255,255,.78);
+    --shadow: 0 18px 50px rgba(0,60,120,.10), 0 4px 12px rgba(0,0,0,.04);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg1); }
+  body { font-family: 'Inter', 'Noto Sans TC', system-ui, sans-serif; color: var(--ink); }
+  #stage { position: absolute; inset: 0; background: linear-gradient(160deg, var(--bg1), var(--bg2) 50%, var(--bg3)); overflow: hidden; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .55; }
+  #lattice { position: absolute; inset: -120px; opacity: .5; }
+  .scene { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; }
+  .kicker { font: 600 26px 'Inter'; letter-spacing: .28em; text-transform: uppercase; color: var(--accent); }
+  .h2 { font: 800 64px 'Noto Sans TC', 'Inter'; margin-top: 14px; letter-spacing: .02em; }
+
+  /* S1 */
+  #photoWrap { position: relative; width: 300px; height: 300px; }
+  #photoWrap img { position: absolute; inset: 14px; width: 272px; height: 272px; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow); }
+  #photoWrap svg { position: absolute; inset: 0; }
+  #hello { font: 800 104px 'Inter'; margin-top: 48px; letter-spacing: -.02em; min-height: 126px; }
+  #hello .caret { display: inline-block; width: 6px; height: 88px; background: var(--accent); margin-left: 8px; vertical-align: -8px; }
+  #name1 { font: 500 38px 'Noto Sans TC'; color: var(--muted); margin-top: 10px; letter-spacing: .08em; }
+
+  /* S2 */
+  .dual { display: flex; align-items: center; gap: 56px; }
+  .dual .w { font: 900 132px 'Noto Sans TC'; letter-spacing: .02em; }
+  .dual .x { font: 300 110px 'Inter'; color: var(--accent); }
+  .grad { background: linear-gradient(90deg, var(--accent), #3aa0ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #tagline { font: 500 46px 'Noto Sans TC'; margin-top: 40px; letter-spacing: .1em; }
+  #tagline2 { font: 500 30px 'Inter'; color: var(--muted); margin-top: 22px; font-style: italic; }
+
+  /* S3 */
+  .stats { display: flex; gap: 40px; margin-top: 70px; }
+  .stat { width: 330px; height: 300px; border-radius: 28px; background: var(--card); box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,.9);
+          display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .stat .v { font: 800 128px 'Inter'; color: var(--accent); line-height: 1; letter-spacing: -.03em; }
+  .stat .l { font: 500 32px 'Noto Sans TC'; margin-top: 22px; color: var(--ink); }
+
+  /* S4 */
+  #tl { position: relative; width: 1560px; height: 420px; margin-top: 60px; }
+  #tlLine { position: absolute; left: 0; top: 70px; height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--accent2), var(--accent)); }
+  .node { position: absolute; top: 0; width: 460px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .node .dot { width: 40px; height: 40px; border-radius: 50%; background: #fff; border: 8px solid var(--accent); margin-top: 53px; box-shadow: 0 0 0 10px rgba(0,117,222,.12); }
+  .node .date { font: 700 34px 'Inter'; color: var(--accent); margin-top: 34px; }
+  .node .card { margin-top: 18px; padding: 26px 30px; border-radius: 22px; background: var(--card); box-shadow: var(--shadow); width: 100%; }
+  .node .t { font: 700 34px 'Noto Sans TC'; }
+  .node .o { font: 500 26px 'Noto Sans TC'; color: var(--muted); margin-top: 10px; }
+
+  /* S5 */
+  .papers { display: flex; gap: 40px; margin-top: 56px; }
+  .paper { width: 520px; border-radius: 26px; background: var(--card); box-shadow: var(--shadow); overflow: hidden; }
+  .paper .fig { height: 290px; background: #fff; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(0,0,0,.06); }
+  .paper .fig img { max-width: 92%; max-height: 92%; object-fit: contain; }
+  .paper .body { padding: 26px 30px 30px; }
+  .paper .st { font: 700 32px 'Noto Sans TC'; line-height: 1.35; min-height: 88px; }
+  .paper .j { font: 500 23px 'Inter'; color: var(--muted); margin-top: 14px; }
+  .paper .if { display: inline-block; margin-top: 16px; padding: 8px 18px; border-radius: 999px; background: var(--badge); color: var(--accent); font: 700 24px 'Inter'; }
+
+  /* S6 */
+  .grid { display: grid; grid-template-columns: repeat(3, 440px); gap: 30px 40px; margin-top: 48px; }
+  .proj { display: flex; align-items: center; gap: 24px; padding: 20px; border-radius: 24px; background: var(--card); box-shadow: var(--shadow); }
+  .proj img { width: 150px; height: 150px; border-radius: 18px; object-fit: cover; flex: none; }
+  .proj .pt { font: 700 30px 'Noto Sans TC'; line-height: 1.3; }
+  .proj .ps { font: 500 21px 'Inter'; color: var(--muted); margin-top: 10px; }
+
+  /* S7 */
+  #outroPhoto { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow); border: 6px solid #fff; }
+  #outroName { font: 900 88px 'Noto Sans TC'; margin-top: 34px; letter-spacing: .04em; }
+  #outroEn { font: 600 40px 'Inter'; color: var(--muted); margin-top: 6px; }
+  #outroLine { font: 500 32px 'Inter'; margin-top: 34px; }
+  .contacts { display: flex; gap: 28px; margin-top: 44px; }
+  .chip { padding: 16px 30px; border-radius: 999px; background: var(--card); box-shadow: var(--shadow); font: 600 28px 'Inter'; color: var(--accent); }
+
+  #progress { position: absolute; left: 0; bottom: 0; height: 6px; background: var(--accent); opacity: .7; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="blob" id="b1" style="width:760px;height:760px;background:#b9dcff"></div>
+  <div class="blob" id="b2" style="width:620px;height:620px;background:#cfe6ff"></div>
+  <div class="blob" id="b3" style="width:520px;height:520px;background:#d8ecff"></div>
+  <svg id="lattice" width="2160" height="1320">
+    <defs>
+      <pattern id="hex" width="60" height="104" patternUnits="userSpaceOnUse">
+        <circle cx="0" cy="0" r="2.6" fill="#0075de" opacity=".22"/>
+        <circle cx="60" cy="0" r="2.6" fill="#0075de" opacity=".22"/>
+        <circle cx="30" cy="52" r="2.6" fill="#0075de" opacity=".22"/>
+        <circle cx="0" cy="104" r="2.6" fill="#0075de" opacity=".22"/>
+        <circle cx="60" cy="104" r="2.6" fill="#0075de" opacity=".22"/>
+      </pattern>
+      <radialGradient id="fade" cx="50%" cy="50%" r="60%">
+        <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="1"/>
+      </radialGradient>
+      <mask id="m"><rect width="100%" height="100%" fill="#fff"/><rect width="100%" height="100%" fill="url(#fade)" opacity=".85"/></mask>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#hex)"/>
+  </svg>
+
+  <!-- S1 Hello -->
+  <section class="scene" id="s1">
+    <div id="photoWrap">
+      <svg width="300" height="300" viewBox="0 0 300 300">
+        <circle id="ring" cx="150" cy="150" r="145" fill="none" stroke="#0075de" stroke-width="5" stroke-linecap="round"
+                stroke-dasharray="911" stroke-dashoffset="911" transform="rotate(-90 150 150)"/>
+      </svg>
+      <img id="photo" src="../../images/photo.jpg" alt="">
+    </div>
+    <div id="hello"><span id="helloText"></span><span class="caret" id="caret"></span></div>
+    <div id="name1">曾為哲　Wei-Che Tseng</div>
+  </section>
+
+  <!-- S2 Positioning -->
+  <section class="scene" id="s2">
+    <div class="dual">
+      <div class="w" id="w1">半導體物理</div>
+      <div class="x" id="wx">×</div>
+      <div class="w grad" id="w2">AI 系統</div>
+    </div>
+    <div id="tagline">以第一原理思考，用智慧自動化實踐</div>
+    <div id="tagline2">Physicist turned AI engineer — building systems that think and compute.</div>
+  </section>
+
+  <!-- S3 Stats -->
+  <section class="scene" id="s3">
+    <div class="kicker">By the numbers</div>
+    <div class="stats">
+      <div class="stat"><div class="v" data-to="3" data-dec="0">0</div><div class="l">篇 SCI 論文</div></div>
+      <div class="stat"><div class="v" data-to="8.4" data-dec="1">0</div><div class="l">最高期刊影響因子</div></div>
+      <div class="stat"><div class="v" data-to="6" data-dec="0">0</div><div class="l">個完整專案</div></div>
+      <div class="stat"><div class="v" data-to="2" data-dec="0">0</div><div class="l">年封裝製程經驗</div></div>
+    </div>
+  </section>
+
+  <!-- S4 Timeline -->
+  <section class="scene" id="s4">
+    <div class="kicker">Experience</div>
+    <div class="h2">學經歷</div>
+    <div id="tl">
+      <div id="tlLine"></div>
+      <div class="node" style="left:260px"><div class="dot"></div><div class="date">2016 – 2020</div>
+        <div class="card"><div class="t">材料科學與工程 學士</div><div class="o">國立成功大學</div></div></div>
+      <div class="node" style="left:780px"><div class="dot"></div><div class="date">2020 – 2022</div>
+        <div class="card"><div class="t">材料科學與工程 碩士</div><div class="o">國立成功大學 · 3 篇期刊論文</div></div></div>
+      <div class="node" style="left:1300px"><div class="dot"></div><div class="date">2023 – 2025</div>
+        <div class="card"><div class="t">Bumping 製程工程師</div><div class="o">台星科股份有限公司</div></div></div>
+    </div>
+  </section>
+
+  <!-- S5 Research -->
+  <section class="scene" id="s5">
+    <div class="kicker">Research</div>
+    <div class="h2">3 篇 SCI 國際期刊論文</div>
+    <div class="papers">
+      <div class="paper"><div class="fig"><img src="../../research/zno-bandgap/images/fig5-dft-vs-gann.png" alt=""></div><div class="body">
+        <div class="st">利用機器學習建立模擬參數預測模型</div><div class="j">Thin Solid Films, 2022</div><div class="if">IF 2.1</div></div></div>
+      <div class="paper"><div class="fig"><img src="../../research/her-zno/images/fig5-mechanism-ij.png" alt=""></div><div class="body">
+        <div class="st">以計算模擬篩選高效率產氫觸媒</div><div class="j">Int. J. Hydrogen Energy, 2022</div><div class="if">IF 7.2</div></div></div>
+      <div class="paper"><div class="fig"><img src="../../research/co2-heterostructure/images/fig8-band-diagram.png" alt=""></div><div class="body">
+        <div class="st">CO₂ 光催化異質結構</div><div class="j">ACS Sustainable Chem. &amp; Eng., 2022</div><div class="if">IF 8.4</div></div></div>
+    </div>
+  </section>
+
+  <!-- S6 Projects -->
+  <section class="scene" id="s6">
+    <div class="kicker">Projects</div>
+    <div class="h2">6 個完整專案</div>
+    <div class="grid">
+      <div class="proj"><img src="../../images/3c-detox.webp" alt=""><div><div class="pt">3C Detox App</div><div class="ps">Flutter · Android</div></div></div>
+      <div class="proj"><img src="../../images/elder-life.webp" alt=""><div><div class="pt">Elder Life App</div><div class="ps">Hive + AES · AI 問答</div></div></div>
+      <div class="proj"><img src="../../images/japanese-learning.webp" alt=""><div><div class="pt">日文文法學習站 MyJapan</div><div class="ps">JLPT N4–N2 · TTS</div></div></div>
+      <div class="proj"><img src="../../images/stem-learning.webp" alt=""><div><div class="pt">互動式理工教材網站</div><div class="ps">83 章 · 1,209 道練習</div></div></div>
+      <div class="proj"><img src="../../images/fridge-inventory.webp" alt=""><div><div class="pt">冰箱庫存管理系統</div><div class="ps">Next.js + FastAPI</div></div></div>
+      <div class="proj"><img src="../../images/life-dashboard.webp" alt=""><div><div class="pt">人生角色儀表板</div><div class="ps">React + Electron</div></div></div>
+    </div>
+  </section>
+
+  <!-- S7 Outro -->
+  <section class="scene" id="s7">
+    <img id="outroPhoto" src="../../images/photo.jpg" alt="">
+    <div id="outroName">曾為哲</div>
+    <div id="outroEn">Wei-Che Tseng · Brian</div>
+    <div id="outroLine">好的工程師不只是解決問題，而是建立一套能持續演進的系統。</div>
+    <div class="contacts">
+      <div class="chip">brian861114@gmail.com</div>
+      <div class="chip">LinkedIn · Wei-Che Tseng</div>
+    </div>
+  </section>
+
+  <div id="progress"></div>
+</div>
+
+<script>
+const DUR = 30;
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const outCubic = x => 1 - Math.pow(1 - x, 3);
+const outBack = x => { const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const inOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+
+// [in, out] of each scene
+const SCENES = { s1: [0, 3.3], s2: [3.3, 7.2], s3: [7.2, 11.0], s4: [11.0, 15.5], s5: [15.5, 21.0], s6: [21.0, 26.5], s7: [26.5, 30.5] };
+const FADE = .45;
+
+function sceneAlpha(t, [a, b]) {
+  return outCubic(seg(t, a, a + FADE)) * (1 - inOut(seg(t, b - FADE, b)));
+}
+function pop(el, p, dy = 40, s0 = .92) {
+  const e = outCubic(p);
+  el.style.opacity = e;
+  el.style.transform = `translateY(${(1 - e) * dy}px) scale(${s0 + (1 - s0) * outBack(p)})`;
+}
+
+const HELLO = "Hello, I'm Brian.";
+
+function render(t) {
+  // background drift
+  $('#b1').style.transform = `translate(${-120 + Math.sin(t * .25) * 120}px, ${-160 + Math.cos(t * .2) * 80}px)`;
+  $('#b2').style.transform = `translate(${1300 + Math.cos(t * .22) * 140}px, ${520 + Math.sin(t * .3) * 90}px)`;
+  $('#b3').style.transform = `translate(${820 + Math.sin(t * .18) * 200}px, ${-200 + Math.cos(t * .27) * 60}px)`;
+  $('#lattice').style.transform = `translate(${-(t * 6) % 60}px, ${-(t * 3.5) % 104}px)`;
+  $('#progress').style.width = (clamp(t / DUR) * 100) + '%';
+
+  for (const [id, r] of Object.entries(SCENES)) {
+    const a = sceneAlpha(t, r);
+    const el = document.getElementById(id);
+    el.style.opacity = a;
+    el.style.visibility = a > 0.001 ? 'visible' : 'hidden';
+    // gentle push-in during the scene, slight lift on exit
+    const k = seg(t, r[0], r[1]);
+    const exit = inOut(seg(t, r[1] - FADE, r[1]));
+    el.style.transform = `scale(${1 + k * .03}) translateY(${-exit * 30}px)`;
+  }
+
+  // S1
+  {
+    const p = seg(t, .05, .7);
+    $('#photo').style.transform = `scale(${.6 + .4 * outBack(p)})`;
+    $('#photo').style.opacity = outCubic(p);
+    $('#ring').setAttribute('stroke-dashoffset', 911 * (1 - inOut(seg(t, .2, 1.2))));
+    const n = Math.floor(seg(t, .7, 1.8) * HELLO.length + .0001);
+    $('#helloText').textContent = HELLO.slice(0, n);
+    $('#caret').style.opacity = (t < 1.8 || Math.floor(t * 2.5) % 2 === 0) ? 1 : 0;
+    pop($('#name1'), seg(t, 1.8, 2.4), 24, 1);
+  }
+  // S2
+  {
+    const a = 3.3;
+    const p1 = outCubic(seg(t, a + .2, a + 1.0)), p2 = outCubic(seg(t, a + .5, a + 1.3));
+    $('#w1').style.transform = `translateX(${(1 - p1) * -160}px)`; $('#w1').style.opacity = p1;
+    $('#w2').style.transform = `translateX(${(1 - p2) * 160}px)`; $('#w2').style.opacity = p2;
+    const px = seg(t, a + .9, a + 1.5);
+    $('#wx').style.transform = `rotate(${(1 - outCubic(px)) * 180}deg) scale(${outBack(px)})`; $('#wx').style.opacity = px;
+    pop($('#tagline'), seg(t, a + 1.5, a + 2.2), 30, 1);
+    pop($('#tagline2'), seg(t, a + 2.1, a + 2.8), 20, 1);
+  }
+  // S3
+  {
+    const a = 7.2;
+    $$('#s3 .stat').forEach((el, i) => {
+      const p = seg(t, a + .3 + i * .22, a + 1.0 + i * .22);
+      pop(el, p, 60, .85);
+      const v = el.querySelector('.v');
+      const to = +v.dataset.to, dec = +v.dataset.dec;
+      const c = outCubic(seg(t, a + .4 + i * .22, a + 2.0 + i * .22));
+      v.textContent = (to * c).toFixed(dec);
+    });
+  }
+  // S4
+  {
+    const a = 11.0;
+    $('#tlLine').style.width = (1560 * inOut(seg(t, a + .3, a + 2.6))) + 'px';
+    $$('#s4 .node').forEach((el, i) => {
+      const p = seg(t, a + .6 + i * .6, a + 1.3 + i * .6);
+      pop(el.querySelector('.dot'), p, 0, 0);
+      pop(el.querySelector('.date'), seg(t, a + .75 + i * .6, a + 1.45 + i * .6), 20, 1);
+      pop(el.querySelector('.card'), seg(t, a + .9 + i * .6, a + 1.6 + i * .6), 40, .9);
+    });
+  }
+  // S5
+  {
+    const a = 15.5;
+    $$('#s5 .paper').forEach((el, i) => pop(el, seg(t, a + .4 + i * .3, a + 1.2 + i * .3), 80, .9));
+  }
+  // S6
+  {
+    const a = 21.0;
+    $$('#s6 .proj').forEach((el, i) => pop(el, seg(t, a + .4 + i * .18, a + 1.1 + i * .18), 60, .85));
+  }
+  // S7
+  {
+    const a = 26.5;
+    pop($('#outroPhoto'), seg(t, a + .1, a + .8), 0, .6);
+    pop($('#outroName'), seg(t, a + .4, a + 1.1), 30, 1);
+    pop($('#outroEn'), seg(t, a + .6, a + 1.3), 24, 1);
+    pop($('#outroLine'), seg(t, a + .9, a + 1.6), 24, 1);
+    $$('#s7 .chip').forEach((el, i) => pop(el, seg(t, a + 1.1 + i * .2, a + 1.8 + i * .2), 30, .9));
+  }
+}
+
+window.__render = render;
+window.__DUR = DUR;
+if (!location.search.includes('capture')) {
+  let t0 = null;
+  const loop = ts => { if (t0 === null) t0 = ts; render(((ts - t0) / 1000) % DUR); requestAnimationFrame(loop); };
+  document.fonts.ready.then(() => requestAnimationFrame(loop));
+} else {
+  render(0);
+}
+</script>
+</body>
+</html>

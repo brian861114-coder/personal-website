@@ -10,7 +10,7 @@ locations:
 status_source: inline
 snapshot: full
 related: []
-card_reviewed: 2026-09-24
+card_reviewed: 2026-09-25
 ---
 
 ## 用途
@@ -20,6 +20,7 @@ card_reviewed: 2026-09-24
 - 雙語首頁：`style-4-notion-warm.html` fetch `data.json`；`en/index.html` 對 `en/data.en.json`
 - 研究／作品內頁：`templates/detail.html` + 各頁 `page.json`（`js/detail.js`）
 - 技能卡與內頁同一份 JSON `skills.categories`
+- 30 秒介紹動畫：`tools/intro-video/intro.html`（文案寫在 HTML，不讀 JSON）；`node tools/intro-video/render.mjs` 錄成 `out/brian-intro-30s.mp4`（需 Chrome + ffmpeg，`out/` 不進 Git）
 
 ## 結構與入口
 - `data.json`／`en/data.en.json`：首頁文案；`js/`、`css/`、`images/` 共用
