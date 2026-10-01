@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>專案導覽</title>
+<style>
+:root {
+  --paper: #f7f5f0;
+  --surface: #ffffff;
+  --surface-2: #f0ede6;
+  --ink: #1d1f23;
+  --ink-2: #4a4f57;
+  --ink-3: #7b8089;
+  --line: #e2ddd3;
+  --accent: #0f6e66;
+  --accent-soft: #dcefec;
+  --warn: #9a5b00;
+  --warn-soft: #fbf0dc;
+  --danger: #a3372f;
+  --danger-soft: #f8e3e0;
+  --ok: #2f6d2f;
+  --ok-soft: #e2f0dd;
+  --code-bg: #1f2227;
+  --code-ink: #e8e6e1;
+  --shadow: 0 1px 2px rgba(30, 25, 15, .05), 0 4px 16px rgba(30, 25, 15, .05);
+  --radius: 12px;
+  --sans: "Microsoft JhengHei UI", "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
+  --mono: "Cascadia Code", "Cascadia Mono", Consolas, "SF Mono", monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #141619; --surface: #1c1f23; --surface-2: #23272c;
+    --ink: #e9e7e2; --ink-2: #b7b9bd; --ink-3: #868a91; --line: #2f343a;
+    --accent: #5cc4b8; --accent-soft: #173a37;
+    --warn: #e8b35a; --warn-soft: #3a2d15;
+    --danger: #ef8a80; --danger-soft: #3d1f1c;
+    --ok: #8fcf8a; --ok-soft: #1f3320;
+    --code-bg: #0e1013; --code-ink: #e8e6e1;
+    --shadow: none; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #141619; --surface: #1c1f23; --surface-2: #23272c;
+  --ink: #e9e7e2; --ink-2: #b7b9bd; --ink-3: #868a91; --line: #2f343a;
+  --accent: #5cc4b8; --accent-soft: #173a37;
+  --warn: #e8b35a; --warn-soft: #3a2d15;
+  --danger: #ef8a80; --danger-soft: #3d1f1c;
+  --ok: #8fcf8a; --ok-soft: #1f3320;
+  --code-bg: #0e1013; --code-ink: #e8e6e1;
+  --shadow: none; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 16px/1.75 var(--sans); -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); }
+code, .mono { font-family: var(--mono); font-size: .88em; }
+:not(pre) > code {
+  background: var(--surface-2); border: 1px solid var(--line);
+  padding: .05em .4em; border-radius: 6px; word-break: break-all;
+}
+
+/* Layout */
+.shell { display: grid; grid-template-columns: 232px minmax(0, 1fr); max-width: 1180px; margin: 0 auto; gap: 48px; padding: 0 32px; }
+nav.toc { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 40px 0 32px; }
+.toc-title { font-size: 12px; letter-spacing: .12em; color: var(--ink-3); text-transform: uppercase; margin: 0 0 12px 12px; }
+.toc a {
+  display: flex; align-items: center; gap: 10px; padding: 6px 12px; border-radius: 8px;
+  color: var(--ink-2); text-decoration: none; font-size: 14.5px;
+}
+.toc a .n { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); width: 18px; }
+.toc a:hover { background: var(--surface-2); color: var(--ink); }
+.toc a.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.toc a.active .n { color: var(--accent); }
+.toc-foot { margin: 20px 12px 0; padding-top: 16px; border-top: 1px solid var(--line); }
+.theme-btn {
+  font: inherit; font-size: 13px; color: var(--ink-2); background: none; border: 1px solid var(--line);
+  border-radius: 8px; padding: 4px 10px; cursor: pointer;
+}
+main { padding: 40px 0 96px; min-width: 0; }
+
+/* Hero */
+.hero { padding: 8px 0 28px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+.eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 13px; color: var(--ink-3); }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; padding: 2px 10px; border-radius: 999px; }
+.badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.badge.active { color: var(--ok); background: var(--ok-soft); }
+.badge.maintained { color: var(--accent); background: var(--accent-soft); }
+.badge.paused { color: var(--warn); background: var(--warn-soft); }
+.badge.archived { color: var(--ink-3); background: var(--surface-2); }
+h1 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.2; margin: 14px 0 8px; letter-spacing: -.01em; }
+.tagline { font-size: 18px; color: var(--ink-2); margin: 0 0 18px; max-width: 46em; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; padding: 0; list-style: none; }
+.chips li { font-size: 13px; padding: 3px 10px; border-radius: 6px; background: var(--surface); border: 1px solid var(--line); color: var(--ink-2); }
+.pathline { font-family: var(--mono); font-size: 13px; color: var(--ink-3); word-break: break-all; }
+
+/* Sections */
+section { padding-top: 44px; }
+h2 { display: flex; align-items: baseline; gap: 12px; font-size: 23px; margin: 0 0 6px; }
+h2 .n { font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 600; }
+.lede { color: var(--ink-3); font-size: 14.5px; margin: 0 0 18px; }
+.steps, .tasks, .checks { grid-template-columns: minmax(0, 1fr); }
+.card { min-width: 0; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+
+/* TL;DR */
+.tldr { padding: 20px 24px; border-left: 4px solid var(--accent); }
+.tldr ol { margin: 0; padding-left: 1.3em; }
+.tldr li { margin: 4px 0; font-size: 16.5px; }
+.tldr li::marker { color: var(--accent); font-weight: 700; }
+
+/* Source tag */
+.src {
+  display: inline-block; font-family: var(--mono); font-size: 11.5px; color: var(--ink-3);
+  background: var(--surface-2); border-radius: 5px; padding: 0 6px; margin-top: 6px; word-break: break-all;
+}
+.src.unverified { color: var(--warn); background: var(--warn-soft); }
+
+/* Quickstart */
+.steps { counter-reset: step; display: grid; gap: 14px; }
+.step { padding: 16px 20px 16px 64px; position: relative; }
+.step::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; left: 20px; top: 16px; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--accent); color: var(--surface); font-weight: 700; font-size: 14px;
+  display: grid; place-items: center;
+}
+.step h3 { margin: 0 0 4px; font-size: 16.5px; }
+.step p { margin: 4px 0 0; color: var(--ink-2); font-size: 14.5px; }
+.cmd { position: relative; margin: 10px 0 0; }
+.cmd pre {
+  margin: 0; background: var(--code-bg); color: var(--code-ink); border-radius: 9px;
+  padding: 12px 84px 12px 14px; overflow-x: auto; font: 13.5px/1.6 var(--mono);
+}
+.copy {
+  position: absolute; top: 7px; right: 7px; font: 12px var(--sans); color: var(--code-ink);
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 6px;
+  padding: 3px 10px; cursor: pointer;
+}
+.copy:hover { background: rgba(255,255,255,.2); }
+
+/* Glance */
+.glance { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+.fact { padding: 16px 18px; }
+.fact .k { font-size: 12.5px; letter-spacing: .06em; color: var(--ink-3); }
+.fact .v { font-size: 15.5px; font-weight: 600; margin-top: 2px; word-break: break-word; }
+
+/* Flow */
+.flow { display: flex; flex-wrap: nowrap; align-items: stretch; gap: 0; overflow-x: auto; padding-bottom: 6px; }
+.node { flex: 1 0 190px; padding: 14px 16px; min-width: 0; }
+.node .src { word-break: normal; overflow-wrap: anywhere; }
+.node .t { font-weight: 700; font-size: 15px; }
+.node .d { font-size: 13.5px; color: var(--ink-2); margin-top: 2px; }
+.arrow { flex: 0 0 34px; display: grid; place-items: center; color: var(--accent); font-size: 20px; }
+
+/* Tree */
+.tree { padding: 18px 20px; font-family: var(--mono); font-size: 13.5px; line-height: 1.9; overflow-x: auto; }
+.tree .row { display: grid; grid-template-columns: minmax(180px, max-content) 1fr; gap: 20px; white-space: nowrap; }
+.tree .p { color: var(--ink); }
+.tree .p.dir { color: var(--accent); font-weight: 600; }
+.tree .note { font-family: var(--sans); color: var(--ink-3); white-space: normal; font-size: 13.5px; }
+
+/* Table */
+.tbl { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+.tbl th { text-align: left; font-size: 12.5px; color: var(--ink-3); font-weight: 600; letter-spacing: .05em; padding: 12px 18px; border-bottom: 1px solid var(--line); }
+.tbl td { padding: 12px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: 0; }
+.tbl td:first-child { font-family: var(--mono); font-size: 13px; word-break: break-all; width: 38%; }
+
+/* Tasks (details) */
+.tasks { display: grid; gap: 10px; }
+details.task { padding: 0; }
+details.task summary {
+  list-style: none; cursor: pointer; padding: 14px 20px; font-weight: 600; display: flex; justify-content: space-between; gap: 12px;
+}
+details.task summary::-webkit-details-marker { display: none; }
+details.task summary::after { content: "＋"; color: var(--accent); font-weight: 400; }
+details.task[open] summary::after { content: "－"; }
+details.task .body { padding: 0 20px 16px; border-top: 1px dashed var(--line); }
+details.task ol { margin: 12px 0 0; padding-left: 1.3em; color: var(--ink-2); }
+
+/* Pitfalls */
+.pits { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+.pit { padding: 18px 20px; border-top: 3px solid var(--danger); }
+.pit .sym { font-weight: 700; margin-bottom: 8px; }
+.pit dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 14.5px; }
+.pit dt { color: var(--ink-3); font-size: 13px; padding-top: 1px; }
+.pit dd { margin: 0; color: var(--ink-2); }
+
+/* Verify */
+.checks { display: grid; gap: 10px; }
+.check { padding: 14px 20px; }
+.check .w { font-weight: 600; }
+
+/* Unknowns */
+.unknowns { padding: 18px 22px; background: var(--warn-soft); border-color: transparent; }
+.unknowns ul { margin: 0; padding-left: 1.2em; }
+.unknowns li { margin: 4px 0; }
+.unknowns li::marker { content: "？ "; color: var(--warn); font-weight: 700; }
+
+/* Glossary */
+.gloss { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.term { padding: 14px 18px; }
+.term .t { font-weight: 700; }
+.term .m { color: var(--ink-2); font-size: 14.5px; }
+
+.empty { color: var(--ink-3); font-size: 14.5px; font-style: italic; }
+footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-3); }
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; gap: 0; padding: 0 16px; }
+  nav.toc { position: static; height: auto; padding: 20px 0 0; display: none; }
+  main { padding-top: 24px; }
+  .flow { flex-direction: column; overflow: visible; }
+  .arrow { flex: 0 0 26px; transform: rotate(90deg); }
+  .node { flex: 0 0 auto; }
+  .tbl td:first-child { width: auto; }
+  .tbl, .tbl tbody, .tbl tr, .tbl td { display: block; }
+  .tbl thead { display: none; }
+  .tbl tr { border-bottom: 1px solid var(--line); padding: 8px 0; }
+  .tbl tr:last-child { border-bottom: 0; }
+  .tbl td { border: 0; padding: 4px 18px; }
+}
+@media print {
+  nav.toc, .copy, .theme-btn { display: none; }
+  .shell { display: block; }
+  body { background: #fff; }
+  details.task > .body { display: block; }
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="toc" aria-label="目錄">
+    <p class="toc-title">導覽</p>
+    <div id="toc"></div>
+    <div class="toc-foot"><button class="theme-btn" id="themeBtn" type="button">切換深淺色</button></div>
+  </nav>
+  <main id="app"></main>
+</div>
+
+<!--
+  ============================================================
+  內容資料區：只修改下面這個 JSON，不要改 HTML、CSS 或 JS。
+  欄位規格見 FILL_PROMPT.md。build.py 會自動替換 GUIDE_DATA 區塊。
+  ============================================================
+-->
+<script type="application/json" id="guide-data">
+/*GUIDE_DATA_START*/{
+  "meta": {
+    "id": "personal-website",
+    "name": "個人履歷網站",
+    "tagline": "給招募者掃證據的中英雙語靜態履歷站",
+    "status": "active",
+    "reviewed": "2026-10-01",
+    "generated_by": "cursor-grok-4.6-medium via Cursor CLI",
+    "path": "C:\\Users\\brian\\Downloads\\10_projects\\11_active\\personal-website",
+    "stack": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "JSON",
+      "Node.js",
+      "Playwright"
+    ]
+  },
+  "tldr": [
+    "這是求職用靜態履歷站：中英兩套獨立資料、同一套畫面程式；沒有 CMS，Git 就是版本。",
+    "日常改文案只動 `data.json`／`en/data.en.json` 與各頁 `page.json`，用 `node serve.mjs` 或 `start-site.bat` 預覽後重整瀏覽器。",
+    "不要雙擊 HTML（`fetch` 會失敗）；改完一邊語言必須改另一邊，並跑 `node tools/check-i18n.mjs`。"
+  ],
+  "quickstart": [
+    {
+      "title": "確認有 Node.js",
+      "command": "node -v",
+      "note": "`start-site.bat` 找不到 `node` 會停住並提示先安裝。",
+      "source": "start-site.bat:5"
+    },
+    {
+      "title": "啟動本機伺服器並開瀏覽器",
+      "command": "node serve.mjs",
+      "note": "或雙擊 `start-site.bat`：若 `http://127.0.0.1:8766/data.json` 還沒起來會另開標題含「個人網站預覽」的視窗跑伺服器，再開站根。預設埠 `8766`，只聽 `127.0.0.1`。關掉該視窗即停服。",
+      "source": "serve.mjs:7"
+    },
+    {
+      "title": "進中文或英文首頁",
+      "command": "",
+      "note": "站根 `index.html` 會依 `localStorage` 的 `site-lang` → 瀏覽器語言 → 預設中文，導到 `style-4-notion-warm.html` 或 `en/`。也可直開 `http://127.0.0.1:8766/style-4-notion-warm.html` 與 `http://127.0.0.1:8766/en/`。",
+      "source": "index.html:15"
+    },
+    {
+      "title": "改內容後做檔案檢查",
+      "command": "npm test",
+      "note": "等價 `node tools/check-i18n.mjs`，不必先起伺服器。離開碼 0 通過、1 有錯。",
+      "source": "package.json:8"
+    }
+  ],
+  "glance": [
+    {
+      "label": "入口",
+      "value": "語言入口 `index.html`；中文首頁 `style-4-notion-warm.html`；英文首頁 `en/index.html`",
+      "source": "AGENTS.md:21"
+    },
+    {
+      "label": "資料位置",
+      "value": "首頁中／英 `data.json`、`en/data.en.json`；研究／作品各頁 `page.json`；技能文案在首頁 JSON 的 `skills.categories`",
+      "source": "README.md:7"
+    },
+    {
+      "label": "設定檔",
+      "value": "`package.json` 腳本與 `playwright-core`；本機埠可用環境變數 `PORT`（預設 8766）",
+      "source": "package.json:6"
+    },
+    {
+      "label": "測試",
+      "value": "`npm test`＝i18n 檔案比對；瀏覽器驗 `node tools/verify-pages.mjs`、`node tools/check-mobile.mjs`（需先 `node serve.mjs`）",
+      "source": "README.md:35"
+    },
+    {
+      "label": "對外連線",
+      "value": "畫面執行期無後端；頁面會載 jsDelivr Phosphor Icons 與 Google Fonts Inter。遠端原始碼在 GitHub 公開 repo",
+      "source": "style-4-notion-warm.html:8"
+    },
+    {
+      "label": "部署方式",
+      "value": "無 build、無 `.github/` CI。語言切換用相對路徑，註解假設 GitHub Pages 掛在 repo 子路徑",
+      "source": "js/detail.js:131"
+    },
+    {
+      "label": "本機預覽",
+      "value": "`start-site.bat` 或 `node serve.mjs`；不要用 `file://` 開 HTML",
+      "source": "AGENTS.md:8"
+    }
+  ],
+  "flow": [
+    {
+      "name": "語言入口",
+      "role": "打開站根時用上次切換語言、否則瀏覽器語言（非 `zh` 走英文）、再否則中文，`location.replace` 到對應首頁。",
+      "source": "index.html:15"
+    },
+    {
+      "name": "首頁渲染",
+      "role": "依網址是否在 `/en/` 決定語言，`fetch` `data.json` 或同目錄 `data.en.json`（`cache: 'no-store'`）後把各區塊畫進空殼 HTML。",
+      "source": "style-4-notion-warm.html:553"
+    },
+    {
+      "name": "卡片進內頁",
+      "role": "研究／作品卡的 `link` 指向該 slug 資料夾；技能卡用 `skills.categories` 的 `link`。",
+      "source": "README.md:117"
+    },
+    {
+      "name": "介紹頁渲染",
+      "role": "`js/detail.js` 再 `fetch` 同目錄 `page.json`，用 `kind` 選四塊標題，畫左文右媒體與 lightbox。",
+      "source": "js/detail.js:416"
+    },
+    {
+      "name": "技能內頁渲染",
+      "role": "用網址資料夾當 slug，去首頁 JSON 的 `skills.categories` 找對應列，表格文案不寫在該頁 HTML。",
+      "source": "skills/_template/index.html:245"
+    }
+  ],
+  "tree": [
+    {
+      "path": "data.json",
+      "note": "中文首頁文案與列表的唯一來源"
+    },
+    {
+      "path": "style-4-notion-warm.html",
+      "note": "中文首頁版面、內嵌 CSS／JS；內容靠 fetch，不內嵌履歷正文"
+    },
+    {
+      "path": "index.html",
+      "note": "語言導向頁，不是履歷本體"
+    },
+    {
+      "path": "en/",
+      "note": "英文樹：`index.html`、`data.en.json` 與各內頁；共用 js／css／images 不複製"
+    },
+    {
+      "path": "js/detail.js",
+      "note": "研究／作品介紹頁共用 renderer，語言看網址 `/en/`"
+    },
+    {
+      "path": "css/detail.css",
+      "note": "介紹頁樣式（與首頁視覺變數應對齊）"
+    },
+    {
+      "path": "research/",
+      "note": "論文介紹頁：每 slug 一份 `index.html` + `page.json`（加該頁 images）"
+    },
+    {
+      "path": "projects/",
+      "note": "作品介紹頁，結構同研究頁"
+    },
+    {
+      "path": "skills/",
+      "note": "技能內頁；新增複製 `_template/`，文案仍在首頁 JSON"
+    },
+    {
+      "path": "templates/",
+      "note": "`detail.html`／`detail-en.html` 與空白 `page.json`"
+    },
+    {
+      "path": "tools/",
+      "note": "i18n／瀏覽器檢查、截圖、30 秒介紹動畫"
+    },
+    {
+      "path": "images/",
+      "note": "首頁卡片封面與共用圖（中英共用）"
+    },
+    {
+      "path": "files/",
+      "note": "論文 PDF 等共用檔"
+    },
+    {
+      "path": "assets/",
+      "note": "站 icon"
+    },
+    {
+      "path": "serve.mjs",
+      "note": "本機靜態檔伺服器"
+    },
+    {
+      "path": "AGENTS.md",
+      "note": "給 agent 的現行規則；與過期架構文衝突時以此為準"
+    }
+  ],
+  "key_files": [
+    {
+      "path": "AGENTS.md",
+      "why": "改程式、加技能／論文／作品頁前的單一真相：資料來源、雙語層數、畫面四塊、圖影片規格。",
+      "source": "AGENTS.md:1"
+    },
+    {
+      "path": "README.md",
+      "why": "人改內容的欄位對照與 JSON 編輯注意；日常維護從這裡對區塊。",
+      "source": "README.md:59"
+    },
+    {
+      "path": "data.json",
+      "why": "中文首頁所有可見文案與卡列表；順序＝畫面順序。",
+      "source": "data.json:1"
+    },
+    {
+      "path": "en/data.en.json",
+      "why": "英文首頁獨立資料，沒有自動同步；結構必須與中文對齊。",
+      "source": "en/data.en.json"
+    },
+    {
+      "path": "js/detail.js",
+      "why": "介紹頁標題、placeholder、圖庫與 lightbox 全站一起變；改 `KIND_COPY` 要同步檢查腳本。",
+      "source": "js/detail.js:16"
+    },
+    {
+      "path": "style-4-notion-warm.html",
+      "why": "首頁 renderer 與版面；改完須複製到 `en/index.html` 再改 lang／title／favicon 層數。",
+      "source": "style-4-notion-warm.html:753"
+    },
+    {
+      "path": "tools/check-i18n.mjs",
+      "why": "沒有 build 時的守門員：結構、漏頁、死路徑、首頁 HTML 只改一邊。",
+      "source": "tools/check-i18n.mjs:1"
+    }
+  ],
+  "tasks": [
+    {
+      "title": "改首頁文案（雙語）",
+      "steps": [
+        "改 `data.json` 對應鍵（陣列順序＝畫面順序；最後一筆不要尾逗號）",
+        "用同樣結構改 `en/data.en.json`",
+        "跑 `node tools/check-i18n.mjs`，本機伺服器重整瀏覽器確認"
+      ],
+      "source": "README.md:20"
+    },
+    {
+      "title": "新增一類技能",
+      "steps": [
+        "複製 `skills/_template/` 為 `skills/<slug>/`（英文小寫連字號）",
+        "在中英 `skills.categories` 各加一筆：`name`、`slug`、`link`、`intro`、`tags[{name,detail}]`",
+        "英文還要有 `en/skills/<slug>/`；三處 slug／資料夾／link 一致；不要改模板裡的表格文案"
+      ],
+      "source": "AGENTS.md:47"
+    },
+    {
+      "title": "新增研究或作品介紹頁",
+      "steps": [
+        "複製 `templates/detail.html` 到 `research/<slug>/index.html` 或 `projects/<slug>/index.html`，再複製 `templates/page.json`",
+        "英文在 `en/` 下同名資料夾（資源路徑多一層 `../`）；`kind` 不翻譯",
+        "首頁該筆加 `link`；空字串會顯示提示，不要刪欄位裝完成"
+      ],
+      "source": "AGENTS.md:61"
+    },
+    {
+      "title": "改完中文首頁 HTML 後同步英文",
+      "steps": [
+        "把 `style-4-notion-warm.html` 複製成 `en/index.html`",
+        "改 `<html lang>` 為 `en`、`<title>`、favicon 加一層 `../`",
+        "跑 `node tools/check-i18n.mjs`（不同步會 fail）"
+      ],
+      "source": "AGENTS.md:30"
+    },
+    {
+      "title": "上線前壓縮展示影片",
+      "steps": [
+        "原始錄影先用文件中的 `ffmpeg` 指令壓成各頁 `videos/`（橫式目標 < 1 MB、直式 < 300 KB，教材例外）",
+        "抽 poster 轉 WebP 放到該頁 `images/`，`page.json` 的 `figures` 填 `video` 與 `poster`"
+      ],
+      "source": "AGENTS.md:101"
+    },
+    {
+      "title": "重錄 30 秒介紹動畫",
+      "steps": [
+        "改 `tools/intro-video/intro.html`／`scripts.js`／`character.js`（中文文案在 HTML，不讀 `data.json`）",
+        "英文加 `--en`（文案在 `copy-en.js`）",
+        "本機需 Chrome、ffmpeg、Python + numpy：`node tools/intro-video/render.mjs video`；輸出在 `tools/intro-video/out/`（不進 Git）"
+      ],
+      "source": "tools/intro-video/render.mjs:5"
+    }
+  ],
+  "pitfalls": [
+    {
+      "symptom": "整頁變成無法載入 `data.json`／`page.json` 的錯誤說明",
+      "cause": "用 `file://` 雙擊 HTML，瀏覽器 CORS 不讓 `fetch` 讀本地 JSON",
+      "fix": "用 `node serve.mjs` 或 `start-site.bat` 開 `http://127.0.0.1:8766/`",
+      "source": "js/detail.js:98"
+    },
+    {
+      "symptom": "整頁變成 JSON 錯誤說明，或某一語言缺卡／結構對不齊",
+      "cause": "中英是兩份獨立資料、無自動同步；JSON 少逗號、引號沒閉合、或最後一筆多了逗號",
+      "fix": "兩邊一起改；存檔後跑 `node tools/check-i18n.mjs`；字串用雙引號",
+      "source": "README.md:22"
+    },
+    {
+      "symptom": "`check-i18n` 報 `en/index.html` 與中文首頁不同步",
+      "cause": "只改了 `style-4-notion-warm.html`，沒複製並調整英文三處差異",
+      "fix": "依 AGENTS 同步後再跑檢查",
+      "source": "tools/check-i18n.mjs:226"
+    },
+    {
+      "symptom": "卡片圖巨大或透明背景變黑／破圖",
+      "cause": "封面應用 640×640 WebP（品質 85）；RGBA 有透明通道不能轉 JPEG；原始 PNG 可達數 MB 但卡片只顯示約 160px 高",
+      "fix": "壓成 WebP 放到根目錄 `images/`，路徑寫在 JSON 的 `img`",
+      "source": "AGENTS.md:93"
+    },
+    {
+      "symptom": "GitHub Pages 子路徑下語言切換 404 或跳錯站",
+      "cause": "站不是掛在網域根時，`/en/...` 這種絕對路徑會指到錯地方",
+      "fix": "維持現行程式用相對層數算另一語言網址，不要改成站根絕對路徑",
+      "source": "js/detail.js:130"
+    },
+    {
+      "symptom": "改了履歷 JSON 但介紹動畫台詞沒變",
+      "cause": "動畫文案寫在 `intro.html`，`render.mjs` 註明改 `data.json` 不會自動同步",
+      "fix": "改 intro 檔後重跑 `node tools/intro-video/render.mjs video`（英文 `--en`）",
+      "source": "tools/intro-video/render.mjs:14"
+    }
+  ],
+  "verify": [
+    {
+      "what": "中英資料結構、漏頁、死路徑、首頁 HTML 同步",
+      "command": "node tools/check-i18n.mjs",
+      "source": "tools/check-i18n.mjs:8"
+    },
+    {
+      "what": "本機能開站並讀到 JSON",
+      "command": "node serve.mjs",
+      "source": "serve.mjs:44"
+    },
+    {
+      "what": "真瀏覽器：無 JS 錯、無 404、切換鍵到同一頁另一語言（需先起伺服器；腳本開本機 Chrome）",
+      "command": "node tools/verify-pages.mjs",
+      "source": "tools/verify-pages.mjs:4"
+    },
+    {
+      "what": "375／320px 無整頁水平捲動、nav 不被擠換行（需先起伺服器）",
+      "command": "node tools/check-mobile.mjs",
+      "source": "tools/check-mobile.mjs:5"
+    }
+  ],
+  "unknowns": [
+    "根目錄沒有 `HemingwayBridge.md`（規則要求若已啟用才讀）；此 repo 是否仍走該工作流未在檔案中證實。",
+    "`README.md:16` 寫本機捷徑 `start-website.lnk` 與桌面 Personal-Website；工作區搜尋不到 `.lnk`，實際入口以 `start-site.bat`／`node serve.mjs` 為準。",
+    "`ARCHITECTURE_for_VibeCoder.md`（2026-08）仍寫 `window.__DATA__`、可雙擊 HTML、無 localStorage、作品頁佔位；`AGENTS.md:13` 已標過期。其中 GitHub Pages 當時實測 404，本回合未再對外請求確認是否已啟用。",
+    "`AGENTS.md` 技能節寫「現況只放計算材料」；`data.json` 另有 `analytical-techniques`、`ai-automation`、`materials-process`、`languages` 四類（以程式／資料為準）。",
+    "`README.md:145` 寫作品頁問題塊標題是「想解決什麼問題」；`js/detail.js` 的 `KIND_COPY` 與 `tools/check-i18n.mjs:333` 是「問題與痛點」（以程式為準）。",
+    "`js/detail.js` 的語言切換未寫 `localStorage`；首頁與技能頁會 `setItem('site-lang', …)`。從介紹頁切語言後，下次開站根是否記得語言，行為可能不一致。",
+    "`package.json` 的 `main` 是 `index.js` 且 `type` 為 `commonjs`，實際伺服器是 ESM 的 `serve.mjs`；不影響用 `npm start`。",
+    "`tools/verify-pages.mjs` 把作品卡數寫死為 6；若增刪首頁作品卡，檢查會過時，需人工改腳本。",
+    "basic-memory 查詢在本回合被拒，未對照既有筆記。"
+  ],
+  "glossary": [
+    {
+      "term": "slug",
+      "meaning": "資料夾英文短名（小寫加連字號），必須和技能的 `slug`／`link` 或研究作品路徑一致。"
+    },
+    {
+      "term": "kind",
+      "meaning": "`page.json` 裡給程式看的類型，只能是 `research` 或 `project`，中英必須相同、不要翻譯。"
+    },
+    {
+      "term": "KIND_COPY",
+      "meaning": "`js/detail.js` 裡四塊 h2 的中英對照表；改這裡就要改 i18n／verify 腳本裡同一組字。"
+    },
+    {
+      "term": "site-lang",
+      "meaning": "瀏覽器 `localStorage` 鍵，記住你上次在切換鍵選的 `en` 或 `zh`，站根導向會先看它。"
+    },
+    {
+      "term": "transfer",
+      "meaning": "`page.json` 保留欄位，現行 renderer 不畫出來。"
+    },
+    {
+      "term": "shortTitle",
+      "meaning": "介紹頁 h1 用的短標題；有填才在下方再顯示全名 `title`。"
+    }
+  ]
+}/*GUIDE_DATA_END*/
+</script>
+
+<script>
+(function () {
+  var raw = document.getElementById("guide-data").textContent
+    .replace("/*GUIDE_DATA_START*/", "").replace("/*GUIDE_DATA_END*/", "");
+  var G;
+  try { G = JSON.parse(raw); } catch (e) {
+    document.getElementById("app").textContent = "導覽資料 JSON 格式錯誤：" + e.message;
+    return;
+  }
+  var app = document.getElementById("app");
+  var STATUS = { active: "開發中", maintained: "維護中", paused: "暫停", archived: "已封存" };
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  // Inline `code` only; everything else stays plain text (no HTML injection).
+  function rich(tag, cls, text) {
+    var n = el(tag, cls);
+    String(text || "").split(/(`[^`]+`)/).forEach(function (part) {
+      if (/^`[^`]+`$/.test(part)) n.appendChild(el("code", null, part.slice(1, -1)));
+      else if (part) n.appendChild(document.createTextNode(part));
+    });
+    return n;
+  }
+  function src(s) {
+    var v = (s || "").trim() || "未查證";
+    return el("span", "src" + (v === "未查證" ? " unverified" : ""), v === "未查證" ? "未查證" : "來源：" + v);
+  }
+  function arr(x) { return Array.isArray(x) ? x : []; }
+
+  var sections = [];
+  function section(id, title, lede, build, items) {
+    var s = el("section"); s.id = id;
+    var h = el("h2"); h.appendChild(el("span", "n", String(sections.length + 1).padStart(2, "0")));
+    h.appendChild(document.createTextNode(title));
+    s.appendChild(h);
+    if (lede) s.appendChild(el("p", "lede", lede));
+    if (items !== undefined && arr(items).length === 0) s.appendChild(el("p", "empty", "（這個專案沒有相關內容）"));
+    else build(s);
+    sections.push({ id: id, title: title });
+    app.appendChild(s);
+  }
+
+  // Hero
+  var m = G.meta || {};
+  document.title = (m.name || "專案") + " · 導覽";
+  var hero = el("header", "hero");
+  var eb = el("div", "eyebrow");
+  var st = m.status in STATUS ? m.status : "archived";
+  eb.appendChild(el("span", "badge " + st, STATUS[st]));
+  if (m.reviewed) eb.appendChild(el("span", null, "檢視日期 " + m.reviewed));
+  if (m.id) eb.appendChild(el("span", "mono", m.id));
+  hero.appendChild(eb);
+  hero.appendChild(el("h1", null, m.name || "未命名專案"));
+  if (m.tagline) hero.appendChild(el("p", "tagline", m.tagline));
+  var chips = el("ul", "chips");
+  arr(m.stack).forEach(function (t) { chips.appendChild(el("li", null, t)); });
+  if (chips.children.length) hero.appendChild(chips);
+  if (m.path) hero.appendChild(el("div", "pathline", m.path));
+  app.appendChild(hero);
+
+  section("tldr", "三句話看懂", null, function (s) {
+    var c = el("div", "card tldr"), ol = el("ol");
+    arr(G.tldr).forEach(function (t) { ol.appendChild(rich("li", null, t)); });
+    c.appendChild(ol); s.appendChild(c);
+  }, G.tldr);
+
+  section("quickstart", "10 分鐘跑起來", "照順序做完，就能在本機看到它運作。", function (s) {
+    var w = el("div", "steps");
+    arr(G.quickstart).forEach(function (q) {
+      var c = el("div", "card step");
+      c.appendChild(el("h3", null, q.title));
+      if (q.command) {
+        var box = el("div", "cmd"), pre = el("pre"), btn = el("button", "copy", "複製");
+        pre.textContent = q.command; btn.type = "button";
+        btn.addEventListener("click", function () {
+          var done = function () { btn.textContent = "已複製"; setTimeout(function () { btn.textContent = "複製"; }, 1400); };
+          if (navigator.clipboard) navigator.clipboard.writeText(q.command).then(done, function () {});
+        });
+        box.appendChild(pre); box.appendChild(btn); c.appendChild(box);
+      }
+      if (q.note) c.appendChild(rich("p", null, q.note));
+      c.appendChild(src(q.source));
+      w.appendChild(c);
+    });
+    s.appendChild(w);
+  }, G.quickstart);
+
+  section("glance", "一眼看完", null, function (s) {
+    var g = el("div", "glance");
+    arr(G.glance).forEach(function (f) {
+      var c = el("div", "card fact");
+      c.appendChild(el("div", "k", f.label));
+      c.appendChild(rich("div", "v", f.value));
+      c.appendChild(src(f.source));
+      g.appendChild(c);
+    });
+    s.appendChild(g);
+  }, G.glance);
+
+  section("flow", "資料怎麼流", "從輸入到輸出的主要路徑。", function (s) {
+    var f = el("div", "flow");
+    arr(G.flow).forEach(function (n, i) {
+      if (i) f.appendChild(el("div", "arrow", "→"));
+      var c = el("div", "card node");
+      c.appendChild(el("div", "t", n.name));
+      c.appendChild(rich("div", "d", n.role));
+      c.appendChild(src(n.source));
+      f.appendChild(c);
+    });
+    s.appendChild(f);
+  }, G.flow);
+
+  section("tree", "資料夾地圖", "只列出值得知道的部分。", function (s) {
+    var c = el("div", "card tree");
+    arr(G.tree).forEach(function (t) {
+      var p = String(t.path || ""), clean = p.replace(/\/$/, "");
+      var depth = clean.split("/").length - 1;
+      var r = el("div", "row");
+      var pe = el("span", "p" + (/\/$/.test(p) ? " dir" : ""), "\u00a0".repeat(depth * 3) + (depth ? "└ " : "") + (clean.split("/").pop() + (/\/$/.test(p) ? "/" : "")));
+      r.appendChild(pe); r.appendChild(el("span", "note", t.note || ""));
+      c.appendChild(r);
+    });
+    s.appendChild(c);
+  }, G.tree);
+
+  section("files", "關鍵檔案", "改功能前先讀這幾個。", function (s) {
+    var c = el("div", "card"), t = el("table", "tbl");
+    var th = el("thead"), hr = el("tr");
+    hr.appendChild(el("th", null, "檔案")); hr.appendChild(el("th", null, "為什麼重要"));
+    th.appendChild(hr); t.appendChild(th);
+    var tb = el("tbody");
+    arr(G.key_files).forEach(function (k) {
+      var r = el("tr"); r.appendChild(el("td", null, k.path));
+      var d = rich("td", null, k.why); d.appendChild(el("br")); d.appendChild(src(k.source));
+      r.appendChild(d); tb.appendChild(r);
+    });
+    t.appendChild(tb); c.appendChild(t); s.appendChild(c);
+  }, G.key_files);
+
+  section("tasks", "常見任務", "點開看步驟。", function (s) {
+    var w = el("div", "tasks");
+    arr(G.tasks).forEach(function (k) {
+      var d = el("details", "card task"); d.appendChild(el("summary", null, k.title));
+      var b = el("div", "body"), ol = el("ol");
+      arr(k.steps).forEach(function (x) { ol.appendChild(rich("li", null, x)); });
+      b.appendChild(ol); b.appendChild(src(k.source)); d.appendChild(b); w.appendChild(d);
+    });
+    s.appendChild(w);
+  }, G.tasks);
+
+  section("pitfalls", "踩過的坑", "症狀 → 原因 → 解法。", function (s) {
+    var w = el("div", "pits");
+    arr(G.pitfalls).forEach(function (p) {
+      var c = el("div", "card pit");
+      c.appendChild(el("div", "sym", p.symptom));
+      var dl = el("dl");
+      dl.appendChild(el("dt", null, "原因")); dl.appendChild(rich("dd", null, p.cause));
+      dl.appendChild(el("dt", null, "解法")); dl.appendChild(rich("dd", null, p.fix));
+      c.appendChild(dl); c.appendChild(src(p.source)); w.appendChild(c);
+    });
+    s.appendChild(w);
+  }, G.pitfalls);
+
+  section("verify", "怎麼確認沒弄壞", null, function (s) {
+    var w = el("div", "checks");
+    arr(G.verify).forEach(function (v) {
+      var c = el("div", "card check");
+      c.appendChild(el("div", "w", v.what));
+      if (v.command) { var box = el("div", "cmd"), pre = el("pre"); pre.textContent = v.command; box.appendChild(pre); c.appendChild(box); }
+      c.appendChild(src(v.source)); w.appendChild(c);
+    });
+    s.appendChild(w);
+  }, G.verify);
+
+  section("unknowns", "尚未確認", "撰寫時查不到或互相矛盾的地方，使用前請先自行核對。", function (s) {
+    var c = el("div", "card unknowns"), ul = el("ul");
+    arr(G.unknowns).forEach(function (u) { ul.appendChild(rich("li", null, u)); });
+    c.appendChild(ul); s.appendChild(c);
+  }, G.unknowns);
+
+  section("glossary", "名詞", null, function (s) {
+    var w = el("div", "gloss");
+    arr(G.glossary).forEach(function (g) {
+      var c = el("div", "card term");
+      c.appendChild(el("div", "t", g.term)); c.appendChild(rich("div", "m", g.meaning));
+      w.appendChild(c);
+    });
+    s.appendChild(w);
+  }, G.glossary);
+
+  var ft = el("footer");
+  ft.textContent = "內容產生：" + (m.generated_by || "未註明") + "。標示「未查證」的項目沒有對應的原始檔案證據。";
+  app.appendChild(ft);
+
+  // TOC + scrollspy
+  var toc = document.getElementById("toc"), links = {};
+  sections.forEach(function (s, i) {
+    var a = el("a"); a.href = "#" + s.id;
+    a.appendChild(el("span", "n", String(i + 1).padStart(2, "0")));
+    a.appendChild(document.createTextNode(s.title));
+    toc.appendChild(a); links[s.id] = a;
+  });
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) {
+          Object.keys(links).forEach(function (k) { links[k].classList.remove("active"); });
+          links[e.target.id].classList.add("active");
+        }
+      });
+    }, { rootMargin: "-10% 0px -80% 0px" });
+    sections.forEach(function (s) { io.observe(document.getElementById(s.id)); });
+  }
+
+  // Theme toggle (per-viewer convenience only)
+  var root = document.documentElement;
+  try { var saved = localStorage.getItem("guide-theme"); if (saved) root.dataset.theme = saved; } catch (e) {}
+  document.getElementById("themeBtn").addEventListener("click", function () {
+    var dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("guide-theme", root.dataset.theme); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>

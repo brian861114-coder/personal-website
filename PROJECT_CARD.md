@@ -26,6 +26,7 @@ card_reviewed: 2026-09-25
 - `data.json`／`en/data.en.json`：首頁文案；`js/`、`css/`、`images/` 共用
 - `research/`、`projects/`、`skills/`（英文在 `en/` 下多一層）
 - 啟動：`node serve.mjs` 或 `start-site.bat`；檢查：`npm test`；瀏覽器驗需先起伺服器再跑 `tools/verify-pages.mjs`、`check-mobile.mjs`
+- 導覽手冊：`PROJECT_GUIDE.html`（cursor-grok-4.6-medium 產生，2026-10-01；來源未逐條人工核對）
 
 ## 外部依賴
 - 無執行期後端；`package.json` 有 playwright-core 供檢查腳本
