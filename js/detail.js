@@ -9,8 +9,11 @@ function dirSegments() {
   return p.split('/').filter(Boolean);
 }
 
+// 內頁固定在 <kind>/<slug>/（英文再多一層 en/）。從尾端往回數，
+// 不看網址第一層：GitHub Pages 前面還有 /<repo>/。
 const SEGMENTS = dirSegments();
-const LANG = SEGMENTS[0] === 'en' ? 'en' : 'zh';
+const PAGE_PATH = SEGMENTS.slice(-2);
+const LANG = SEGMENTS[SEGMENTS.length - 3] === 'en' ? 'en' : 'zh';
 const IS_EN = LANG === 'en';
 
 const KIND_COPY = {
@@ -130,8 +133,8 @@ function isFilled(value) {
 // 語言切換：中英內頁結構對稱，用相對層數算就好。
 // GitHub Pages 是 repo 子路徑，不能用 /en/... 這種站根絕對路徑。
 function altLangHref() {
-  const up = '../'.repeat(SEGMENTS.length);
-  const target = IS_EN ? SEGMENTS.slice(1) : ['en', ...SEGMENTS];
+  const up = '../'.repeat(PAGE_PATH.length + (IS_EN ? 1 : 0));
+  const target = IS_EN ? PAGE_PATH : ['en', ...PAGE_PATH];
   return up + target.join('/') + '/';
 }
 

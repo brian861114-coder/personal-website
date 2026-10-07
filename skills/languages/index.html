@@ -193,9 +193,12 @@
   let path = location.pathname.replace(/\/index\.html?$/i, '/');
   if (!path.endsWith('/')) path += '/';
   const SEGMENTS = path.split('/').filter(Boolean);
-  const LANG = SEGMENTS[0] === 'en' ? 'en' : 'zh';
+  // 技能頁固定在 skills/<slug>/（英文再多一層 en/）。從尾端往回數，
+  // 不看網址第一層：GitHub Pages 前面還有 /<repo>/。
+  const PAGE_PATH = SEGMENTS.slice(-2);
+  const LANG = SEGMENTS[SEGMENTS.length - 3] === 'en' ? 'en' : 'zh';
   const IS_EN = LANG === 'en';
-  const UP = '../'.repeat(SEGMENTS.length);           // 回到站根的相對前綴
+  const UP = '../'.repeat(PAGE_PATH.length + (IS_EN ? 1 : 0)); // 回到站根的相對前綴
   const slug = SEGMENTS[SEGMENTS.length - 1] || '';   // 資料夾名 = slug
   const home = `${UP}style-4-notion-warm.html`;
 
@@ -225,7 +228,7 @@
 
   // 切到另一語言的同一頁：中英技能頁結構對稱，用相對層數算就好。
   // GitHub Pages 是 repo 子路徑，不能用 /en/... 這種站根絕對路徑。
-  const altHref = UP + (IS_EN ? SEGMENTS.slice(1) : ['en', ...SEGMENTS]).join('/') + '/';
+  const altHref = UP + (IS_EN ? PAGE_PATH : ['en', ...PAGE_PATH]).join('/') + '/';
 
   // <html lang> 要放「這一頁自己的語言」，不是切換鍵要去的語言（T.langTag）
   document.documentElement.lang = IS_EN ? 'en' : 'zh-Hant';

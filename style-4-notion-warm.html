@@ -552,7 +552,8 @@
 <script>
 // 語言由網址決定：/en/ 之下是英文版，其餘是中文版。
 // 首頁 HTML 在中英兩邊是同一份，所以切換鍵與資料檔名都在這裡算。
-const LANG = location.pathname.replace(/\/index\.html?$/i, '/').split('/').filter(Boolean)[0] === 'en'
+// 看「這一頁所在的目錄」而不是網址第一層：GitHub Pages 前面還有 /<repo>/。
+const LANG = location.pathname.replace(/[^/]*$/, '').split('/').filter(Boolean).pop() === 'en'
   ? 'en' : 'zh';
 const IS_EN = LANG === 'en';
 
