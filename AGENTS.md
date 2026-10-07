@@ -25,7 +25,7 @@
 | 語言入口 | `index.html`（導向，不是首頁本體） | |
 
 1. **內容一律兩邊都做。** 中英是兩份獨立資料，沒有任何同步機制。新增一個作品頁 = 兩邊各一個資料夾（`index.html` + `page.json` + 該頁素材）。
-2. **英文路徑多一層。** `en/` 掛在中文樹底下，所以英文內頁引用 `../../../js/detail.js`（中文 `../../`）；`page.json` 裡指首頁與 PDF 的路徑也各差一層。首頁資料的圖是 `../images/x.webp`（中文 `images/x.webp`）。
+2. **英文路徑多一層。** `en/` 掛在中文樹底下，所以英文內頁引用 `../../../js/detail.js`（中文 `../../`）；`page.json` 裡指 PDF 的路徑也差一層（`../../../files/`）；英文頁的 `homeHref`／`backHref`／`contactHref` 指**英文首頁** `../../`（例：`../../#research`），不要指回中文的 `style-4-notion-warm.html`。首頁資料的圖是 `../images/x.webp`（中文 `images/x.webp`）。
 3. **共用資源不複製。** `js/`、`css/`、`images/`、`files/`、`assets/` 只有根目錄一份。只有各內頁自己的 `images/`、`videos/`（論文插圖、專案截圖與錄影）兩邊各一份——英文版日後可能換成英文介面截圖。
 4. **首頁 HTML 兩邊是同一份。** 改完 `style-4-notion-warm.html` 要複製到 `en/index.html`，再改三處：`<html lang>`（`en`）、`<title>`、favicon 加一層 `../`。忘了同步 `tools/check-i18n.mjs` 會抓到。
 5. **語言切換鍵**（`.nav-lang`）放 nav 右端、`Contact` 左邊，顯示**目標語言**（中文頁顯示 `EN`）。內頁的切換鍵由 `js/detail.js` 用網址相對層數算出「同一頁的另一語言版本」，不是回首頁。改渲染時不要弄掉 `.nav-end` / `.nav-actions` 這兩層容器。

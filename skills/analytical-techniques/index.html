@@ -200,7 +200,7 @@
   const IS_EN = LANG === 'en';
   const UP = '../'.repeat(PAGE_PATH.length + (IS_EN ? 1 : 0)); // 回到站根的相對前綴
   const slug = SEGMENTS[SEGMENTS.length - 1] || '';   // 資料夾名 = slug
-  const home = `${UP}style-4-notion-warm.html`;
+  const home = IS_EN ? `${UP}en/` : `${UP}style-4-notion-warm.html`; // 英文技能頁回英文首頁
 
   const UI = {
     zh: {

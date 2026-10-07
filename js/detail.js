@@ -350,7 +350,8 @@ function render(d) {
   document.documentElement.lang = IS_EN ? 'en' : 'zh-Hant';
   document.title = d.title ? `${d.title} · Wei-Che Tseng` : T.detailTitle;
 
-  const home = d.homeHref || '../../style-4-notion-warm.html';
+  // 英文內頁回英文首頁（en/），不要掉回中文版。
+  const home = d.homeHref || (IS_EN ? '../../' : '../../style-4-notion-warm.html');
   const back = d.backHref || home;
   const contact = d.contactHref || `${home}#contact`;
   const backLabel = kind === 'project' ? T.project : T.research;
