@@ -48,9 +48,10 @@
         "title": "學士學位 — 材料科學與工程",
         "org": "國立成功大學 材料科學及工程學系",
         "details": [
-          "Understanding the crystal structure and related defects of semiconductor materials",
-          "Master <strong>material analysis methods</strong> and mechanisms（XRD / SEM / AFM …）",
-          "Taking semiconductor courses to <strong>comprehend the structure of common PN junction / MOSFET device</strong>"
+          "理解半導體材料的<strong>晶體結構與相關缺陷</strong>",
+          "熟悉<strong>材料分析方法</strong>與原理（XRD / SEM / AFM …）",
+          "修習半導體課程，<strong>理解常見 PN 接面與 MOSFET 元件結構</strong>",
+          "專題研究：評估以<strong>花青素作為液流電池材料</strong>的可行性，發現花青素容易降解、不適合長期使用"
         ]
       },
       {
@@ -58,8 +59,10 @@
         "title": "碩士學位 — 材料科學與工程",
         "org": "國立成功大學 材料科學及工程學研究所",
         "details": [
-          "<strong>Collaborate with multi lab teams</strong> to complete the Research Project",
-          "Investigate and <strong>publish 3 journal papers</strong> in green energy materials by simulation method"
+          "使用 <strong>VASP</strong> 進行第一原理計算，並運用<strong>國網中心（NCHC）計算資源</strong>執行模擬",
+          "<strong>跨實驗室合作</strong>：對方合成材料，我負責<strong>計算其催化特性</strong>",
+          "運用市售<strong>基因演算法軟體</strong>進行機器學習，輔助建立模擬參數",
+          "以模擬方法研究綠能材料，<strong>發表 3 篇期刊論文</strong>，並參加 <strong>TACT、ABBS</strong> 研討會"
         ]
       },
       {
@@ -69,11 +72,11 @@
         "description": "於晶圓級封裝產線擔任 Bumping 製程工程師，負責前段 PI／Cu／DFM 層的產線穩定與異常處理。",
         "details": [
           "擔任 <strong>9 台濺鍍（Sputter）機台的 owner</strong>，負責 <strong>recipe 與製程參數管理</strong>、<strong>機台異常的第一線處理</strong>，以及<strong>定期保養（PM）後的數據監控</strong>",
-          "負責 Sputter <strong>腔體清潔間隔延長評估</strong>：各機台機況與安裝的 module 不同，清潔片數設定也不一，因此<strong>逐台個別分析</strong>，比較每 7 片與每 14 片清潔一次的<strong>晶圓電阻差異</strong>，評估片數對品質的影響；<strong>初步結果</strong>無明顯差異且皆在規格內，顯示有延長清潔間隔、<strong>提升機台運行效率</strong>的空間",
+          "評估 <strong>Sputter 腔體清潔間隔延長</strong>的可行性，逐台分析清潔片數對晶圓電阻的影響，<strong>初步結果顯示有提升機台運行效率的空間</strong>",
           "隨團隊輪值小夜班，負責 Bumping 製程前段 <strong>PI、Cu 與乾膜（DFM）層</strong>，涵蓋濺鍍、PI 塗布、曝光、顯影、乾蝕刻、乾膜貼合、清洗等機台的產線監控與異常處理",
           "機台故障當下，<strong>判斷機台內晶圓的狀態</strong>，並<strong>指定後續處理方式</strong>（續流、重工、送檢測分析缺陷或報廢），降低在製品受損風險，讓產線盡快恢復",
-          "機台故障時需分析多部機台的 RAW DATA，原本要逐台拉表、逐項檢查參數；我以 <strong>Excel VBA 撰寫程式自動處理資料並繪圖</strong>，每次故障處理<strong>省下約 50 分鐘</strong>的數據整理時間",
-          "<strong>改版 OPUS 量測機台 SOP</strong>：舊版只有基礎操作，我擴充內容並加入詳細圖片說明，成為<strong>新人訓練教材</strong>與<strong>各班別統一操作</strong>的依據"
+          "以 <strong>Excel VBA</strong> 自動化多機台 RAW DATA 的整理與繪圖，取代逐台手動拉表，<strong>每次故障處理縮短約 50 分鐘</strong>",
+          "<strong>改版 OPUS 量測機台 SOP</strong>，擴充操作內容並加入圖解，作為<strong>新人訓練教材與各班別統一操作依據</strong>"
         ]
       }
     ]
