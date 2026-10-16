@@ -18,7 +18,7 @@
       { "value": "3", "label": "SCI journal papers" },
       { "value": "8.4", "label": "Highest impact factor" },
       { "value": "6", "label": "Complete projects" },
-      { "value": "2", "label": "Years in packaging process engineering" }
+      { "value": "1.5", "label": "Years in packaging process engineering" }
     ]
   },
   "about": {
@@ -26,7 +26,7 @@
     "title": "About",
     "description": "Physicist turned AI engineer — building systems that think and compute.",
     "paragraphs": [
-      "I'm Wei-Che, an engineer with a <strong>materials science background</strong> and <strong>two years of packaging process experience</strong>, and a strong passion for <strong>applying AI to everyday life</strong>. I graduated from the <strong>Department of Materials Science at National Cheng Kung University</strong> and earned my master's from the same department. During my studies I <strong>took several semiconductor electives</strong>, including \"Principles of Semiconductor and Photoelectrochemistry\" and \"Micro/Nano Device Process and Design.\" In my master's I used first-principles calculations to study the catalytic and electrical characteristics of materials, and <strong>published three related papers</strong>.",
+      "I'm Wei-Che, an engineer with a <strong>materials science background</strong> and <strong>1.5 years of packaging process experience</strong>, and a strong passion for <strong>applying AI to everyday life</strong>. I graduated from the <strong>Department of Materials Science at National Cheng Kung University</strong> and earned my master's from the same department. During my studies I <strong>took several semiconductor electives</strong>, including \"Principles of Semiconductor and Photoelectrochemistry\" and \"Micro/Nano Device Process and Design.\" In my master's I used first-principles calculations to study the catalytic and electrical characteristics of materials, and <strong>published three related papers</strong>.",
       "After graduating, I worked as a <strong>bumping process engineer</strong> in wafer-level packaging, responsible for the <strong>sputtering tools</strong>, managing process parameters and monitoring tool data. My team covered the front-end PI, Cu, and dry-film layers, so I am <strong>familiar with how coating, exposure, development, dry etching, and sputtering tools operate</strong>. <strong>Working production-line shifts</strong> built my ability to analyze, make judgments, and solve problems independently, and gave me experience collaborating with the equipment and quality assurance teams. Beyond keeping the line running, I took part in sputtering tool <strong>issue handling</strong>, <strong>trial runs</strong>, and process optimization, helped <strong>write tool operation SOPs</strong>, and explored ways to <strong>optimize the chamber-cleaning process</strong>.",
       "I am willing to help others and take responsibility. In college I <strong>served as vice president of a student club</strong>, coordinating club courses and recruitment outreach. In graduate school I was a liaison for international students in the lab. At work, <strong>handling production-line issues</strong> also strengthened my <strong>cross-department communication and collaboration skills</strong>.",
       "As AI has developed, I have also focused on applying it to everyday problems — from <strong>automating the cleanup and analysis of RAW DATA</strong> at work, to <strong>building a personal knowledge base and software tools</strong> with AI. By folding AI into my life and work, I keep exploring ways to improve myself and optimize processes. I believe <strong>a good engineer doesn't just solve problems; they build systems that keep evolving</strong>."
@@ -35,7 +35,7 @@
       { "text": "B.S. & M.S. in Materials Science and Engineering, National Cheng Kung University" },
       { "text": "3 published journal papers" },
       { "text": "AI vibe coding & automation" },
-      { "text": "2 years as a semiconductor packaging process engineer" }
+      { "text": "1.5 years as a semiconductor packaging process engineer" }
     ]
   },
   "experience": {
