@@ -13,7 +13,7 @@
   "hero": {
     "photo": "../images/photo.jpg?v=20260918",
     "greeting": "Hello, I'm Brian.",
-    "subtitle": "Semiconductor physics × AI systems — reasoning from first principles, automating with intelligence",
+    "subtitle": "Semiconductor process × data analysis — tracing issues to root causes and keeping the method",
     "stats": [
       { "value": "3", "label": "SCI journal papers" },
       { "value": "8.4", "label": "Highest impact factor" },
@@ -24,17 +24,17 @@
   "about": {
     "id": "about",
     "title": "About",
-    "description": "Physicist turned AI engineer — building systems that think and compute.",
+    "description": "A semiconductor process engineer who turns tool data into root causes and reusable methods.",
     "paragraphs": [
-      "I'm Wei-Che, an engineer with a <strong>materials science background</strong> and <strong>1.5 years of packaging process experience</strong>, and a strong passion for <strong>applying AI to everyday life</strong>. I graduated from the <strong>Department of Materials Science at National Cheng Kung University</strong> and earned my master's from the same department. During my studies I <strong>took several semiconductor electives</strong>, including \"Principles of Semiconductor and Photoelectrochemistry\" and \"Micro/Nano Device Process and Design.\" In my master's I used first-principles calculations to study the catalytic and electrical characteristics of materials, and <strong>published three related papers</strong>.",
-      "After graduating, I worked as a <strong>bumping process engineer</strong> in wafer-level packaging, responsible for the <strong>sputtering tools</strong>, managing process parameters and monitoring tool data. My team covered the front-end PI, Cu, and dry-film layers, so I am <strong>familiar with how coating, exposure, development, dry etching, and sputtering tools operate</strong>. <strong>Working production-line shifts</strong> built my ability to analyze, make judgments, and solve problems independently, and gave me experience collaborating with the equipment and quality assurance teams. Beyond keeping the line running, I took part in sputtering tool <strong>issue handling</strong>, <strong>trial runs</strong>, and process optimization, helped <strong>write tool operation SOPs</strong>, and explored ways to <strong>optimize the chamber-cleaning process</strong>.",
+      "I'm Wei-Che, an engineer with a <strong>materials science background</strong> and <strong>1.5 years of packaging process experience</strong>, who <strong>solves problems with data analysis and AI tools</strong>. I graduated from the <strong>Department of Materials Science at National Cheng Kung University</strong> and earned my master's from the same department. During my studies I <strong>took several semiconductor electives</strong>, including \"Principles of Semiconductor and Photoelectrochemistry\" and \"Micro/Nano Device Process and Design.\" In my master's I used first-principles calculations to study the catalytic and electrical characteristics of materials, and <strong>published three related papers</strong>.",
+      "After graduating, I worked as a <strong>bumping process engineer</strong> in wafer-level packaging, responsible for the <strong>sputtering tools</strong>, managing process parameters and monitoring tool data. My team covered the front-end PI, Cu, and dry-film layers, so on shift I also <strong>monitored coating, exposure, development, and dry-etch tools and handled their issues</strong>. <strong>Working production-line shifts</strong> built my ability to analyze, make judgments, and solve problems independently, and gave me experience collaborating with the equipment and quality assurance teams. Beyond keeping the line running, I took part in sputtering tool <strong>issue handling</strong>, <strong>trial runs</strong>, and process optimization, helped <strong>write tool operation SOPs</strong>, and explored ways to <strong>optimize the chamber-cleaning process</strong>.",
       "I am willing to help others and take responsibility. In college I <strong>served as vice president of a student club</strong>, coordinating club courses and recruitment outreach. In graduate school I was a liaison for international students in the lab. At work, <strong>handling production-line issues</strong> also strengthened my <strong>cross-department communication and collaboration skills</strong>.",
       "As AI has developed, I have also focused on applying it to everyday problems — from <strong>automating the cleanup and analysis of RAW DATA</strong> at work, to <strong>building a personal knowledge base and software tools</strong> with AI. By folding AI into my life and work, I keep exploring ways to improve myself and optimize processes. I believe <strong>a good engineer doesn't just solve problems; they build systems that keep evolving</strong>."
     ],
     "info": [
       { "text": "B.S. & M.S. in Materials Science and Engineering, National Cheng Kung University" },
       { "text": "3 published journal papers" },
-      { "text": "AI vibe coding & automation" },
+      { "text": "Data analysis & automation (Excel VBA, AI-assisted development)" },
       { "text": "1.5 years as a semiconductor packaging process engineer" }
     ]
   },
@@ -72,11 +72,21 @@
         "description": "Bumping process engineer on a wafer-level packaging line, responsible for line stability and issue handling for the front-end PI / Cu / DFM layers.",
         "details": [
           "Served as the <strong>owner of 9 sputtering tools</strong>, responsible for <strong>recipe and process-parameter management</strong>, <strong>first-line handling of tool issues</strong>, and <strong>data monitoring after preventive maintenance (PM)</strong>",
-          "Evaluated <strong>extending the sputter chamber-clean interval</strong>, analyzing tool by tool how the interval affects wafer resistance; <strong>preliminary results showed room to improve tool throughput</strong>",
+          "Investigated <strong>recurring wafer-alignment (ECC) excursions</strong>: found that exported tool parameters were logged at different intervals, realigned the time axes to <strong>rule out process parameters</strong>, and narrowed the cause to hardware for the equipment team; ran product pilot runs for release after part replacements",
+          "Evaluated <strong>extending the sputter chamber-clean interval</strong>, analyzing tool by tool how the interval affects wafer resistance; <strong>a preliminary experiment showed no clear wafer-resistance change when the clean interval was doubled</strong>",
           "On the team's rotating evening shifts, covered the front-end <strong>PI / Cu / dry-film (DFM) layers</strong> of the bumping process, monitoring and handling issues across sputtering, PI coating, exposure, development, dry etching, DFM lamination, and water-clean tools",
           "When tools went down, <strong>assessed the condition of wafers inside the tool</strong> and <strong>specified how they should be dispositioned</strong> (continue, rework, send for defect analysis, or scrap), limiting WIP damage and getting the line back up quickly",
           "Automated multi-tool raw-data processing and charting with <strong>Excel VBA</strong>, replacing manual per-tool tabulation and <strong>cutting about 50 minutes per tool failure</strong>",
           "<strong>Revised the OPUS metrology tool SOP</strong> with expanded procedures and illustrations, now the <strong>reference for new-hire training and consistent operation across shifts</strong>"
+        ]
+      },
+      {
+        "date": "2025 – Present",
+        "title": "Self-study & Personal Projects",
+        "org": "",
+        "details": [
+          "TOEIC 920, JLPT N3",
+          "Personal apps built with AI-assisted development, such as the 3C Detox focus timer and Elder Life App (see Projects)"
         ]
       }
     ]
@@ -250,6 +260,6 @@
     ]
   },
   "page": {
-    "title": "Wei-Che Tseng — Semiconductor Physics × AI Systems"
+    "title": "Wei-Che Tseng — Semiconductor Process × Data Analysis"
   }
 }
