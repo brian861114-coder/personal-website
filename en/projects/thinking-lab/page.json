@@ -1,0 +1,44 @@
+{
+  "kind": "project",
+  "kicker": "Projects",
+  "title": "Thinking Lab — STEM explainer animation channel on YouTube",
+  "shortTitle": "STEM animation channel",
+  "meta": "163 videos · 11 series · English explainer animations",
+  "tags": ["Code-rendered animation", "Canvas 2D", "MathJax", "Python numerical models", "ffmpeg"],
+  "homeHref": "../../",
+  "backHref": "../../#projects",
+  "contactHref": "../../#contact",
+  "soWhat": "Turns textbook material in semiconductor physics, materials thermodynamics, crystallography, and materials characterization into English explainer animations of about 10–15 minutes each: equations are derived step by step, graphs build up alongside the narration, and every concept is tied back to real process and metrology settings such as solder, wafers, and SEM.",
+  "problem": "Textbook derivations often skip steps and the figures are static, so it is hard to see how a curve responds when a parameter changes. Hand-edited animation is hard to produce at volume and consistently, and it is hard to guarantee that the numbers and equations on screen are correct.",
+  "role": "Independently planned the topics, source textbooks, and series structure, and built a programmatic animation production pipeline (scripts and code written in collaboration with AI).",
+  "method": [
+    "Animation is rendered frame by frame in code (Canvas 2D + MathJax equations, captured with headless Chrome and encoded with ffmpeg), so one engine produces every series",
+    "Numbers shown on screen are computed by Python numerical models and checked per episode, not typed in by hand",
+    "Sources include Neamen, Gaskell, OpenStax, and Zumdahl; every episode lists chapter timestamps and references",
+    "163 videos across 11 series so far: semiconductor physics, three seasons of materials thermodynamics, calculus, general chemistry, crystallography, materials characterization, and more"
+  ],
+  "figure": "",
+  "figureCaption": "",
+  "figures": [
+    {
+      "video": "videos/solder.mp4",
+      "poster": "images/poster-solder.webp",
+      "caption": "Materials thermodynamics: Pb–Sn free-energy curves and the common tangent explain why solder melts lowest at the eutectic point."
+    },
+    {
+      "video": "videos/pn-junction.mp4",
+      "poster": "images/poster-pn-junction.webp",
+      "caption": "Semiconductor physics: charge, field, and potential of a pn junction derived together to get the depletion width."
+    },
+    {
+      "video": "videos/sem.mp4",
+      "poster": "images/poster-sem.webp",
+      "caption": "Materials characterization: the SEM column and how working distance affects the image."
+    }
+  ],
+  "metric": "",
+  "transfer": "",
+  "links": [
+    { "label": "YouTube", "href": "https://www.youtube.com/@ThinkLab-TW-WeicheTseng" }
+  ]
+}

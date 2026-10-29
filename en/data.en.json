@@ -233,6 +233,13 @@
         "link": "projects/stem-learning/"
       },
       {
+        "icon": "🎬",
+        "img": "../images/thinking-lab.webp",
+        "title": "Thinking Lab animation channel",
+        "description": "163 English STEM explainer animations covering semiconductor physics, materials thermodynamics, and materials characterization. Rendered frame by frame in code, with on-screen numbers computed by Python models.",
+        "link": "projects/thinking-lab/"
+      },
+      {
         "icon": "🧊",
         "img": "../images/fridge-inventory.webp",
         "title": "Fridge inventory management system",
@@ -256,7 +263,8 @@
       { "icon": "ph ph-envelope", "label": "brian861114@gmail.com", "href": "mailto:brian861114@gmail.com" },
       { "icon": "ph ph-phone", "label": "0979-415-008", "href": "tel:+886****5008" },
       { "icon": "ph ph-linkedin-logo", "label": "LinkedIn", "href": "https://www.linkedin.com/in/wei-che-tseng-213113220/" },
-      { "icon": "ph ph-briefcase", "label": "104", "href": "https://pda.104.com.tw/profile/share/eWBzVEu53K4LasEqPbCOAHRluqvDWHv7" }
+      { "icon": "ph ph-briefcase", "label": "104", "href": "https://pda.104.com.tw/profile/share/eWBzVEu53K4LasEqPbCOAHRluqvDWHv7" },
+      { "icon": "ph ph-youtube-logo", "label": "YouTube", "href": "https://www.youtube.com/@ThinkLab-TW-WeicheTseng" }
     ]
   },
   "page": {

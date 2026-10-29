@@ -233,6 +233,13 @@
         "img": "images/stem-learning.webp"
       },
       {
+        "icon": "🎬",
+        "title": "Thinking Lab 教學動畫頻道",
+        "description": "163 支英文理工教學動畫，涵蓋半導體物理、材料熱力學與材料分析儀器。程式逐格渲染，畫面數值由 Python 模型計算。",
+        "link": "projects/thinking-lab/",
+        "img": "images/thinking-lab.webp"
+      },
+      {
         "icon": "🧊",
         "title": "冰箱庫存管理系統",
         "description": "Next.js + FastAPI 全端庫存管理系統。樂觀併發控制、冪等 API、原子性事件記錄與 Docker 部署。",
@@ -256,7 +263,8 @@
       {"icon":"ph ph-envelope","label":"brian861114@gmail.com","href":"mailto:brian861114@gmail.com"},
       { "icon": "ph ph-phone", "label": "0979-415-008", "href": "tel:+886979415008" },
       { "icon": "ph ph-linkedin-logo", "label": "LinkedIn", "href": "https://www.linkedin.com/in/wei-che-tseng-213113220/" },
-      { "icon": "ph ph-briefcase", "label": "104", "href": "https://pda.104.com.tw/profile/share/eWBzVEu53K4LasEqPbCOAHRluqvDWHv7" }
+      { "icon": "ph ph-briefcase", "label": "104", "href": "https://pda.104.com.tw/profile/share/eWBzVEu53K4LasEqPbCOAHRluqvDWHv7" },
+      { "icon": "ph ph-youtube-logo", "label": "YouTube", "href": "https://www.youtube.com/@ThinkLab-TW-WeicheTseng" }
     ]
   },
   "page": {

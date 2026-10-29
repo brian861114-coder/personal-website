@@ -1,0 +1,44 @@
+{
+  "kind": "project",
+  "kicker": "精選作品",
+  "title": "Thinking Lab — 理工教學動畫 YouTube 頻道",
+  "shortTitle": "理工教學動畫頻道",
+  "meta": "163 支影片 · 11 個系列 · 英文教學動畫",
+  "tags": ["程式渲染動畫", "Canvas 2D", "MathJax", "Python 數值模型", "ffmpeg"],
+  "homeHref": "../../style-4-notion-warm.html",
+  "backHref": "../../style-4-notion-warm.html#projects",
+  "contactHref": "../../style-4-notion-warm.html#contact",
+  "soWhat": "把半導體物理、材料熱力學、晶體學、材料分析儀器等理工教科書內容，做成每集約 10–15 分鐘的英文教學動畫：公式一步步推導、圖表跟著旁白長出來，並把觀念接回焊錫、晶圓、SEM 這類實際製程與量測情境。",
+  "problem": "教科書的推導常跳步，圖是靜態的，讀者很難看出「參數一變，曲線怎麼跟著變」；傳統手工剪輯動畫又很難大量、穩定地做，也不容易保證畫面上的數字和公式是對的。",
+  "role": "獨立規劃選題、教材來源與系列架構，並建立程式化的動畫製作管線（以 AI 協作撰寫腳本與程式）。",
+  "method": [
+    "動畫用程式逐格渲染（Canvas 2D + MathJax 公式，headless Chrome 截圖、ffmpeg 輸出），同一套引擎可重複產出各系列",
+    "畫面上的數值由 Python 數值模型計算並逐集檢查，不是手填",
+    "教材來源為 Neamen、Gaskell、OpenStax、Zumdahl 等教科書，每集附章節時間碼與參考資料",
+    "目前 163 支影片、11 個系列：半導體物理、材料熱力學三季、微積分、普通化學、晶體學、材料分析儀器等"
+  ],
+  "figure": "",
+  "figureCaption": "",
+  "figures": [
+    {
+      "video": "videos/solder.mp4",
+      "poster": "images/poster-solder.webp",
+      "caption": "材料熱力學：用 Pb–Sn 的自由能曲線與共切線，解釋焊錫為什麼在共晶點熔點最低。"
+    },
+    {
+      "video": "videos/pn-junction.mp4",
+      "poster": "images/poster-pn-junction.webp",
+      "caption": "半導體物理：pn 接面的電荷、電場、電位三層圖同步推導，算出空乏區寬度。"
+    },
+    {
+      "video": "videos/sem.mp4",
+      "poster": "images/poster-sem.webp",
+      "caption": "材料分析儀器：SEM 鏡筒結構與 working distance 對成像的影響。"
+    }
+  ],
+  "metric": "",
+  "transfer": "",
+  "links": [
+    { "label": "YouTube", "href": "https://www.youtube.com/@ThinkLab-TW-WeicheTseng" }
+  ]
+}

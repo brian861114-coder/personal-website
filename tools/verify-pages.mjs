@@ -31,7 +31,7 @@ const PAGES = [
       navLang: 'EN',
       navLangHrefEnds: '/en/',
       h1Contains: 'Brian',
-      count: ['.project-card', 6],
+      count: ['.project-card', 7],
       htmlLang: 'zh-Hant'
     }
   },
@@ -43,7 +43,7 @@ const PAGES = [
       navLang: '中文',
       navLangHrefEnds: '/style-4-notion-warm.html',
       h1Contains: 'Brian',
-      count: ['.project-card', 6],
+      count: ['.project-card', 7],
       htmlLang: 'en'
     }
   },
